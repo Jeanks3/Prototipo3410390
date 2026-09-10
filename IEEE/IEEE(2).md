@@ -2,23 +2,23 @@
 
 <div align="center">
 
-# <span style="color:#FF0000">NOMBRE DE LA EVIDENCIA</span>
+# <span style="color:#FF0000">SISTEMAS DE GESTIÓN DE INVENTARIOS Y VENTAS</span>
 
-<span style="color:#FF0000">QUIEN LA PRESENTA Y DE QUE FICHA PERTENECE</span>
+<span style="color:#FF0000">Jean Karlo Velassquez Pachon</span>
 
-<span style="color:#FF0000">A QUIEN SE DIRIGE EL TRABAJO</span>
+<span style="color:#FF0000">Tecnologías del Futuro S.A.S.</span>
 
-<span style="color:#FF0000">A LA INSTITUCIÓN DONDE SE ENTREGA (SENA)</span>
+<span style="color:#FF0000">SERVICIO NACIONAL DE APRENDIZAJE (SENA)</span>
 
-<span style="color:#FF0000">EL CENTRO DONDE SE PERTENECE</span>
+<span style="color:#FF0000">[Centro de formación]</span>
 
-<span style="color:#FF0000">EL TÉCNICO QUE SE ESTUDIA</span>
+<span style="color:#FF0000">Tecnólogo en Análisis y Desarrollo de Software</span>
 
-<span style="color:#FF0000">EN QUE FASE SE ENCUENTRA</span>
+<span style="color:#FF0000">Fase: Análisis</span>
 
-<span style="color:#FF0000">QUE TIPO DE FORMACIÓN RECIBE</span>
+<span style="color:#FF0000">Formación: Tecnólogo</span>
 
-<span style="color:#FF0000">FECHA DE ENTREGA</span>
+<span style="color:#FF0000">Fecha de entrega: [dd/mm/aaaa]</span>
 
 </div>
 
@@ -34,7 +34,7 @@
 
 | FECHA | REVISIÓN(ES) | AUTOR(ES) |
 |:---:|:---:|:---:|
-| | | |
+| 2026-08-20 | 1 | Jean Karlo Velassquez Pachon |
 | | | |
 
 <div align="center">
@@ -90,49 +90,95 @@
 
 # <span style="color:#FF0000">1. INTRODUCCION</span>
 
-<span style="color:#FF0000">*(Introducción a la necesidad)*</span>
+El presente documento describe el análisis y especificación de requisitos del sistema **"Sistemas de gestión de inventarios y ventas"**, desarrollado para la empresa **Tecnologías del Futuro S.A.S.** La empresa presenta dificultades para controlar su inventario, registrar ventas, gestionar clientes y proveedores, y generar reportes confiables. Actualmente se usan procesos manuales o herramientas ofimáticas aisladas, lo que genera pérdidas por desabastecimiento, errores en facturación y demoras en la atención.
+
+El sistema propuesto centraliza la operación comercial mediante módulos de productos, inventario, ventas, clientes, proveedores, reportes y configuración, con control de acceso por roles (Administrador, Vendedor, Consultor). Con ello se busca mejorar la eficiencia operativa, reducir errores y facilitar la toma de decisiones.
 
 ## <span style="color:#FF0000">1.1. OBJETIVO GENERAL</span>
 
+Desarrollar un sistema de información que permita gestionar de manera integral el inventario, las ventas, los clientes y los proveedores de **Tecnologías del Futuro S.A.S.**, optimizando los procesos operativos y facilitando la toma de decisiones mediante reportes confiables y en tiempo real.
+
 ## <span style="color:#FF0000">1.2. OBJETIVOS ESPECIFICOS</span>
+
+- Implementar un módulo de autenticación y control de acceso por roles.
+- Gestionar el catálogo de productos con categorías, precios, stock mínimo y stock máximo.
+- Automatizar el registro de ventas, cálculo de subtotal, impuestos, descuentos y generación de comprobantes.
+- Administrar la información de clientes y proveedores con historial de operaciones.
+- Permitir la consulta de inventario en tiempo real.
+- Generar reportes de ventas, inventario, clientes y proveedores, exportables en PDF y Excel.
+- Configurar parámetros generales del sistema (impuestos, políticas de inventario, seguridad).
+- Garantizar la seguridad, auditoría y trazabilidad de los cambios realizados.
 
 ## <span style="color:#FF0000">1.3. PROPOSITO</span>
 
-<span style="color:#FF0000">*(Que finalidad tiene el software frente a la necesidad)*</span>
+El software tiene como finalidad centralizar la operación comercial de **Tecnologías del Futuro S.A.S.**, eliminando registros manuales y dispersos, reduciendo errores humanos y proporcionando información oportuna para la reposición de inventario, la gestión de cartera y la toma de decisiones gerenciales.
 
 ## <span style="color:#FF0000">1.4. ALCANCE</span>
 
-<span style="color:#FF0000">*(Que tan lejos va a abarcar el software en las funciones de la empresa)*</span>
+El sistema abarcará los siguientes procesos:
+
+- Gestión de productos, categorías y proveedores.
+- Registro y consulta de inventario (stock, movimientos, stock mínimo).
+- Registro de ventas con cálculo de subtotal, IVA, descuentos y generación de factura.
+- Gestión de clientes (personas naturales y jurídicas) con historial de compras.
+- Generación de reportes operativos y de análisis.
+- Configuración de parámetros generales del sistema.
+- Control de acceso por roles (Administrador, Vendedor, Consultor).
+
+**No incluye** en esta versión: facturación electrónica ante la DIAN, integración con pasarelas de pago, comercio electrónico, aplicación móvil nativa, ni integración con sistemas contables externos.
 
 ## <span style="color:#FF0000">1.5. PERSONAL INVOLUCRADO</span>
 
-<span style="color:#FF0000">*(Puede ser 1 persona o varias)*</span>
-
 | NOMBRE | ROL | PROFESION | RESPONSABILIDADES | INFORMACION DE CONTACTO | APRUEBA |
 |---|---|---|---|---|---|
-| | | | | | SI / NO |
+| Jean Karlo Velassquez Pachon | Líder Técnico / Analista | Ingeniero de Sistemas | Dirección del proyecto, modelado UML, especificación de requisitos | jvelassquez@tecnologiasdelfuturo.com | SI |
+| [Por definir] | Analista | Ingeniero de Sistemas | Levantamiento de información, modelado, validación | [correo] | NO |
+| [Por definir] | Desarrollador | Ingeniero de Sistemas | Implementación del sistema, pruebas | [correo] | NO |
+| [Por definir] | Cliente / Usuario | Administrador | Validación de requisitos y aceptación | [correo] | SI |
 
 <span style="color:#FF0000">*(Aprueba entrevista y seguimiento)*</span>
 
 ## <span style="color:#FF0000">1.6. DEFINICIONES, ACRONIMOS Y ABREVIATURAS</span>
 
+| Término | Definición |
+|---|---|
+| SENA | Servicio Nacional de Aprendizaje |
+| UML | Lenguaje Unificado de Modelado |
+| RF | Requisito Funcional |
+| RNF | Requisito No Funcional |
+| IVA | Impuesto sobre el Valor Añadido |
+| PDF | Portable Document Format |
+| Excel | Hoja de cálculo electrónica |
+| CRUD | Crear, Leer, Actualizar, Eliminar |
+| Stock | Cantidad de productos disponibles en inventario |
+| Login | Inicio de sesión |
+| BD | Base de datos |
+
 ## <span style="color:#FF0000">1.7. REFERENCIAS</span>
 
-<span style="color:#FF0000">*(Ejemplos de software que resuelven necesidades similares y que funcionan de acuerdo a las especificaciones del cliente)*</span>
+- **Sistemas similares:** SAP Business One, Odoo Inventario, Factusol, Siigo, Alegra, Zoho Inventory.
+- **Normas y metodologías:** ISO/IEC 25010 (calidad de software), Scrum, RUP, UML 2.5.
+- **Documentación del proyecto:** Casos de uso, diagramas de actividades, diagrama de clases y cronograma de análisis.
 
 ## <span style="color:#FF0000">1.8. RESUMEN</span>
 
-<span style="color:#FF0000">*(Breve resumen del uso del software, para que se usa)*</span>
+El sistema **"Sistemas de gestión de inventarios y ventas"** permitirá a **Tecnologías del Futuro S.A.S.** administrar productos, inventario, ventas, clientes y proveedores desde una aplicación web con roles diferenciados. El Administrador tendrá control total; el Vendedor podrá registrar ventas y gestionar clientes; el Consultor solo podrá consultar información y generar reportes. Con ello se espera reducir errores, mejorar los tiempos de atención y contar con información confiable para la toma de decisiones.
 
 ---
 
 # <span style="color:#FF0000">2. DESCRIPCION GENERAL</span>
 
-<span style="color:#FF0000">*(A groso modo la descripción del software en funcionamiento, como se usa o funciona)*</span>
+El sistema funciona como una aplicación web accesible desde un navegador. El usuario inicia sesión según su rol y accede a un panel con los módulos habilitados. La información se almacena en una base de datos centralizada. El sistema valida stock, calcula totales, genera comprobantes y actualiza el inventario automáticamente.
 
 ## <span style="color:#FF0000">2.1. PERSPECTIVA DEL PRODUCTO</span>
 
-<span style="color:#FF0000">*(Como se describe la interfaz del sistema, con las que él usuario interactúa con el sistema y cuales usuarios lo usarán y bajo que roles)*</span>
+El sistema se describe como una interfaz web con las siguientes características:
+
+- **Usuarios y roles:** Administrador, Vendedor y Consultor.
+- **Interacción:** El usuario interactúa mediante formularios, tablas, filtros, botones y menús.
+- **Módulos:** Login, productos, inventario, ventas, clientes, proveedores, reportes y configuración.
+- **Flujo principal:** El Vendedor registra una venta; el sistema verifica stock, calcula totales, genera factura y descuenta inventario. El Administrador gestiona catálogos y configuración. El Consultor visualiza reportes.
+- **Integración:** Base de datos relacional; exportación a PDF y Excel.
 
 ## <span style="color:#FF0000">2.2. FUNCIONALIDADES DEL PRODUCTO</span>
 
@@ -1306,27 +1352,72 @@
 
 ## <span style="color:#FF0000">2.3. CARACTERISTICAS DE LOS USUARIOS</span>
 
-<span style="color:#FF0000">*(Funciones de la persona en el proceso)*</span>
-
-<span style="color:#FF0000">*(Descripción de cada rol dentro del software)*</span>
+| Rol | Descripción | Funciones principales | Permisos |
+|---|---|---|---|
+| Administrador | Usuario con control total del sistema. | Gestionar productos, clientes, proveedores, ventas, reportes y configuración. | CRUD total, configuración, auditoría. |
+| Vendedor | Usuario encargado de la operación comercial. | Registrar ventas, gestionar clientes, consultar inventario. | Crear ventas, CRUD clientes, consultar productos. |
+| Consultor | Usuario de solo consulta. | Visualizar reportes y consultar información. | Solo lectura y exportación de reportes. |
+| Cliente | Persona natural o jurídica que compra. | No accede al sistema; es registrado por el vendedor. | N/A |
+| Proveedor | Empresa que suministra productos. | No accede al sistema; es gestionado por el administrador. | N/A |
+| Sistema | Componente automático. | Validar, calcular, actualizar stock, generar alertas. | N/A |
 
 ## <span style="color:#FF0000">2.4. RESTRICCIONES</span>
 
-<span style="color:#FF0000">*(lo que no se quiere que se haga dentro del software, lo que cada rol tiene permitido y no permitido)*</span>
+- No se permite eliminar físicamente productos, clientes o proveedores con ventas asociadas; solo se pueden desactivar.
+- El Vendedor no puede eliminar clientes ni modificar la configuración del sistema.
+- El Consultor no puede crear, editar ni eliminar registros.
+- No se permite registrar una venta si no hay stock suficiente.
+- No se permite el acceso sin autenticación previa.
+- No se permiten precios negativos o iguales a cero.
+- El sistema no reemplaza la facturación electrónica legal ni la contabilidad externa.
+- El sistema depende de la conexión a la base de datos; si no hay conexión, no permite operaciones.
+- El cierre de sesión es obligatorio tras un tiempo de inactividad.
 
 ---
 
 # <span style="color:#FF0000">3. REQUISITOS ESPECIFICOS</span>
 
-<span style="color:#FF0000">*(Enumerar todas y cada una de las funciones que pide el cliente para su proyecto de automatización)*</span>
-
 ## <span style="color:#FF0000">3.1. REQUISITOS DEL SISTEMA</span>
+
+| Tipo | Requisito |
+|---|---|
+| Hardware servidor | Procesador 2 GHz o superior, 4 GB RAM, 50 GB disco. |
+| Hardware cliente | PC o portátil con navegador actualizado, 2 GB RAM. |
+| Software servidor | Sistema operativo Windows/Linux, servidor web Apache/Nginx, SGBD MySQL/PostgreSQL. |
+| Software cliente | Navegador Chrome, Edge o Firefox actualizado. |
+| Red | Conexión a Internet o intranet. |
+| Seguridad | Autenticación por usuario y contraseña, roles y permisos. |
+| Respaldo | Copias de seguridad periódicas de la base de datos. |
 
 ## <span style="color:#FF0000">3.2. REQUISITOS FUNCIONALES</span>
 
 | IDENTIFICACION DEL REQUERIMIENTO | NOMBRE DEL REQUERIMIENTO | CARACTERISTICAS | DESCRIPCION DEL REQUERIMIENTO | REQUERIMIENTO NO FUNCIONAL | PRIORIDAD DEL REQUERIMIENTO |
 |---|---|---|---|---|:---:|
-| | | | | | ALTA / MEDIA / BAJA |
+| RF-001 | Autenticación de usuarios | Seguridad, validación | Permitir inicio de sesión con usuario y contraseña, validando rol. | RNF-001 | ALTA |
+| RF-002 | Gestión de roles y permisos | Seguridad | Asignar permisos según rol: Administrador, Vendedor, Consultor. | RNF-001 | ALTA |
+| RF-003 | Registrar venta | Ventas | Registrar una nueva venta seleccionando productos y cantidades. | RNF-003 | ALTA |
+| RF-004 | Calcular totales de venta | Ventas | Calcular subtotal, IVA, descuento y total. | RNF-003 | ALTA |
+| RF-005 | Generar factura | Ventas | Generar comprobante de venta con número de factura. | RNF-005 | ALTA |
+| RF-006 | Actualizar inventario | Inventario | Descontar stock automáticamente al confirmar venta. | RNF-009 | ALTA |
+| RF-007 | Anular venta | Ventas | Permitir anular una venta antes de confirmarla. | RNF-008 | MEDIA |
+| RF-008 | Gestionar productos | Productos | CRUD de productos con código, nombre, precio, stock mínimo, categoría y proveedor. | RNF-002 | ALTA |
+| RF-009 | Gestionar categorías | Productos | CRUD de categorías y subcategorías de productos. | RNF-002 | MEDIA |
+| RF-010 | Consultar inventario | Inventario | Consultar stock en tiempo real con filtros por código, nombre, categoría. | RNF-003 | ALTA |
+| RF-011 | Ajustar stock | Inventario | Permitir ajustes manuales por devoluciones o correcciones. | RNF-009 | MEDIA |
+| RF-012 | Gestionar clientes | Clientes | CRUD de clientes con identificación, nombre, correo, teléfono, dirección y tipo. | RNF-002 | ALTA |
+| RF-013 | Historial de compras | Clientes | Visualizar historial de compras por cliente. | RNF-003 | MEDIA |
+| RF-014 | Gestionar proveedores | Proveedores | CRUD de proveedores con datos comerciales, fiscales y calificación. | RNF-002 | ALTA |
+| RF-015 | Asociar productos a proveedores | Proveedores | Relacionar productos con sus proveedores. | RNF-009 | MEDIA |
+| RF-016 | Reporte de ventas | Reportes | Generar reportes de ventas por fecha, cliente, producto. | RNF-003 | ALTA |
+| RF-017 | Reporte de inventario | Reportes | Generar reportes de stock, movimientos y stock mínimo. | RNF-003 | ALTA |
+| RF-018 | Reporte de clientes/proveedores | Reportes | Generar listados y estadísticas de clientes y proveedores. | RNF-003 | MEDIA |
+| RF-019 | Exportar reportes | Reportes | Exportar reportes a PDF y Excel. | RNF-005 | ALTA |
+| RF-020 | Configurar sistema | Configuración | Configurar impuestos, políticas de inventario, seguridad y personalización. | RNF-007 | ALTA |
+| RF-021 | Auditoría de cambios | Seguridad | Registrar historial de cambios en productos, clientes, proveedores y configuración. | RNF-008 | MEDIA |
+| RF-022 | Restaurar configuración | Configuración | Restaurar valores por defecto del sistema. | RNF-007 | BAJA |
+| RF-023 | Búsqueda y filtros | Usabilidad | Permitir búsqueda rápida y filtros avanzados en todos los módulos. | RNF-002 | ALTA |
+| RF-024 | Gestión de stock mínimo | Inventario | Alertar cuando un producto esté por debajo del stock mínimo. | RNF-009 | ALTA |
+| RF-025 | Registro de movimientos | Inventario | Registrar entradas y salidas de inventario con fecha y usuario. | RNF-008 | MEDIA |
 
 <span style="color:#FF0000">
 **IDENTIFICACION DEL REQUERIMIENTO:** una abreviatura del requisito única e irrepetible, como la referencia de un producto, entre más corta mejor.
@@ -1338,7 +1429,18 @@
 
 | IDENTIFICACION DEL REQUERIMIENTO | NOMBRE DEL REQUERIMIENTO | CARACTERISTICAS | DESCRIPCION DEL REQUERIMIENTO | PRIORIDAD DEL REQUERIMIENTO |
 |---|---|---|---|:---:|
-| | | | | ALTA / MEDIA / BAJA |
+| RNF-001 | Seguridad | Autenticación, cifrado | Contraseñas cifradas, control de acceso por roles, sesión con expiración. | ALTA |
+| RNF-002 | Usabilidad | Interfaz intuitiva | Interfaz sencilla, mensajes claros y navegación lógica. | ALTA |
+| RNF-003 | Rendimiento | Tiempo de respuesta | Respuestas del sistema en menos de 3 segundos en condiciones normales. | ALTA |
+| RNF-004 | Disponibilidad | Horario laboral | Disponibilidad del 99% en horario laboral. | MEDIA |
+| RNF-005 | Compatibilidad | Navegadores | Funcionar en Chrome, Edge y Firefox actualizados. | ALTA |
+| RNF-006 | Escalabilidad | Crecimiento | Soportar aumento de productos, clientes y ventas sin degradar rendimiento. | MEDIA |
+| RNF-007 | Mantenibilidad | Código modular | Código organizado por módulos y documentado. | MEDIA |
+| RNF-008 | Auditoría | Trazabilidad | Registrar usuario, fecha y hora de cada cambio importante. | MEDIA |
+| RNF-009 | Integridad | Transacciones | Garantizar consistencia de datos en ventas e inventario. | ALTA |
+| RNF-010 | Respaldos | Copias de seguridad | Realizar respaldos periódicos de la base de datos. | ALTA |
+| RNF-011 | Idioma | Español | Interfaz y mensajes en español. | ALTA |
+| RNF-012 | Accesibilidad | Contraste y teclado | Permitir navegación con teclado y buen contraste visual. | BAJA |
 
 ---
 
@@ -1517,14 +1619,11 @@
 ### Diagrama UML
 
 ```mermaid
-
 graph TD
-    %% ACTORES
     Admin([Administrador])
     Vendedor([Vendedor])
     Consultor([Consultor])
 
-    %% CASOS DE USO
     AUT_Login["AUT-Login001<br>Login del sistema"]
     VEN_Venta["VEN-Venta001<br>Registrar venta"]
     PRO_Producto["PRO-Producto001<br>Gestionar productos"]
@@ -1534,7 +1633,6 @@ graph TD
     REP_Reporte["REP-Reporte001<br>Generar reportes"]
     CFG_Config["CFG-Config001<br>Configurar sistema"]
 
-    %% RELACIONES ACTORES - CASOS DE USO
     Admin --> AUT_Login
     Vendedor --> AUT_Login
     Consultor --> AUT_Login
@@ -1552,36 +1650,33 @@ graph TD
     Consultor --> PRO_Inventario
     Consultor --> REP_Reporte
 
-%% RELACIONES ENTRE CASOS DE USO
-    VEN_Venta -->|&lt;&lt;include&gt;&gt;| PRO_Inventario
-    VEN_Venta -->|&lt;&lt;include&gt;&gt;| CLI_Cliente
-    PRO_Producto -->|&lt;&lt;extend&gt;&gt;| PRV_Proveedor
+    VEN_Venta -->|include| PRO_Inventario
+    VEN_Venta -->|include| CLI_Cliente
+    PRO_Producto -->|extend| PRV_Proveedor
 
-    %% ESTILOS
     classDef actor fill:#1e4663,color:#fff,stroke:#0d2b44,stroke-width:2px
     classDef casoUso fill:#e8f5e9,color:#1e3a5f,stroke:#2c6e2f,stroke-width:2px
 
     class Admin,Vendedor,Consultor actor
     class AUT_Login,VEN_Venta,PRO_Producto,PRO_Inventario,CLI_Cliente,PRV_Proveedor,REP_Reporte,CFG_Config casoUso
-
 ```
 
 ### Diagrama de actividades 1
+
 ```mermaid
-    flowchart TD
+flowchart TD
     A[Inicio] --> B[Vendedor accede al módulo de ventas]
     B --> C[Sistema muestra formulario de nueva venta]
     C --> D[Vendedor busca y selecciona productos]
     D --> E[Vendedor ingresa cantidades]
     E --> F[Sistema verifica disponibilidad en inventario]
 
-    F --> G{¿Stock suficiente?}
+    F --> G{Stock suficiente?}
     G -->|No| H[Sistema muestra alerta de stock insuficiente]
     H --> D
 
     G -->|Sí| I[Sistema calcula subtotal, impuesto y total]
     I --> J[Vendedor confirma la venta]
-
     J --> K[Sistema registra la venta en BD]
     K --> L[Sistema genera número de factura]
     L --> M[Sistema descuenta stock del inventario]
@@ -1599,18 +1694,20 @@ graph TD
     class G decision
     class H alerta
 ```
+
 ### Diagrama de actividades 2
+
 ```mermaid
-    flowchart TD
+flowchart TD
     A[Inicio] --> B[Administrador accede al módulo de productos]
     B --> C[Sistema muestra lista de productos]
-    C --> D{¿Qué acción?}
+    C --> D{Qué acción?}
 
     D -->|Agregar| E[Sistema muestra formulario nuevo producto]
     E --> F[Administrador completa campos]
     F --> G[Sistema valida datos]
 
-    G --> H{¿Datos válidos?}
+    G --> H{Datos válidos?}
     H -->|No| I[Sistema muestra errores]
     I --> F
 
@@ -1628,7 +1725,7 @@ graph TD
     Q --> R[Administrador selecciona Eliminar]
     R --> S[Sistema verifica si tiene ventas]
 
-    S --> T{¿Tiene ventas?}
+    S --> T{Tiene ventas?}
     T -->|Sí| U[Sistema solo permite desactivar]
     U --> K
     T -->|No| V[Sistema elimina producto]
@@ -1648,6 +1745,7 @@ graph TD
 ```
 
 ### Diagrama de clases
+
 ```mermaid
 classDiagram
     class Usuario {
@@ -1798,7 +1896,6 @@ classDiagram
         +importar()
     }
 
-    %% RELACIONES
     Usuario "N" --> "1" Rol
     Venta "N" --> "1" Usuario
     Venta "N" --> "1" Cliente
@@ -1809,6 +1906,104 @@ classDiagram
     Producto "1" --> "1" Inventario
     Reporte "N" --> "1" Usuario
 ```
+## Prototipo
+
+## <span style="color:#FF0000">4.1. CONSTRUCCIÓN DE PROTOTIPOS</span>
+
+El prototipo de interfaz fue desarrollado en HTML, CSS y JavaScript, siguiendo los lineamientos visuales definidos en el análisis (paleta institucional, componentes reutilizables y control de acceso por roles). El código fuente completo se encuentra disponible en el repositorio del proyecto y el prototipo navegable puede consultarse en línea.
+
+### 4.1.1. Información del prototipo
+
+| Aspecto | Detalle |
+|---|---|
+| **Herramienta de construcción** | HTML5, CSS3, JavaScript (Vanilla) |
+| **Framework CSS** | MasterCss personalizado |
+| **Iconografía** | SVG embebidos (Phosphor Icons) |
+| **Notificaciones** | SweetAlert2 |
+| **Repositorio** | [Ver repositorio en GitHub](https://github.com/TU_USUARIO/TU_REPO) |
+| **Prototipo en línea** | [Ver prototipo navegable en Vercel](https://tu-proyecto.vercel.app) |
+| **Credenciales de prueba** | Administrador: `admin / admin123` · Vendedor: `vendedor / venta123` · Consultor: `consultor / consulta123` |
+
+>**Nota:** El prototipo es de baja fidelidad funcional. Los botones y formularios responden visualmente a la interacción del usuario, pero no persisten datos en una base de datos real; están pensados para validar la experiencia de usuario y los flujos de navegación definidos en los casos de uso.
+
+### 4.1.2. Pantallas principales
+
+#### Pantalla 1 — Inicio de sesión
+
+![Pantalla de inicio de sesión](img/Login.png)
+
+*Formulario de autenticación con validación por roles (Administrador, Vendedor, Consultor). Incluye opciones de recordar contraseña, recuperación y enlace a registro.*
+
+---
+
+#### Pantalla 2 — Panel principal (Dashboard)
+
+![Panel del administrador](img/Dashboard.png)
+
+*Panel con KPIs de operación (total de productos, valor del inventario, stock bajo, ventas del día), gráficos de resumen y accesos rápidos a los módulos del sistema.*
+
+---
+
+#### Pantalla 3 — Gestión de productos
+
+![Módulo de productos](img/Productos.png)
+
+*Módulo de catálogo con búsqueda, filtros, tabla paginada y acciones CRUD (crear, editar, eliminar) sobre los productos del inventario.*
+
+---
+
+#### Pantalla 4 — Gestión de clientes
+
+![Módulo de clientes](img/Clientes.png)
+
+*Administración de clientes (persona natural y jurídica) con datos de contacto, historial de compras, estado (activo/inactivo) y acciones de edición.*
+
+---
+
+#### Pantalla 5 — Registro de ventas
+
+![Módulo de ventas](img/Ventas.png)
+
+*Formulario de registro de ventas con selección de cliente, productos, cantidades, cálculo automático de subtotal, IVA y total, y generación de comprobante.*
+
+---
+
+#### Pantalla 6 — Generación de reportes
+
+![Módulo de reportes](img/Reportes.png)
+
+*Módulo de reportes parametrizables por tipo (ventas, inventario, clientes, proveedores), rango de fechas y categorías. Los resultados se muestran en una tabla dinámica y pueden exportarse a PDF o Excel.*
+
+---
+
+#### Pantalla 7 — Cierre de sesión
+
+![Cierre de sesión](img/CerrarSesion.png)
+
+*Confirmación de cierre de sesión con SweetAlert2. Al confirmar, el sistema invalida las credenciales activas y redirige al usuario a la pantalla de inicio de sesión.*
+
+---
+
+### 4.1.3. Verificación del prototipo
+
+| Criterio | Cumple | Observación |
+|---|:---:|---|
+| Diseño responsive (móvil, tablet, escritorio) | ✅ | Media queries implementadas en MasterCss |
+| Coherencia visual entre pantallas | ✅ | Topbar, sidebar y componentes reutilizados |
+| Navegación por roles | ✅ | Menús y accesos cambian según el rol autenticado |
+| Validación de formularios | ✅ | Campos requeridos, formatos y mensajes de error |
+| Retroalimentación al usuario | ✅ | Modales, alertas y notificaciones de confirmación |
+| Cobertura de casos de uso | ✅ | 8 casos de uso representados en el prototipo |
+
+### 4.1.4. Enlace de consulta
+
+El prototipo puede explorarse en línea sin necesidad de instalar dependencias:
+
+🔗 **https://prototipo3410390.vercel.app/**
+
+Para revisar el código fuente y la documentación:
+
+🔗 **https://github.com/Jeanks3/Prototipo3410390**
 ---
 ## Checklist
 
@@ -1843,6 +2038,7 @@ classDiagram
 | E1.6 | Roles y responsabilidades del equipo | Completado | |
 | E1.7 | Herramientas a utilizar definidas | Completado | |
 | E1.8 | Informe de planeación de análisis elaborado | Completado | |
+
 | # | Elemento | Estado | Observación |
 |---|----------|--------|-------------|
 | E2.1 | Identificación de actores del sistema | Completado | Administrador, Vendedor, Consultor, Cliente, Proveedor |
@@ -1860,8 +2056,8 @@ classDiagram
 | E3.2 | Diagrama de casos de uso UML elaborado | Completado | |
 | E3.3 | Relaciones actor-caso de uso representadas | Completado | |
 | E3.4 | Relaciones de herencia identificadas | Completado | |
-| E3.5 | Relaciones `<<include>>` representadas | Completado | VEN-Venta001 → PRO-Inventario001, CLI-Cliente001 |
-| E3.6 | Relaciones `<<extend>>` representadas | Completado | PRO-Producto001 → PRV-Proveedor001 |
+| E3.5 | Relaciones include representadas | Completado | VEN-Venta001 → PRO-Inventario001, CLI-Cliente001 |
+| E3.6 | Relaciones extend representadas | Completado | PRO-Producto001 → PRV-Proveedor001 |
 | E3.7 | Plantillas extendidas (3 casos de uso) | Completado | Login, Registrar Venta, Gestionar Productos |
 | E3.8 | Verificación de cobertura de requisitos | Completado | |
 
@@ -1930,7 +2126,9 @@ classDiagram
 - Ejercicios de apropiación (1 al 5) completados exitosamente.
 - Modelos generados son consistentes entre sí.
 - **Pendientes:** Listas de chequeo aplicadas (3.4.7), Mejoras a modelos (3.4.8), Prototipo inicial (3.4.9) e Informe de análisis completo (3.4.10).
+
 ---
+
 ## <span style="color:#FF0000">4.2. FORMATO DE CASO DE PRUEBA</span>
 
 <div align="center">
@@ -1955,26 +2153,6 @@ classDiagram
 ---
 
 # <span style="color:#FF0000">4.3. CRONOGRAMA DE ACTIVIDADES</span>
-
-<div align="center">
-
-### <span style="color:#FF0000">CRONOGRAMA DE ANÁLISIS - TECNOLOGÍAS DEL FUTURO S.A.S.</span>
-
-</div>
-
-El siguiente cronograma detalla las actividades planificadas para la fase de análisis del proyecto, estableciendo tiempos, responsables y entregables clave.
-
-<!-- INICIO DEL HTML DE LA TABLA DE CRONOGRAMA -->
-
-# <span style="color:#FF0000">4.3. CRONOGRAMA DE ACTIVIDADES</span>
-
-<div align="center">
-
-### <span style="color:#FF0000">CRONOGRAMA DE ANÁLISIS - TECNOLOGÍAS DEL FUTURO S.A.S.</span>
-
-</div>
-
-El siguiente cronograma detalla las actividades planificadas para la fase de análisis del proyecto, estableciendo tiempos, responsables y entregables clave.
 
 <div align="center">
 
@@ -2015,7 +2193,7 @@ El siguiente cronograma detalla las actividades planificadas para la fase de an�
 | **🔹 HITO 1** | Informe de Planeación y Alcance | **S2** |
 | **🔹 HITO 2** | Casos de Uso + Plantillas extendidas | **S6** |
 | **🔹 HITO 3** | Diagramas de Actividades + Modelo de Dominio | **S10** |
-| **🔹 HITO 4** | ProtAbrir en uotipo Navegable + Informe Final de Análisis | **S15** |
+| **🔹 HITO 4** | Prototipo Navegable + Informe Final de Análisis | **S15** |
 
 ---
 
