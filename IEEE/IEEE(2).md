@@ -1920,8 +1920,8 @@ El prototipo de interfaz fue desarrollado en HTML, CSS y JavaScript, siguiendo l
 | **Framework CSS** | MasterCss personalizado |
 | **Iconografía** | SVG embebidos (Phosphor Icons) |
 | **Notificaciones** | SweetAlert2 |
-| **Repositorio** | [Ver repositorio en GitHub](https://github.com/TU_USUARIO/TU_REPO) |
-| **Prototipo en línea** | [Ver prototipo navegable en Vercel](https://tu-proyecto.vercel.app) |
+| **Repositorio** | [Ver repositorio en GitHub](https://github.com/Jeanks3/Prototipo3410390) |
+| **Prototipo en línea** | [Ver prototipo navegable en Vercel](https://prototipo3410390.vercel.app/) |
 | **Credenciales de prueba** | Administrador: `admin / admin123` · Vendedor: `vendedor / venta123` · Consultor: `consultor / consulta123` |
 
 >**Nota:** El prototipo es de baja fidelidad funcional. Los botones y formularios responden visualmente a la interacción del usuario, pero no persisten datos en una base de datos real; están pensados para validar la experiencia de usuario y los flujos de navegación definidos en los casos de uso.
