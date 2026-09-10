@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Productos</title>
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="dashboard-page">
+    <!-- Topbar -->
+    <header class="topbar">
+        <button class="btn-hamburguer" id="menuToggle" aria-label="Abrir menú">☰</button>
+        <div class="topbar-logo">Logo</div>
+        <div class="topbar-profile" id="profileToggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path></svg>
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="#" id="logoutLink">Cerrar sesión</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li class="sidebar-item">
+                <a href="dashboard.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M219.31,108.68l-80-80a16,16,0,0,0-22.62,0l-80,80A15.87,15.87,0,0,0,32,120v96a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V160h32v56a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V120A15.87,15.87,0,0,0,219.31,108.68ZM208,208H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48V120l80-80,80,80Z"></path></svg>
+                    Inicio
+                </a>
+            </li>
+            <li class="sidebar-item active">
+                <a href="productos.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M223.68,66.15,135.68,18a15.88,15.88,0,0,0-15.36,0l-88,48.17a16,16,0,0,0-8.32,14v95.64a16,16,0,0,0,8.32,14l88,48.17a15.88,15.88,0,0,0,15.36,0l88-48.17a16,16,0,0,0,8.32-14V80.18A16,16,0,0,0,223.68,66.15ZM128,32l80.34,44-29.77,16.3-80.35-44ZM128,120,47.66,76l33.9-18.56,80.34,44ZM40,90l80,43.78v85.79L40,175.82Zm176,85.78h0l-80,43.79V133.82l32-17.51V152a8,8,0,0,0,16,0V107.55L216,90v85.77Z"></path></svg>
+                    Productos
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"></path></svg>
+                    Clientes
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="GestorVentas.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M72,104a8,8,0,0,1,8-8h96a8,8,0,0,1,0,16H80A8,8,0,0,1,72,104Zm8,40h96a8,8,0,0,0,0-16H80a8,8,0,0,0,0,16ZM232,56V208a8,8,0,0,1-11.58,7.15L192,200.94l-28.42,14.21a8,8,0,0,1-7.16,0L128,200.94,99.58,215.15a8,8,0,0,1-7.16,0L64,200.94,35.58,215.15A8,8,0,0,1,24,208V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56Zm-16,0H40V195.06l20.42-10.22a8,8,0,0,1,7.16,0L96,199.06l28.42-14.22a8,8,0,0,1,7.16,0L160,199.06l28.42-14.22a8,8,0,0,1,7.16,0L216,195.06Z"></path></svg>
+                    Ventas
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="Reportes.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M228.54,86.66l-176.06-54A16,16,0,0,0,32,48V192a16,16,0,0,0,16,16,16,16,0,0,0,4.52-.65L136,181.73V192a16,16,0,0,0,16,16h32a16,16,0,0,0,16-16v-29.9l28.54-8.75A16.09,16.09,0,0,0,240,138V102A16.09,16.09,0,0,0,228.54,86.66ZM136,165,48,192V48l88,27Zm48,27H152V176.82L184,167Zm40-54-.11,0L152,160.08V79.92l71.89,22,.11,0v36Z"></path></svg>
+                    Reportes
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <div class="dashboard-container">
+            <div class="page-header">
+                <h1 class="dashboard-title">Gestión de Productos</h1>
+                <button class="btn-primary" id="btnAgregarProducto">
+                    <i class="fas fa-plus"></i> Agregar nuevo producto
+                </button>
+            </div>
+
+            <!-- Barra de búsqueda y filtros -->
+            <div class="search-filters">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar por código, nombre o proveedor..." id="searchInput">
+                </div>
+                <div class="filter-group">
+                    <select id="filterCategoria">
+                        <option value="">Todas las categorías</option>
+                        <option value="Electrónica">Electrónica</option>
+                        <option value="Oficina">Oficina</option>
+                        <option value="Hogar">Hogar</option>
+                        <option value="Industrial">Industrial</option>
+                    </select>
+                    <select id="filterProveedor">
+                        <option value="">Todos los proveedores</option>
+                        <option value="Proveedor A">Proveedor A</option>
+                        <option value="Proveedor B">Proveedor B</option>
+                        <option value="Proveedor C">Proveedor C</option>
+                    </select>
+                    <button class="btn-filter" id="btnFiltrar"><i class="fas fa-filter"></i> Filtrar</button>
+                    <button class="btn-clear" id="btnLimpiar"><i class="fas fa-undo"></i> Limpiar</button>
+                </div>
+            </div>
+
+            <!-- Tabla de productos -->
+            <div class="table-container">
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Proveedor</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody">
+                        <tr>
+                            <td><span class="product-code">PRD-001</span></td>
+                            <td><span class="product-name">Laptop Pro</span></td>
+                            <td><span class="product-category">Electrónica</span></td>
+                            <td><span class="product-price">$850.000</span></td>
+                            <td><span class="product-stock">45</span></td>
+                            <td><span class="product-supplier">Proveedor A</span></td>
+                            <td><span class="status-badge active">Activo</span></td>
+                            <td class="actions-cell">
+                                <button class="btn-icon btn-edit" title="Editar"><i class="fas fa-pen"></i></button>
+                                <button class="btn-icon btn-delete" title="Eliminar"><i class="fas fa-trash"></i></button>
+                                <button class="btn-icon btn-history" title="Historial"><i class="fas fa-clock-rotate-left"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="product-code">PRD-002</span></td>
+                            <td><span class="product-name">Monitor 24"</span></td>
+                            <td><span class="product-category">Electrónica</span></td>
+                            <td><span class="product-price">$320.000</span></td>
+                            <td><span class="product-stock">12</span></td>
+                            <td><span class="product-supplier">Proveedor B</span></td>
+                            <td><span class="status-badge active">Activo</span></td>
+                            <td class="actions-cell">
+                                <button class="btn-icon btn-edit"><i class="fas fa-pen"></i></button>
+                                <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                                <button class="btn-icon btn-history"><i class="fas fa-clock-rotate-left"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="product-code">PRD-003</span></td>
+                            <td><span class="product-name">Teclado Mecánico</span></td>
+                            <td><span class="product-category">Oficina</span></td>
+                            <td><span class="product-price">$85.000</span></td>
+                            <td><span class="product-stock">8</span></td>
+                            <td><span class="product-supplier">Proveedor A</span></td>
+                            <td><span class="status-badge inactive">Inactivo</span></td>
+                            <td class="actions-cell">
+                                <button class="btn-icon btn-edit"><i class="fas fa-pen"></i></button>
+                                <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                                <button class="btn-icon btn-history"><i class="fas fa-clock-rotate-left"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="product-code">PRD-004</span></td>
+                            <td><span class="product-name">Silla Ergonómica</span></td>
+                            <td><span class="product-category">Hogar</span></td>
+                            <td><span class="product-price">$450.000</span></td>
+                            <td><span class="product-stock">3</span></td>
+                            <td><span class="product-supplier">Proveedor C</span></td>
+                            <td><span class="status-badge low-stock">Stock bajo</span></td>
+                            <td class="actions-cell">
+                                <button class="btn-icon btn-edit"><i class="fas fa-pen"></i></button>
+                                <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                                <button class="btn-icon btn-history"><i class="fas fa-clock-rotate-left"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Paginación -->
+            <div class="table-footer">
+                <span class="table-info">Mostrando 1-4 de 24 productos</span>
+                <div class="pagination">
+                    <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODAL: Agregar/Editar Producto -->
+    <div class="modal-overlay" id="modalProducto">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle"><i class="fas fa-plus-circle"></i> Agregar nuevo producto</h2>
+                <button class="modal-close" id="closeModal"><i class="fas fa-xmark"></i></button>
+            </div>
+            <form class="modal-form" id="productForm">
+                <div class="form-row">
+                    <div class="form-group required">
+                        <label for="codigo">Código</label>
+                        <input type="text" id="codigo" placeholder="Ej: PRD-001" required>
+                        <small class="field-error">Este campo es obligatorio</small>
+                    </div>
+                    <div class="form-group required">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" placeholder="Nombre del producto" required>
+                        <small class="field-error">Este campo es obligatorio</small>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group required">
+                        <label for="categoria">Categoría</label>
+                        <select id="categoria" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="Electrónica">Electrónica</option>
+                            <option value="Oficina">Oficina</option>
+                            <option value="Hogar">Hogar</option>
+                            <option value="Industrial">Industrial</option>
+                        </select>
+                        <small class="field-error">Este campo es obligatorio</small>
+                    </div>
+                    <div class="form-group required">
+                        <label for="precio">Precio unitario</label>
+                        <input type="number" id="precio" placeholder="0" min="1" step="0.01" required>
+                        <small class="field-error">El precio debe ser mayor a cero</small>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group required">
+                        <label for="stockInicial">Stock inicial</label>
+                        <input type="number" id="stockInicial" placeholder="0" min="0" required>
+                        <small class="field-error">Este campo es obligatorio</small>
+                    </div>
+                    <div class="form-group required">
+                        <label for="stockMinimo">Stock mínimo</label>
+                        <input type="number" id="stockMinimo" placeholder="0" min="0" required>
+                        <small class="field-error">Este campo es obligatorio</small>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group required">
+                        <label for="proveedor">Proveedor</label>
+                        <input type="text" id="proveedor" placeholder="Nombre del proveedor" required>
+                        <small class="field-error">Este campo es obligatorio</small>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+                        <textarea id="descripcion" rows="3" placeholder="Descripción detallada del producto..."></textarea>
+                    </div>
+                </div>
+                <div class="form-actions-modal">
+                    <button type="submit" class="btn-save"><i class="fas fa-floppy-disk"></i> Guardar</button>
+                    <button type="button" class="btn-cancel" id="cancelModal">Cancelar</button>
+                </div>
+                <div class="modal-message" id="modalMessage">
+                    <i class="fas fa-circle-check"></i> Producto creado exitosamente
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Confirmación de eliminación -->
+    <div class="modal-overlay modal-small" id="modalDelete">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-triangle-exclamation" style="color: #ff4757;"></i> Confirmar eliminación</h2>
+                <button class="modal-close" id="closeDeleteModal"><i class="fas fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar el producto <strong id="deleteProductName">Laptop Pro</strong>?</p>
+                <p class="text-muted">Esta acción no eliminará físicamente el producto, solo cambiará su estado a <strong>inactivo</strong>.</p>
+                <div class="form-actions-modal">
+                    <button class="btn-danger" id="confirmDelete"><i class="fas fa-trash"></i> Eliminar</button>
+                    <button class="btn-cancel" id="cancelDelete">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Historial de cambios -->
+    <div class="modal-overlay modal-large" id="modalHistory">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-clock-rotate-left"></i> Historial de cambios</h2>
+                <button class="modal-close" id="closeHistoryModal"><i class="fas fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Producto:</strong> <span id="historyProductName">Laptop Pro</span></p>
+                <div class="history-list">
+                    <div class="history-item">
+                        <div class="history-date">15/04/2026 14:30</div>
+                        <div class="history-detail">
+                            <span class="history-user">Admin</span> actualizó el precio de <span class="history-old">$800.000</span> a <span class="history-new">$850.000</span>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-date">12/04/2026 09:15</div>
+                        <div class="history-detail">
+                            <span class="history-user">Admin</span> actualizó el stock de <span class="history-old">50</span> a <span class="history-new">45</span>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-date">10/04/2026 16:45</div>
+                        <div class="history-detail">
+                            <span class="history-user">Admin</span> creó el producto
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle sidebar
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('open');
+        });
+
+        // Toggle perfil dropdown
+        document.getElementById('profileToggle').addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.getElementById('profileDropdown').classList.toggle('show');
+        });
+
+        document.addEventListener('click', function() {
+            document.getElementById('profileDropdown').classList.remove('show');
+        });
+
+        // ========== SWEETALERT: Cerrar sesión ==========
+        document.getElementById('logoutLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('profileDropdown').classList.remove('show');
+            
+            Swal.fire({
+                title: '¿Seguro que quieres cerrar sesión?',
+                text: 'Tendrás que iniciar sesión nuevamente para acceder al sistema.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ff4757',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Sí, cerrar sesión',
+                cancelButtonText: 'No, cancelar',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: '¡Sesión cerrada!',
+                        text: 'Has cerrado sesión correctamente.',
+                        icon: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                    }).then(() => {
+                        window.location.href = 'index.html';
+                    });
+                }
+            });
+        });
+
+        // === MODAL: Agregar/Editar producto ===
+        const modalProducto = document.getElementById('modalProducto');
+        const btnAgregar = document.getElementById('btnAgregarProducto');
+        const closeModal = document.getElementById('closeModal');
+        const cancelModal = document.getElementById('cancelModal');
+        const modalTitle = document.getElementById('modalTitle');
+
+        btnAgregar.addEventListener('click', function() {
+            modalTitle.innerHTML = '<i class="fas fa-plus-circle"></i> Agregar nuevo producto';
+            document.getElementById('productForm').reset();
+            document.querySelectorAll('.field-error').forEach(el => el.style.display = 'none');
+            document.getElementById('modalMessage').style.display = 'none';
+            modalProducto.classList.add('show');
+        });
+
+        function closeProductModal() {
+            modalProducto.classList.remove('show');
+        }
+
+        closeModal.addEventListener('click', closeProductModal);
+        cancelModal.addEventListener('click', closeProductModal);
+        modalProducto.addEventListener('click', function(e) {
+            if (e.target === this) closeProductModal();
+        });
+
+        // === FORMULARIO: Validaciones y envío ===
+        document.getElementById('productForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let valid = true;
+            const requiredFields = this.querySelectorAll('[required]');
+            const errors = this.querySelectorAll('.field-error');
+            
+            errors.forEach(el => el.style.display = 'none');
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('error');
+                    const errorEl = field.closest('.form-group').querySelector('.field-error');
+                    if (errorEl) errorEl.style.display = 'block';
+                    valid = false;
+                } else {
+                    field.classList.remove('error');
+                }
+            });
+
+            // Validar precio > 0
+            const precio = document.getElementById('precio');
+            if (precio.value && parseFloat(precio.value) <= 0) {
+                precio.classList.add('error');
+                const errorEl = precio.closest('.form-group').querySelector('.field-error');
+                if (errorEl) {
+                    errorEl.textContent = 'El precio debe ser mayor a cero';
+                    errorEl.style.display = 'block';
+                }
+                valid = false;
+            }
+
+            if (valid) {
+                const msg = document.getElementById('modalMessage');
+                msg.innerHTML = '<i class="fas fa-circle-check"></i> Producto creado exitosamente';
+                msg.className = 'modal-message success';
+                msg.style.display = 'block';
+                
+                setTimeout(() => {
+                    closeProductModal();
+                }, 2000);
+            }
+        });
+
+        // === MODAL: Eliminar ===
+        const modalDelete = document.getElementById('modalDelete');
+        const deleteProductName = document.getElementById('deleteProductName');
+        const closeDeleteModal = document.getElementById('closeDeleteModal');
+        const cancelDelete = document.getElementById('cancelDelete');
+        const confirmDelete = document.getElementById('confirmDelete');
+
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const name = row.querySelector('.product-name').textContent;
+                deleteProductName.textContent = name;
+                modalDelete.classList.add('show');
+            });
+        });
+
+        function closeDeleteModalFn() {
+            modalDelete.classList.remove('show');
+        }
+
+        closeDeleteModal.addEventListener('click', closeDeleteModalFn);
+        cancelDelete.addEventListener('click', closeDeleteModalFn);
+        modalDelete.addEventListener('click', function(e) {
+            if (e.target === this) closeDeleteModalFn();
+        });
+
+        confirmDelete.addEventListener('click', function() {
+            const msg = document.getElementById('modalMessage');
+            msg.innerHTML = '<i class="fas fa-circle-check"></i> Producto desactivado exitosamente';
+            msg.className = 'modal-message success';
+            msg.style.display = 'block';
+            closeDeleteModalFn();
+            setTimeout(() => {
+                msg.style.display = 'none';
+            }, 3000);
+        });
+
+        // === MODAL: Historial ===
+        const modalHistory = document.getElementById('modalHistory');
+        const historyProductName = document.getElementById('historyProductName');
+        const closeHistoryModal = document.getElementById('closeHistoryModal');
+
+        document.querySelectorAll('.btn-history').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const name = row.querySelector('.product-name').textContent;
+                historyProductName.textContent = name;
+                modalHistory.classList.add('show');
+            });
+        });
+
+        function closeHistoryModalFn() {
+            modalHistory.classList.remove('show');
+        }
+
+        closeHistoryModal.addEventListener('click', closeHistoryModalFn);
+        modalHistory.addEventListener('click', function(e) {
+            if (e.target === this) closeHistoryModalFn();
+        });
+
+        // === Búsqueda y filtros (simulación) ===
+        document.getElementById('btnFiltrar').addEventListener('click', function() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const categoria = document.getElementById('filterCategoria').value;
+            const proveedor = document.getElementById('filterProveedor').value;
+            
+            document.querySelectorAll('#productTableBody tr').forEach(row => {
+                let show = true;
+                const name = row.querySelector('.product-name').textContent.toLowerCase();
+                const code = row.querySelector('.product-code').textContent.toLowerCase();
+                const supplier = row.querySelector('.product-supplier').textContent;
+                const cat = row.querySelector('.product-category').textContent;
+                
+                if (search && !name.includes(search) && !code.includes(search)) show = false;
+                if (categoria && cat !== categoria) show = false;
+                if (proveedor && supplier !== proveedor) show = false;
+                
+                row.style.display = show ? '' : 'none';
+            });
+        });
+
+        document.getElementById('btnLimpiar').addEventListener('click', function() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('filterCategoria').value = '';
+            document.getElementById('filterProveedor').value = '';
+            document.querySelectorAll('#productTableBody tr').forEach(row => {
+                row.style.display = '';
+            });
+        });
+    </script>
+</body>
+</html>

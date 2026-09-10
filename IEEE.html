@@ -1,0 +1,2223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IEE(2).md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<!-- ola -->
+<div align="center">
+<h1 id="nombre-de-la-evidencia"><span style="color:#FF0000">NOMBRE DE LA EVIDENCIA</span></h1>
+<p><span style="color:#FF0000">QUIEN LA PRESENTA Y DE QUE FICHA PERTENECE</span></p>
+<p><span style="color:#FF0000">A QUIEN SE DIRIGE EL TRABAJO</span></p>
+<p><span style="color:#FF0000">A LA INSTITUCIÓN DONDE SE ENTREGA (SENA)</span></p>
+<p><span style="color:#FF0000">EL CENTRO DONDE SE PERTENECE</span></p>
+<p><span style="color:#FF0000">EL TÉCNICO QUE SE ESTUDIA</span></p>
+<p><span style="color:#FF0000">EN QUE FASE SE ENCUENTRA</span></p>
+<p><span style="color:#FF0000">QUE TIPO DE FORMACIÓN RECIBE</span></p>
+<p><span style="color:#FF0000">FECHA DE ENTREGA</span></p>
+</div>
+<hr>
+<div align="center">
+<h1 id="ficha-del-documento"><span style="color:#FF0000">FICHA DEL DOCUMENTO</span></h1>
+</div>
+<p><strong>Fecha de creación, seguido de cada intervención</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">FECHA</th>
+<th style="text-align:center">REVISIÓN(ES)</th>
+<th style="text-align:center">AUTOR(ES)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<div align="center">
+<p><strong>DOCUMENTO VALIDADO POR LAS PARTES EN FECHA: ---------</strong></p>
+<p><em>(partes involucradas, puede ser una o varias)</em></p>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">POR CLIENTE</th>
+<th style="text-align:center">DESARROLLADOR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">FECHA:</td>
+<td style="text-align:center">FECHA:</td>
+</tr>
+<tr>
+<td style="text-align:center">NOMBRE DEL ENCARGADO</td>
+<td style="text-align:center">NOMBRE DEL ENCARGADO</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div align="center">
+<h1 id="ficha-del-documento-1"><span style="color:#FF0000">FICHA DEL DOCUMENTO</span></h1>
+<h2 id="contenido"><span style="color:#FF0000">CONTENIDO</span></h2>
+</div>
+<ol>
+<li>
+<p>INTRODUCCION
+1.1. OBJETIVO GENERAL<br>
+1.2. OBJETIVOS ESPECIFICOS<br>
+1.3. PROPOSITO<br>
+1.4. ALCANCE<br>
+1.5. PERSONAL INVOLUCRADO<br>
+1.6. DEFINICIONES, ACRONIMOS Y ABREVIATURAS<br>
+1.7. REFERENCIAS<br>
+1.8. RESUMEN</p>
+</li>
+<li>
+<p>DESCRIPCION GENERAL<br>
+2.1. PERSPECTIVA DEL PRODUCTO<br>
+2.2. FUNCIONALIDADES DEL PRODUCTO<br>
+2.3. CARACTERISTICAS DE LOS USUARIOS<br>
+2.4. RESTRICCIONES</p>
+</li>
+<li>
+<p>REQUISITOS ESPECIFICOS<br>
+3.1. REQUISITOS DEL SISTEMA<br>
+3.2. REQUISITOS FUNCIONALES<br>
+3.3. REQUISITOS NO FUNCIONALES</p>
+</li>
+<li>
+<p>VALIDACIÓN DE REQUISITOS<br>
+4.1. CONSTRUCCIÓN DE PROTOTIPOS<br>
+4.2. FORMATO DE CASO DE PRUEBA<br>
+4.3. CRONOGRAMA DE ACTIVIDADES</p>
+</li>
+</ol>
+<hr>
+<h1 id="1-introduccion"><span style="color:#FF0000">1. INTRODUCCION</span></h1>
+<p><span style="color:#FF0000"><em>(Introducción a la necesidad)</em></span></p>
+<h2 id="11-objetivo-general"><span style="color:#FF0000">1.1. OBJETIVO GENERAL</span></h2>
+<h2 id="12-objetivos-especificos"><span style="color:#FF0000">1.2. OBJETIVOS ESPECIFICOS</span></h2>
+<h2 id="13-proposito"><span style="color:#FF0000">1.3. PROPOSITO</span></h2>
+<p><span style="color:#FF0000"><em>(Que finalidad tiene el software frente a la necesidad)</em></span></p>
+<h2 id="14-alcance"><span style="color:#FF0000">1.4. ALCANCE</span></h2>
+<p><span style="color:#FF0000"><em>(Que tan lejos va a abarcar el software en las funciones de la empresa)</em></span></p>
+<h2 id="15-personal-involucrado"><span style="color:#FF0000">1.5. PERSONAL INVOLUCRADO</span></h2>
+<p><span style="color:#FF0000"><em>(Puede ser 1 persona o varias)</em></span></p>
+<table>
+<thead>
+<tr>
+<th>NOMBRE</th>
+<th>ROL</th>
+<th>PROFESION</th>
+<th>RESPONSABILIDADES</th>
+<th>INFORMACION DE CONTACTO</th>
+<th>APRUEBA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>SI / NO</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color:#FF0000"><em>(Aprueba entrevista y seguimiento)</em></span></p>
+<h2 id="16-definiciones-acronimos-y-abreviaturas"><span style="color:#FF0000">1.6. DEFINICIONES, ACRONIMOS Y ABREVIATURAS</span></h2>
+<h2 id="17-referencias"><span style="color:#FF0000">1.7. REFERENCIAS</span></h2>
+<p><span style="color:#FF0000"><em>(Ejemplos de software que resuelven necesidades similares y que funcionan de acuerdo a las especificaciones del cliente)</em></span></p>
+<h2 id="18-resumen"><span style="color:#FF0000">1.8. RESUMEN</span></h2>
+<p><span style="color:#FF0000"><em>(Breve resumen del uso del software, para que se usa)</em></span></p>
+<hr>
+<h1 id="2-descripcion-general"><span style="color:#FF0000">2. DESCRIPCION GENERAL</span></h1>
+<p><span style="color:#FF0000"><em>(A groso modo la descripción del software en funcionamiento, como se usa o funciona)</em></span></p>
+<h2 id="21-perspectiva-del-producto"><span style="color:#FF0000">2.1. PERSPECTIVA DEL PRODUCTO</span></h2>
+<p><span style="color:#FF0000"><em>(Como se describe la interfaz del sistema, con las que él usuario interactúa con el sistema y cuales usuarios lo usarán y bajo que roles)</em></span></p>
+<h2 id="22-funcionalidades-del-producto"><span style="color:#FF0000">2.2. FUNCIONALIDADES DEL PRODUCTO</span></h2>
+<blockquote>
+<p>El siguiente cuestionario de elicitación de requisitos contiene 120 preguntas estructuradas en 8 categorías, presentadas en formato de opción múltiple con casillas de verificación para marcar. Su propósito es levantar la información clave con los interesados, clientes y equipo técnico para definir con precisión las necesidades, restricciones y capacidades que debe cumplir el software a desarrollar.</p>
+</blockquote>
+<hr>
+<h3 id="categoría-1-visión-del-producto-y-objetivos-del-edificio-preguntas-1-15">Categoría 1: Visión del Producto y Objetivos del Edificio (Preguntas 1-15)</h3>
+<p><strong>1. ¿Cuál es el tipo de inmueble principal al que va dirigido el software?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox0" checked="true"><label for="checkbox0">Edificio residencial de apartamentos.</label></li>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">Conjunto residencial cerrado (Casas).</label></li>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">Edificio de oficinas o uso corporativo.</label></li>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3">Centro comercial o uso mixto.</label></li>
+<li><input type="checkbox" id="checkbox4"><label for="checkbox4">Otro (Especifique): _________</label></li>
+</ul>
+<hr>
+<p><strong>2. ¿Cuál es el objetivo prioritario que busca la administración?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox5"><label for="checkbox5">Optimizar la cobranza y reducir la morosidad.</label></li>
+<li><input type="checkbox" id="checkbox6"><label for="checkbox6">Mejorar la seguridad y el control de acceso.</label></li>
+<li><input type="checkbox" id="checkbox7"><label for="checkbox7">Automatizar la gestión de mantenimiento y zonas comunes.</label></li>
+<li><input type="checkbox" id="checkbox8"><label for="checkbox8">Fortalecer la comunicación y transparencia con los propietarios.</label></li>
+<li><input type="checkbox" id="checkbox9" checked="true"><label for="checkbox9">Todas las anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>3. ¿Quiénes serán los usuarios activos directos del sistema?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox10" checked="true"><label for="checkbox10">Residentes / Propietarios.</label></li>
+<li><input type="checkbox" id="checkbox11" checked="true"><label for="checkbox11">Arrendatarios / Inquilinos.</label></li>
+<li><input type="checkbox" id="checkbox12" checked="true"><label for="checkbox12">Personal de portería / Seguridad.</label></li>
+<li><input type="checkbox" id="checkbox13" checked="true"><label for="checkbox13">Personal administrativo / Gerencia de la copropiedad.</label></li>
+<li><input type="checkbox" id="checkbox14"><label for="checkbox14">Todos los anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>4. ¿Cómo se estructurará el modelo de cobranza o adquisición de la plataforma?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox15" checked="true"><label for="checkbox15">Suscripción mensual por edificio (tarifa fija).</label></li>
+<li><input type="checkbox" id="checkbox16"><label for="checkbox16">Cobro por unidad residencial (apartamento).</label></li>
+<li><input type="checkbox" id="checkbox17"><label for="checkbox17">Pago único por licencia perpetua.</label></li>
+<li><input type="checkbox" id="checkbox18"><label for="checkbox18">Modelo Freemium (básico gratuito, funciones avanzadas de pago).</label></li>
+<li><input type="checkbox" id="checkbox19"><label for="checkbox19">Otro (Especifique): _________</label></li>
+</ul>
+<hr>
+<p><strong>5. ¿Qué nivel de adopción tecnológica se espera de los residentes?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox20"><label for="checkbox20">Bajo (Usan principalmente herramientas analógicas o llamadas telefónicas).</label></li>
+<li><input type="checkbox" id="checkbox21"><label for="checkbox21">Medio (Usan WhatsApp y correo electrónico, pero no Apps complejas).</label></li>
+<li><input type="checkbox" id="checkbox22" checked="true"><label for="checkbox22">Alto (Usan Apps bancarias, redes sociales y están familiarizados con la tecnología).</label></li>
+<li><input type="checkbox" id="checkbox23"><label for="checkbox23">Mixto (Combinación de todos los niveles).</label></li>
+</ul>
+<hr>
+<p><strong>6. ¿El software gestionará una sola copropiedad o múltiples conjuntos (Multi-edificio)?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox24" checked="true"><label for="checkbox24">Una sola copropiedad (edificio único).</label></li>
+<li><input type="checkbox" id="checkbox25"><label for="checkbox25">Múltiples copropiedades (conjuntos o sedes diferentes).</label></li>
+<li><input type="checkbox" id="checkbox26"><label for="checkbox26">No está definido aún.</label></li>
+</ul>
+<hr>
+<p><strong>7. ¿A qué sistema actual reemplazará esta solución en la copropiedad?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox27"><label for="checkbox27">Sistema de escritorio en Excel / Access.</label></li>
+<li><input type="checkbox" id="checkbox28"><label for="checkbox28">Software heredado de otra empresa (especifique): _________</label></li>
+<li><input type="checkbox" id="checkbox29" checked="true"><label for="checkbox29">Proceso manual en papel o libretas de portería.</label></li>
+<li><input type="checkbox" id="checkbox30"><label for="checkbox30">No reemplaza a ningún sistema (es el primero).</label></li>
+<li><input type="checkbox" id="checkbox31"><label for="checkbox31">Otro (Especifique): _________</label></li>
+</ul>
+<hr>
+<p><strong>8. ¿Cuál es la mayor pérdida financiera u operativa que se busca erradicar?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox32"><label for="checkbox32">Morosidad en el pago de cuotas de administración.</label></li>
+<li><input type="checkbox" id="checkbox33"><label for="checkbox33">Robo o hurto en zonas comunes o apartamentos.</label></li>
+<li><input type="checkbox" id="checkbox34" checked="true"><label for="checkbox34">Tiempo perdido en procesos manuales de portería.</label></li>
+<li><input type="checkbox" id="checkbox35"><label for="checkbox35">Conflictos entre vecinos por uso de zonas comunes.</label></li>
+<li><input type="checkbox" id="checkbox36"><label for="checkbox36">Desconocimiento del estado financiero de la copropiedad.</label></li>
+</ul>
+<hr>
+<p><strong>9. ¿Cuál es la tolerancia al tiempo de inactividad (Downtime) en portería?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox37" checked="true"><label for="checkbox37">Cero tolerancia, debe funcionar 24/7 sin interrupciones.</label></li>
+<li><input type="checkbox" id="checkbox38"><label for="checkbox38">Máximo 1 hora al mes para mantenimiento programado.</label></li>
+<li><input type="checkbox" id="checkbox39"><label for="checkbox39">Puede fallar ocasionalmente, se resuelve manualmente.</label></li>
+<li><input type="checkbox" id="checkbox40"><label for="checkbox40">Solo debe funcionar en horario laboral (7 am - 7 pm).</label></li>
+</ul>
+<hr>
+<p><strong>10. ¿Cómo se manejarán las quejas, reclamos y peticiones (PQRS) de los copropietarios?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox41" checked="true"><label for="checkbox41">Digitales a través de la App.</label></li>
+<li><input type="checkbox" id="checkbox42"><label for="checkbox42">Físicas en un formato en portería que luego se digitaliza.</label></li>
+<li><input type="checkbox" id="checkbox43"><label for="checkbox43">Mixto (Ambos canales: digital y físico).</label></li>
+<li><input type="checkbox" id="checkbox44"><label for="checkbox44">No se contempla un módulo específico para PQRS.</label></li>
+</ul>
+<hr>
+<p><strong>11. ¿El sistema contempla la organización de Asambleas de Copropietarios?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox45" checked="true"><label for="checkbox45">Sí, con convocatorias, quórum, votaciones y actas.</label></li>
+<li><input type="checkbox" id="checkbox46"><label for="checkbox46">Sí, solo para registro de convocatorias y asistencia.</label></li>
+<li><input type="checkbox" id="checkbox47"><label for="checkbox47">No, se maneja externamente.</label></li>
+<li><input type="checkbox" id="checkbox48"><label for="checkbox48">Opcional, como módulo adicional.</label></li>
+</ul>
+<hr>
+<p><strong>12. ¿Qué rol jugará la Junta de Administración / Consejo de Copropiedad?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox49"><label for="checkbox49">Solo consulta de información.</label></li>
+<li><input type="checkbox" id="checkbox50"><label for="checkbox50">Aprobación de gastos y validación de actas.</label></li>
+<li><input type="checkbox" id="checkbox51"><label for="checkbox51">Acceso completo a todos los módulos financieros.</label></li>
+<li><input type="checkbox" id="checkbox52" checked="true"><label for="checkbox52">A y B.</label></li>
+<li><input type="checkbox" id="checkbox53"><label for="checkbox53">Ninguno de los anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>13. ¿Se requiere un módulo para la gestión de arrendamientos?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox54"><label for="checkbox54">Sí, para gestionar contratos de arrendamiento y cobro de cánones.</label></li>
+<li><input type="checkbox" id="checkbox55" checked="true"><label for="checkbox55">Sí, solo para registrar inquilinos.</label></li>
+<li><input type="checkbox" id="checkbox56"><label for="checkbox56">No, el arrendatario es considerado como un residente más.</label></li>
+<li><input type="checkbox" id="checkbox57"><label for="checkbox57">No está definido aún.</label></li>
+</ul>
+<hr>
+<p><strong>14. ¿Cuál es la escala inicial de unidades residenciales/comerciales a soportar?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox58"><label for="checkbox58">Menos de 20 unidades.</label></li>
+<li><input type="checkbox" id="checkbox59"><label for="checkbox59">Entre 20 y 50 unidades.</label></li>
+<li><input type="checkbox" id="checkbox60" checked="true"><label for="checkbox60">Entre 50 y 100 unidades.</label></li>
+<li><input type="checkbox" id="checkbox61"><label for="checkbox61">Más de 100 unidades.</label></li>
+<li><input type="checkbox" id="checkbox62"><label for="checkbox62">No se ha definido.</label></li>
+</ul>
+<hr>
+<p><strong>15. ¿Cómo se medirá el éxito de la implementación del software en el edificio?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox63" checked="true"><label for="checkbox63">Reducción del índice de morosidad.</label></li>
+<li><input type="checkbox" id="checkbox64" checked="true"><label for="checkbox64">Mejora en la satisfacción de los residentes (encuestas).</label></li>
+<li><input type="checkbox" id="checkbox65" checked="true"><label for="checkbox65">Disminución en el tiempo de respuesta a incidentes.</label></li>
+<li><input type="checkbox" id="checkbox66"><label for="checkbox66">Aumento en el uso de zonas comunes.</label></li>
+<li><input type="checkbox" id="checkbox67"><label for="checkbox67">Todas las anteriores.</label></li>
+</ul>
+<hr>
+<h3 id="categoría-2-arquitectura-del-sistema-e-integración-de-hardware-preguntas-16-30">Categoría 2: Arquitectura del Sistema e Integración de Hardware (Preguntas 16-30)</h3>
+<p><strong>16. ¿Qué entorno técnico operará en la recepción/portería del edificio?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox68"><label for="checkbox68">Computador de escritorio (Windows/Linux).</label></li>
+<li><input type="checkbox" id="checkbox69" checked="true"><label for="checkbox69">Tablet (Android/iOS).</label></li>
+<li><input type="checkbox" id="checkbox70"><label for="checkbox70">Pantalla táctil dedicada (Totem).</label></li>
+<li><input type="checkbox" id="checkbox71"><label for="checkbox71">Múltiples dispositivos (Computador + Tablet + Teléfono IP).</label></li>
+<li><input type="checkbox" id="checkbox72"><label for="checkbox72">Otro (Especifique): _________</label></li>
+</ul>
+<hr>
+<p><strong>17. ¿Cómo interactuará el software con las barreras/portones vehiculares?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox73"><label for="checkbox73">Apertura mediante control remoto genérico (RF).</label></li>
+<li><input type="checkbox" id="checkbox74"><label for="checkbox74">Apertura mediante señal eléctrica desde el software (relé).</label></li>
+<li><input type="checkbox" id="checkbox75"><label for="checkbox75">Apertura mediante reconocimiento de placa (LPR - Lectura de placas).</label></li>
+<li><input type="checkbox" id="checkbox76" checked="true"><label for="checkbox76">B y C combinados.</label></li>
+<li><input type="checkbox" id="checkbox77"><label for="checkbox77">Sin integración directa.</label></li>
+</ul>
+<hr>
+<p><strong>18. ¿Qué tecnología se utilizará para el control de acceso peatonal?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox78" checked="true"><label for="checkbox78">Código QR dinámico (generado en la App del residente).</label></li>
+<li><input type="checkbox" id="checkbox79" checked="true"><label for="checkbox79">Tarjeta de proximidad (RFID / NFC).</label></li>
+<li><input type="checkbox" id="checkbox80" checked="true"><label for="checkbox80">Biometría (Huella / Reconocimiento facial).</label></li>
+<li><input type="checkbox" id="checkbox81"><label for="checkbox81">Marcación manual desde el software de portería.</label></li>
+<li><input type="checkbox" id="checkbox82"><label for="checkbox82">Todas las anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>19. ¿Cómo funcionará la citofonía (intercomunicación) entre portería y apartamentos?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox83" checked="true"><label for="checkbox83">A través de llamada VoIP integrada en la App y Tablet de portería.</label></li>
+<li><input type="checkbox" id="checkbox84"><label for="checkbox84">Por medio del sistema de citofonía tradicional (cableado), sin integración.</label></li>
+<li><input type="checkbox" id="checkbox85"><label for="checkbox85">Combinación de A y B (híbrido).</label></li>
+<li><input type="checkbox" id="checkbox86"><label for="checkbox86">A través de llamada telefónica a número fijo del apartamento.</label></li>
+</ul>
+<hr>
+<p><strong>20. ¿Qué arquitectura de backend respaldará la operación del software?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox87" checked="true"><label for="checkbox87">Nube pública (AWS, GCP, Azure).</label></li>
+<li><input type="checkbox" id="checkbox88"><label for="checkbox88">Servidor local (On-premise) dentro del edificio.</label></li>
+<li><input type="checkbox" id="checkbox89"><label for="checkbox89">Nube privada o híbrida.</label></li>
+<li><input type="checkbox" id="checkbox90"><label for="checkbox90">Sin definir aún.</label></li>
+</ul>
+<hr>
+<p><strong>21. ¿Qué sucede si la portería pierde la conexión a Internet temporalmente?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox91"><label for="checkbox91">El sistema deja de funcionar completamente.</label></li>
+<li><input type="checkbox" id="checkbox92" checked="true"><label for="checkbox92">El sistema entra en modo &quot;Offline&quot; y sincroniza los datos al recuperar la conexión.</label></li>
+<li><input type="checkbox" id="checkbox93"><label for="checkbox93">Solo permite funciones básicas de acceso local.</label></li>
+<li><input type="checkbox" id="checkbox94"><label for="checkbox94">Realiza un respaldo automático y notifica al administrador.</label></li>
+</ul>
+<hr>
+<p><strong>22. ¿Se planea integrar sensores IoT (Internet de las Cosas) de la infraestructura?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox95" checked="true"><label for="checkbox95">Sí, sensores de humo, gas o inundación.</label></li>
+<li><input type="checkbox" id="checkbox96" checked="true"><label for="checkbox96">Sí, medidores de agua, energía o gas.</label></li>
+<li><input type="checkbox" id="checkbox97"><label for="checkbox97">Sí, sensores de ocupación o apertura de puertas.</label></li>
+<li><input type="checkbox" id="checkbox98"><label for="checkbox98">No se planea por ahora.</label></li>
+<li><input type="checkbox" id="checkbox99"><label for="checkbox99">Todas las anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>23. ¿Cómo se capturan las fotografías de visitantes en portería?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox100"><label for="checkbox100">Cámara IP integrada al software de portería.</label></li>
+<li><input type="checkbox" id="checkbox101" checked="true"><label for="checkbox101">Cámara del dispositivo (Tablet / Smartphone) usado en portería.</label></li>
+<li><input type="checkbox" id="checkbox102"><label for="checkbox102">Escáner de documentos.</label></li>
+<li><input type="checkbox" id="checkbox103"><label for="checkbox103">No se capturan fotografías de visitantes.</label></li>
+</ul>
+<hr>
+<p><strong>24. ¿El software se integrará con las cámaras de videovigilancia (CCTV) del edificio?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox104" checked="true"><label for="checkbox104">Sí, para visualización en vivo y grabaciones desde la App de seguridad.</label></li>
+<li><input type="checkbox" id="checkbox105"><label for="checkbox105">Sí, solo para consulta de grabaciones históricas.</label></li>
+<li><input type="checkbox" id="checkbox106"><label for="checkbox106">Sí, para envío de alertas basadas en análisis de video (detección de movimiento).</label></li>
+<li><input type="checkbox" id="checkbox107"><label for="checkbox107">No se integrará.</label></li>
+</ul>
+<hr>
+<p><strong>25. ¿Qué formato de comunicación usará el sistema para enviar comandos a hardware?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox108"><label for="checkbox108">MQTT.</label></li>
+<li><input type="checkbox" id="checkbox109"><label for="checkbox109">RS-485 / Modbus.</label></li>
+<li><input type="checkbox" id="checkbox110" checked="true"><label for="checkbox110">HTTP/REST API.</label></li>
+<li><input type="checkbox" id="checkbox111"><label for="checkbox111">Protocolos propietarios del fabricante.</label></li>
+<li><input type="checkbox" id="checkbox112"><label for="checkbox112">Otro (Especifique): _________</label></li>
+</ul>
+<hr>
+<p><strong>26. ¿Cómo se autentican las llamadas provenientes de las pantallas/tótems de portería?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox113" checked="true"><label for="checkbox113">A través de un token único por dispositivo.</label></li>
+<li><input type="checkbox" id="checkbox114"><label for="checkbox114">Por dirección MAC.</label></li>
+<li><input type="checkbox" id="checkbox115"><label for="checkbox115">Por usuario y contraseña fijos.</label></li>
+<li><input type="checkbox" id="checkbox116"><label for="checkbox116">Sin autenticación.</label></li>
+</ul>
+<hr>
+<p><strong>27. ¿Qué infraestructura de caché se usará para agilizar el marcado en portería?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox117" checked="true"><label for="checkbox117">Redis o Memcached.</label></li>
+<li><input type="checkbox" id="checkbox118"><label for="checkbox118">Caché en memoria local (RAM) del dispositivo.</label></li>
+<li><input type="checkbox" id="checkbox119"><label for="checkbox119">Archivos planos para consultas rápidas.</label></li>
+<li><input type="checkbox" id="checkbox120"><label for="checkbox120">No se utilizará caché.</label></li>
+</ul>
+<hr>
+<p><strong>28. ¿Cómo se actualizará el software instalado en las pantallas o tablets de portería?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox121" checked="true"><label for="checkbox121">Actualizaciones automáticas (over-the-air / OTA).</label></li>
+<li><input type="checkbox" id="checkbox122"><label for="checkbox122">Actualizaciones manuales por parte del administrador.</label></li>
+<li><input type="checkbox" id="checkbox123"><label for="checkbox123">Actualizaciones semestrales programadas por el proveedor.</label></li>
+<li><input type="checkbox" id="checkbox124"><label for="checkbox124">No se actualizará con frecuencia.</label></li>
+</ul>
+<hr>
+<p><strong>29. ¿Qué arquitectura soportará las notificaciones masivas de emergencia (ej. sismos, incendios)?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox125" checked="true"><label for="checkbox125">Servicio de mensajería push (Firebase Cloud Messaging / APNs).</label></li>
+<li><input type="checkbox" id="checkbox126" checked="true"><label for="checkbox126">SMS masivo.</label></li>
+<li><input type="checkbox" id="checkbox127" checked="true"><label for="checkbox127">Llamada automática a todos los residentes.</label></li>
+<li><input type="checkbox" id="checkbox128"><label for="checkbox128">Sistema de megafonía / altavoces IP.</label></li>
+<li><input type="checkbox" id="checkbox129"><label for="checkbox129">Todos los anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>30. ¿Cómo se estructurará la redundancia de datos ante fallos de energía en el edificio?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox130" checked="true"><label for="checkbox130">Backup en la nube sincronizado en tiempo real.</label></li>
+<li><input type="checkbox" id="checkbox131"><label for="checkbox131">Generador de respaldo eléctrico para la infraestructura local.</label></li>
+<li><input type="checkbox" id="checkbox132"><label for="checkbox132">Copias de seguridad locales diarias en disco duro.</label></li>
+<li><input type="checkbox" id="checkbox133"><label for="checkbox133">A y B.</label></li>
+<li><input type="checkbox" id="checkbox134"><label for="checkbox134">Ninguna de las anteriores.</label></li>
+</ul>
+<hr>
+<h3 id="categoría-3-módulo-de-finanzas-contabilidad-y-cobranzas-preguntas-31-45">Categoría 3: Módulo de Finanzas, Contabilidad y Cobranzas (Preguntas 31-45)</h3>
+<p><strong>31. ¿Qué alcance financiero tendrá el software dentro del edificio?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox135"><label for="checkbox135">Solo gestión de cuotas de administración.</label></li>
+<li><input type="checkbox" id="checkbox136"><label for="checkbox136">Gestión completa de ingresos y egresos.</label></li>
+<li><input type="checkbox" id="checkbox137" checked="true"><label for="checkbox137">Gestión de cuotas, gastos, presupuestos y activos.</label></li>
+<li><input type="checkbox" id="checkbox138"><label for="checkbox138">Integración con sistemas contables externos.</label></li>
+</ul>
+<hr>
+<p><strong>32. ¿Cómo se calcula el valor de la cuota de administración de cada apartamento?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox139" checked="true"><label for="checkbox139">Coeficiente de copropiedad (base por área o valor comercial).</label></li>
+<li><input type="checkbox" id="checkbox140"><label for="checkbox140">Tarifa fija por unidad.</label></li>
+<li><input type="checkbox" id="checkbox141"><label for="checkbox141">Cuota variable según gastos del mes.</label></li>
+<li><input type="checkbox" id="checkbox142"><label for="checkbox142">A y B combinados.</label></li>
+<li><input type="checkbox" id="checkbox143"><label for="checkbox143">Otro (Especifique): _________</label></li>
+</ul>
+<hr>
+<p><strong>33. ¿Qué canales de pago online se integrarán para los residentes?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox144" checked="true"><label for="checkbox144">Pago con tarjeta de crédito/débito (Pasarela).</label></li>
+<li><input type="checkbox" id="checkbox145" checked="true"><label for="checkbox145">Transferencia bancaria (PSE / ACH).</label></li>
+<li><input type="checkbox" id="checkbox146" checked="true"><label for="checkbox146">Pago QR o Código de barras.</label></li>
+<li><input type="checkbox" id="checkbox147" checked="true"><label for="checkbox147">Billeteras digitales (Apple Pay, Google Pay, Nequi).</label></li>
+<li><input type="checkbox" id="checkbox148"><label for="checkbox148">Todos los anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>34. ¿Cómo se aprueban las transferencias bancarias subidas por los residentes?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox149"><label for="checkbox149">Automáticamente por integración con la API del banco.</label></li>
+<li><input type="checkbox" id="checkbox150" checked="true"><label for="checkbox150">Manualmente, mediante verificación de la administración.</label></li>
+<li><input type="checkbox" id="checkbox151"><label for="checkbox151">Semiautomático (validación con OCR del comprobante).</label></li>
+<li><input type="checkbox" id="checkbox152"><label for="checkbox152">No se requiere aprobación.</label></li>
+</ul>
+<hr>
+<p><strong>35. ¿Cómo aplica el sistema los intereses de mora a los propietarios morosos?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox153" checked="true"><label for="checkbox153">Automáticamente según la tasa legal vigente.</label></li>
+<li><input type="checkbox" id="checkbox154"><label for="checkbox154">Manualmente, mediante ajuste del administrador.</label></li>
+<li><input type="checkbox" id="checkbox155"><label for="checkbox155">No aplica intereses de mora.</label></li>
+<li><input type="checkbox" id="checkbox156"><label for="checkbox156">Se calcula al final del año fiscal.</label></li>
+</ul>
+<hr>
+<p><strong>36. ¿Cómo se gestiona el Fondo de Reserva o Fondo de Inconvenientes de la copropiedad?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox157" checked="true"><label for="checkbox157">Se gestiona como una cuenta separada dentro del sistema.</label></li>
+<li><input type="checkbox" id="checkbox158"><label for="checkbox158">Se administra con un presupuesto específico.</label></li>
+<li><input type="checkbox" id="checkbox159"><label for="checkbox159">Solo se registra el saldo y los movimientos.</label></li>
+<li><input type="checkbox" id="checkbox160"><label for="checkbox160">No se contempla un fondo de reserva.</label></li>
+</ul>
+<hr>
+<p><strong>37. ¿El sistema generará estados de cuenta individuales para los residentes?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox161" checked="true"><label for="checkbox161">Sí, en PDF descargable desde la App o Web.</label></li>
+<li><input type="checkbox" id="checkbox162" checked="true"><label for="checkbox162">Sí, con envío automático por correo electrónico.</label></li>
+<li><input type="checkbox" id="checkbox163"><label for="checkbox163">Sí, impresos en la administración.</label></li>
+<li><input type="checkbox" id="checkbox164"><label for="checkbox164">No, se entrega un informe general.</label></li>
+</ul>
+<hr>
+<p><strong>38. ¿Cómo se maneja el cobro por el uso de zonas comunes tarifadas?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox165"><label for="checkbox165">Automáticamente al finalizar la reserva.</label></li>
+<li><input type="checkbox" id="checkbox166"><label for="checkbox166">Manualmente mediante facturación separada.</label></li>
+<li><input type="checkbox" id="checkbox167" checked="true"><label for="checkbox167">Se cobra como un extra en la cuota del mes siguiente.</label></li>
+<li><input type="checkbox" id="checkbox168"><label for="checkbox168">No se cobran las zonas comunes.</label></li>
+</ul>
+<hr>
+<p><strong>39. ¿Cómo se administran los egresos/gastos y facturas de proveedores del edificio?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox169"><label for="checkbox169">Registro manual de cada gasto en el sistema.</label></li>
+<li><input type="checkbox" id="checkbox170"><label for="checkbox170">Integración con ERP para gestión de pagos.</label></li>
+<li><input type="checkbox" id="checkbox171" checked="true"><label for="checkbox171">Carga de facturas electrónicas.</label></li>
+<li><input type="checkbox" id="checkbox172"><label for="checkbox172">A y C.</label></li>
+<li><input type="checkbox" id="checkbox173"><label for="checkbox173">No se administran egresos.</label></li>
+</ul>
+<hr>
+<p><strong>40. ¿El software genera presupuestos anuales comparativos?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox174" checked="true"><label for="checkbox174">Sí, con análisis de variación (vs. ejecutado).</label></li>
+<li><input type="checkbox" id="checkbox175"><label for="checkbox175">Sí, solo el presupuesto base.</label></li>
+<li><input type="checkbox" id="checkbox176"><label for="checkbox176">No, se elabora externamente.</label></li>
+<li><input type="checkbox" id="checkbox177"><label for="checkbox177">No está definido aún.</label></li>
+</ul>
+<hr>
+<p><strong>41. ¿Qué sucede con los saldos a favor cuando un residente paga de más?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox178" checked="true"><label for="checkbox178">Se abona automáticamente a la siguiente cuota.</label></li>
+<li><input type="checkbox" id="checkbox179"><label for="checkbox179">Se solicita el reembolso al residente.</label></li>
+<li><input type="checkbox" id="checkbox180"><label for="checkbox180">Se registra como saldo a favor.</label></li>
+<li><input type="checkbox" id="checkbox181"><label for="checkbox181">Se devuelve al final del año.</label></li>
+</ul>
+<hr>
+<p><strong>42. ¿Se soporta la gestión de cobranza prejudicial/judicial para morosos de larga fecha?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox182"><label for="checkbox182">Sí, con generación de cartas de cobro y reportes.</label></li>
+<li><input type="checkbox" id="checkbox183"><label for="checkbox183">Sí, con integración a despachos de cobranza.</label></li>
+<li><input type="checkbox" id="checkbox184" checked="true"><label for="checkbox184">No, solo gestiona el registro de la deuda.</label></li>
+<li><input type="checkbox" id="checkbox185"><label for="checkbox185">No se contempla.</label></li>
+</ul>
+<hr>
+<p><strong>43. ¿Cómo se realiza el cierre contable o financiero del mes?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox186"><label for="checkbox186">Automáticamente, generando estados financieros.</label></li>
+<li><input type="checkbox" id="checkbox187" checked="true"><label for="checkbox187">Semiautomático con validación manual.</label></li>
+<li><input type="checkbox" id="checkbox188"><label for="checkbox188">Se hace manualmente por el contador externo.</label></li>
+<li><input type="checkbox" id="checkbox189"><label for="checkbox189">No se realiza cierre mensual.</label></li>
+</ul>
+<hr>
+<p><strong>44. ¿Cómo se imprimen o entregan los paz y salvos (certificados de no adeudamiento)?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox190"><label for="checkbox190">Autogenerados desde la App del residente.</label></li>
+<li><input type="checkbox" id="checkbox191" checked="true"><label for="checkbox191">Expedidos automáticamente si no tiene deuda.</label></li>
+<li><input type="checkbox" id="checkbox192"><label for="checkbox192">Expedidos manualmente por la administración.</label></li>
+<li><input type="checkbox" id="checkbox193"><label for="checkbox193">No se utilizan paz y salvos.</label></li>
+</ul>
+<hr>
+<p><strong>45. ¿El sistema soporta la retención de impuestos (ReteFuente, IVA) para proveedores?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox194"><label for="checkbox194">Sí, con cálculos automáticos según parámetros legales.</label></li>
+<li><input type="checkbox" id="checkbox195"><label for="checkbox195">Sí, solo registra el valor retenido.</label></li>
+<li><input type="checkbox" id="checkbox196" checked="true"><label for="checkbox196">No, se gestiona externamente.</label></li>
+<li><input type="checkbox" id="checkbox197"><label for="checkbox197">No aplica en este país.</label></li>
+</ul>
+<hr>
+<h3 id="categoría-4-control-de-acceso-visitantes-y-seguridad-en-portería-preguntas-46-60">Categoría 4: Control de Acceso, Visitantes y Seguridad en Portería (Preguntas 46-60)</h3>
+<p><strong>46. ¿Cómo pre-autorizan los residentes a sus visitantes o domiciliarios?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox198" checked="true"><label for="checkbox198">Desde la App móvil generando una autorización digital.</label></li>
+<li><input type="checkbox" id="checkbox199"><label for="checkbox199">Por medio de una llamada telefónica a portería.</label></li>
+<li><input type="checkbox" id="checkbox200"><label for="checkbox200">Por correo electrónico a la administración.</label></li>
+<li><input type="checkbox" id="checkbox201"><label for="checkbox201">No se pre-autorizan, se registran al llegar.</label></li>
+</ul>
+<hr>
+<p><strong>47. ¿Cómo registra la portería a un visitante recurrente o no anunciado?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox202"><label for="checkbox202">Consultando el historial del visitante en el sistema.</label></li>
+<li><input type="checkbox" id="checkbox203"><label for="checkbox203">Llamando al residente para confirmación.</label></li>
+<li><input type="checkbox" id="checkbox204"><label for="checkbox204">Registrando todos sus datos manualmente en el sistema.</label></li>
+<li><input type="checkbox" id="checkbox205" checked="true"><label for="checkbox205">A y C combinados.</label></li>
+</ul>
+<hr>
+<p><strong>48. ¿Cómo se notifica al residente que su visita o delivery ha llegado a la portería?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox206" checked="true"><label for="checkbox206">Notificación push en la App del residente.</label></li>
+<li><input type="checkbox" id="checkbox207" checked="true"><label for="checkbox207">Mensaje de texto (SMS).</label></li>
+<li><input type="checkbox" id="checkbox208" checked="true"><label for="checkbox208">Llamada telefónica desde portería al apartamento.</label></li>
+<li><input type="checkbox" id="checkbox209"><label for="checkbox209">Todos los anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>49. ¿Cómo se controla el ingreso de vehículos de visitantes?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox210"><label for="checkbox210">Registro de placa y modelo en el software.</label></li>
+<li><input type="checkbox" id="checkbox211"><label for="checkbox211">Verificación de autorización del residente.</label></li>
+<li><input type="checkbox" id="checkbox212"><label for="checkbox212">Entrega de tarjeta de acceso temporal.</label></li>
+<li><input type="checkbox" id="checkbox213" checked="true"><label for="checkbox213">A y B.</label></li>
+<li><input type="checkbox" id="checkbox214"><label for="checkbox214">Solo se registra la placa al ingreso.</label></li>
+</ul>
+<hr>
+<p><strong>50. ¿Cómo se registra el ingreso de personal de servicio doméstico o mantenimiento contratado?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox215"><label for="checkbox215">Con una autorización especial del residente.</label></li>
+<li><input type="checkbox" id="checkbox216" checked="true"><label for="checkbox216">Con registro permanente en el sistema y carnet.</label></li>
+<li><input type="checkbox" id="checkbox217"><label for="checkbox217">Se registran como visitantes normales.</label></li>
+<li><input type="checkbox" id="checkbox218"><label for="checkbox218">No se requiere registro.</label></li>
+</ul>
+<hr>
+<p><strong>51. ¿Qué sucede con la entrega de paquetes y correspondencia (Delivery/E-commerce)?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox219" checked="true"><label for="checkbox219">Se registra en el sistema y se notifica al residente.</label></li>
+<li><input type="checkbox" id="checkbox220" checked="true"><label for="checkbox220">Se almacena en un lugar designado con código de seguridad.</label></li>
+<li><input type="checkbox" id="checkbox221"><label for="checkbox221">Se entrega directamente al residente si está en casa.</label></li>
+<li><input type="checkbox" id="checkbox222"><label for="checkbox222">A y B.</label></li>
+<li><input type="checkbox" id="checkbox223"><label for="checkbox223">Todas las anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>52. ¿Cómo confirma el residente la entrega/retiro de un paquete en portería?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox224" checked="true"><label for="checkbox224">Firma digital en la Tablet de portería.</label></li>
+<li><input type="checkbox" id="checkbox225"><label for="checkbox225">Confirmación desde la App del residente.</label></li>
+<li><input type="checkbox" id="checkbox226"><label for="checkbox226">Firma física en el libro de registros.</label></li>
+<li><input type="checkbox" id="checkbox227"><label for="checkbox227">A y B.</label></li>
+</ul>
+<hr>
+<p><strong>53. ¿Cómo se maneja el control de mascotas dentro de la copropiedad?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox228" checked="true"><label for="checkbox228">Registro de mascotas en el sistema.</label></li>
+<li><input type="checkbox" id="checkbox229"><label for="checkbox229">Control de espacios para mascotas.</label></li>
+<li><input type="checkbox" id="checkbox230"><label for="checkbox230">Registro de vacunas y permisos.</label></li>
+<li><input type="checkbox" id="checkbox231"><label for="checkbox231">A y B.</label></li>
+<li><input type="checkbox" id="checkbox232"><label for="checkbox232">Todas las anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>54. ¿Qué registro se lleva de los trasteos, mudanzas o ingreso de muebles grandes?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox233" checked="true"><label for="checkbox233">Autorización previa del residente y administración.</label></li>
+<li><input type="checkbox" id="checkbox234" checked="true"><label for="checkbox234">Asignación de horarios específicos.</label></li>
+<li><input type="checkbox" id="checkbox235" checked="true"><label for="checkbox235">Registro de la empresa de mudanzas.</label></li>
+<li><input type="checkbox" id="checkbox236"><label for="checkbox236">A y B.</label></li>
+<li><input type="checkbox" id="checkbox237"><label for="checkbox237">Todas las anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>55. ¿El software cuenta con un Botón de Pánico o Alerta de Emergencia?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox238" checked="true"><label for="checkbox238">Sí, visible en la App y en la pantalla de portería.</label></li>
+<li><input type="checkbox" id="checkbox239"><label for="checkbox239">Sí, solo en el módulo de portería.</label></li>
+<li><input type="checkbox" id="checkbox240"><label for="checkbox240">Sí, solo en la App del residente.</label></li>
+<li><input type="checkbox" id="checkbox241"><label for="checkbox241">No contempla este módulo.</label></li>
+</ul>
+<hr>
+<p><strong>56. ¿Cómo se controla el acceso a proveedores de servicios públicos o contratistas del edificio?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox242" checked="true"><label for="checkbox242">Registro detallado en el sistema.</label></li>
+<li><input type="checkbox" id="checkbox243" checked="true"><label for="checkbox243">Validación de contratos y documentos.</label></li>
+<li><input type="checkbox" id="checkbox244" checked="true"><label for="checkbox244">Verificación de autorización.</label></li>
+<li><input type="checkbox" id="checkbox245"><label for="checkbox245">A y C.</label></li>
+<li><input type="checkbox" id="checkbox246"><label for="checkbox246">Todas las anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>57. ¿Cómo se gestionan las minutas de portería (libro de novedades del turno)?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox247" checked="true"><label for="checkbox247">Digitalmente, con registro de eventos en el sistema.</label></li>
+<li><input type="checkbox" id="checkbox248"><label for="checkbox248">Físicamente, en el libro tradicional.</label></li>
+<li><input type="checkbox" id="checkbox249"><label for="checkbox249">Se genera un reporte automático al final del turno.</label></li>
+<li><input type="checkbox" id="checkbox250"><label for="checkbox250">A y C.</label></li>
+</ul>
+<hr>
+<p><strong>58. ¿El sistema permite registrar la pérdida y hallazgo de objetos (Lost &amp; Found)?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox251" checked="true"><label for="checkbox251">Sí, con fotografías y descripción.</label></li>
+<li><input type="checkbox" id="checkbox252"><label for="checkbox252">Sí, pero solo para la administración.</label></li>
+<li><input type="checkbox" id="checkbox253"><label for="checkbox253">Sí, accesible para todos los residentes.</label></li>
+<li><input type="checkbox" id="checkbox254"><label for="checkbox254">No, no se contempla.</label></li>
+</ul>
+<hr>
+<p><strong>59. ¿Cómo se previene el ingreso no autorizado por suplantación de identidad?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox255"><label for="checkbox255">Verificación biométrica en portería.</label></li>
+<li><input type="checkbox" id="checkbox256"><label for="checkbox256">Comparación de foto del visitante con documento.</label></li>
+<li><input type="checkbox" id="checkbox257"><label for="checkbox257">Validación de autorización digital del residente.</label></li>
+<li><input type="checkbox" id="checkbox258" checked="true"><label for="checkbox258">A, B y C combinados.</label></li>
+<li><input type="checkbox" id="checkbox259"><label for="checkbox259">Solo se verifica la cédula físicamente.</label></li>
+</ul>
+<hr>
+<p><strong>60. ¿Se pueden bloquear o restringir accesos a personas específicas?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox260" checked="true"><label for="checkbox260">Sí, en una lista negra (Blacklist) del sistema.</label></li>
+<li><input type="checkbox" id="checkbox261" checked="true"><label for="checkbox261">Sí, con restricción por placa, huella o tarjeta.</label></li>
+<li><input type="checkbox" id="checkbox262" checked="true"><label for="checkbox262">Sí, con notificación a portería.</label></li>
+<li><input type="checkbox" id="checkbox263"><label for="checkbox263">Todas las anteriores.</label></li>
+<li><input type="checkbox" id="checkbox264"><label for="checkbox264">No se contempla.</label></li>
+</ul>
+<hr>
+<h3 id="categoría-5-gestión-de-zonas-comunes-reservas-y-mantenimiento-preguntas-61-75">Categoría 5: Gestión de Zonas Comunes, Reservas y Mantenimiento (Preguntas 61-75)</h3>
+<p><strong>61. ¿Cómo solicitan los residentes la reserva de una zona común (Salón social, BBQ, Canchas)?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox265" checked="true"><label for="checkbox265">Desde la App móvil / Web.</label></li>
+<li><input type="checkbox" id="checkbox266"><label for="checkbox266">En portería mediante formato físico.</label></li>
+<li><input type="checkbox" id="checkbox267"><label for="checkbox267">Por correo electrónico a la administración.</label></li>
+<li><input type="checkbox" id="checkbox268"><label for="checkbox268">A y B.</label></li>
+</ul>
+<hr>
+<p><strong>62. ¿Cómo se gestionan las reglas y limitaciones de reserva de amenidades?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox269" checked="true"><label for="checkbox269">Configurables desde el sistema (horarios, cupos, antelación).</label></li>
+<li><input type="checkbox" id="checkbox270"><label for="checkbox270">Manualmente por la administración.</label></li>
+<li><input type="checkbox" id="checkbox271"><label for="checkbox271">Se definen al inicio y no se modifican.</label></li>
+<li><input type="checkbox" id="checkbox272"><label for="checkbox272">A y B.</label></li>
+</ul>
+<hr>
+<p><strong>63. ¿Cómo se cobra el alquiler o depósito de garantía de las zonas comunes?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox273"><label for="checkbox273">Automáticamente al confirmar la reserva.</label></li>
+<li><input type="checkbox" id="checkbox274"><label for="checkbox274">Manualmente en la administración.</label></li>
+<li><input type="checkbox" id="checkbox275"><label for="checkbox275">Con integración a la pasarela de pagos.</label></li>
+<li><input type="checkbox" id="checkbox276" checked="true"><label for="checkbox276">A y C.</label></li>
+<li><input type="checkbox" id="checkbox277"><label for="checkbox277">No se cobra, es gratuito.</label></li>
+</ul>
+<hr>
+<p><strong>64. ¿Cómo se realiza la inspección de la zona común antes y después del evento?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox278"><label for="checkbox278">Digitalmente en el sistema con checklist.</label></li>
+<li><input type="checkbox" id="checkbox279"><label for="checkbox279">Físicamente en formato papel.</label></li>
+<li><input type="checkbox" id="checkbox280"><label for="checkbox280">Con fotografías en la App.</label></li>
+<li><input type="checkbox" id="checkbox281" checked="true"><label for="checkbox281">A y C.</label></li>
+<li><input type="checkbox" id="checkbox282"><label for="checkbox282">No se realiza inspección.</label></li>
+</ul>
+<hr>
+<p><strong>65. ¿El software programa el mantenimiento preventivo de los equipos del edificio?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox283" checked="true"><label for="checkbox283">Sí, con recordatorios y programación automática.</label></li>
+<li><input type="checkbox" id="checkbox284"><label for="checkbox284">Sí, solo recordatorios manuales.</label></li>
+<li><input type="checkbox" id="checkbox285"><label for="checkbox285">No, se gestiona externamente.</label></li>
+<li><input type="checkbox" id="checkbox286"><label for="checkbox286">No está definido aún.</label></li>
+</ul>
+<hr>
+<p><strong>66. ¿Cómo se registran los fallos de infraestructura reportados por los residentes (ej. bombillo fundido)?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox287" checked="true"><label for="checkbox287">A través de la App con fotografías.</label></li>
+<li><input type="checkbox" id="checkbox288"><label for="checkbox288">Llamando a portería para que lo registren.</label></li>
+<li><input type="checkbox" id="checkbox289"><label for="checkbox289">Correo electrónico a la administración.</label></li>
+<li><input type="checkbox" id="checkbox290"><label for="checkbox290">A y B.</label></li>
+<li><input type="checkbox" id="checkbox291"><label for="checkbox291">No se registran formalmente.</label></li>
+</ul>
+<hr>
+<p><strong>67. ¿Cómo gestiona el personal de mantenimiento sus tareas diarias?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox292" checked="true"><label for="checkbox292">Recibe tareas asignadas desde el sistema.</label></li>
+<li><input type="checkbox" id="checkbox293"><label for="checkbox293">Marca tareas como completadas desde la App.</label></li>
+<li><input type="checkbox" id="checkbox294"><label for="checkbox294">Lleva un control en papel.</label></li>
+<li><input type="checkbox" id="checkbox295"><label for="checkbox295">A y B.</label></li>
+<li><input type="checkbox" id="checkbox296"><label for="checkbox296">No utiliza software.</label></li>
+</ul>
+<hr>
+<p><strong>68. ¿El software controla el inventario de activos y consumibles de la copropiedad?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox297" checked="true"><label for="checkbox297">Sí, con registro de entradas y salidas.</label></li>
+<li><input type="checkbox" id="checkbox298"><label for="checkbox298">Sí, con código QR para activos.</label></li>
+<li><input type="checkbox" id="checkbox299"><label for="checkbox299">Sí, con control de proveedores.</label></li>
+<li><input type="checkbox" id="checkbox300"><label for="checkbox300">Todas las anteriores.</label></li>
+<li><input type="checkbox" id="checkbox301"><label for="checkbox301">No se controla inventario.</label></li>
+</ul>
+<hr>
+<p><strong>69. ¿Cómo se manejan los mantenimientos que requieren el corte de servicios básicos?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox302"><label for="checkbox302">Programación con notificaciones masivas anticipadas.</label></li>
+<li><input type="checkbox" id="checkbox303"><label for="checkbox303">Aprobación previa de la administración.</label></li>
+<li><input type="checkbox" id="checkbox304"><label for="checkbox304">Coordinación con el personal de servicios.</label></li>
+<li><input type="checkbox" id="checkbox305" checked="true"><label for="checkbox305">A y B.</label></li>
+<li><input type="checkbox" id="checkbox306"><label for="checkbox306">No se maneja desde el sistema.</label></li>
+</ul>
+<hr>
+<p><strong>70. ¿El sistema soporta la gestión de proveedores de mantenimiento externos?</strong> <em>(Respuesta Múltiple)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox307" checked="true"><label for="checkbox307">Sí, con base de datos de proveedores.</label></li>
+<li><input type="checkbox" id="checkbox308" checked="true"><label for="checkbox308">Sí, con historial de servicios y calificaciones.</label></li>
+<li><input type="checkbox" id="checkbox309" checked="true"><label for="checkbox309">Sí, con gestión de contratos.</label></li>
+<li><input type="checkbox" id="checkbox310"><label for="checkbox310">Todas las anteriores.</label></li>
+<li><input type="checkbox" id="checkbox311"><label for="checkbox311">No se contempla.</label></li>
+</ul>
+<hr>
+<p><strong>71. ¿Se requiere control sobre los parqueaderos de uso privado y asignación?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox312" checked="true"><label for="checkbox312">Sí, con asignación fija por apartamento.</label></li>
+<li><input type="checkbox" id="checkbox313"><label for="checkbox313">Sí, con rotación semanal.</label></li>
+<li><input type="checkbox" id="checkbox314"><label for="checkbox314">Sí, con reserva previa.</label></li>
+<li><input type="checkbox" id="checkbox315"><label for="checkbox315">No, es libre.</label></li>
+<li><input type="checkbox" id="checkbox316"><label for="checkbox316">No se contempla.</label></li>
+</ul>
+<hr>
+<p><strong>72. ¿El software permite la gestión del plan de manejo de residuos/reciclaje del edificio?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox317"><label for="checkbox317">Sí, con calendario de recolección.</label></li>
+<li><input type="checkbox" id="checkbox318"><label for="checkbox318">Sí, con reporte de cumplimiento.</label></li>
+<li><input type="checkbox" id="checkbox319"><label for="checkbox319">Sí, con notificaciones a los residentes.</label></li>
+<li><input type="checkbox" id="checkbox320" checked="true"><label for="checkbox320">Todas las anteriores.</label></li>
+<li><input type="checkbox" id="checkbox321"><label for="checkbox321">No se contempla.</label></li>
+</ul>
+<hr>
+<p><strong>73. ¿Cómo se gestiona el acceso a las llaves maestras o de zonas técnicas del edificio?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox322" checked="true"><label for="checkbox322">Registro de préstamo y devolución en el sistema.</label></li>
+<li><input type="checkbox" id="checkbox323"><label for="checkbox323">Autorización electrónica con código QR.</label></li>
+<li><input type="checkbox" id="checkbox324"><label for="checkbox324">Control manual en portería.</label></li>
+<li><input type="checkbox" id="checkbox325"><label for="checkbox325">A y B.</label></li>
+<li><input type="checkbox" id="checkbox326"><label for="checkbox326">No se gestiona desde el sistema.</label></li>
+</ul>
+<hr>
+<p><strong>74. ¿Cómo se controla el aforo máximo en áreas comunes abiertas o cerradas?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox327"><label for="checkbox327">Con conteo automático mediante sensores.</label></li>
+<li><input type="checkbox" id="checkbox328"><label for="checkbox328">Con reserva y cupo máximo configurable.</label></li>
+<li><input type="checkbox" id="checkbox329"><label for="checkbox329">Con control manual en portería.</label></li>
+<li><input type="checkbox" id="checkbox330" checked="true"><label for="checkbox330">A y B.</label></li>
+<li><input type="checkbox" id="checkbox331"><label for="checkbox331">No se controla aforo.</label></li>
+</ul>
+<hr>
+<p><strong>75. ¿Cómo se califica el estado de entrega del salón social o zona común tras un evento?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox332" checked="true"><label for="checkbox332">Con un formulario digital de calificación.</label></li>
+<li><input type="checkbox" id="checkbox333"><label for="checkbox333">Con un checklist de inspección.</label></li>
+<li><input type="checkbox" id="checkbox334"><label for="checkbox334">Con fotografías de evidencia.</label></li>
+<li><input type="checkbox" id="checkbox335"><label for="checkbox335">A y C.</label></li>
+<li><input type="checkbox" id="checkbox336"><label for="checkbox336">No se califica.</label></li>
+</ul>
+<hr>
+<h3 id="categoría-6-comunicación-comunitaria-y-muro-digital-preguntas-76-90">Categoría 6: Comunicación Comunitaria y Muro Digital (Preguntas 76-90)</h3>
+<p><strong>76. ¿Cómo se publican las noticias y comunicados oficiales de la administración?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox337"><label for="checkbox337">En un muro digital dentro de la App.</label></li>
+<li><input type="checkbox" id="checkbox338"><label for="checkbox338">Por correo electrónico masivo.</label></li>
+<li><input type="checkbox" id="checkbox339"><label for="checkbox339">En la pantalla de portería.</label></li>
+<li><input type="checkbox" id="checkbox340"><label for="checkbox340">A y C.</label></li>
+<li><input type="checkbox" id="checkbox341" checked="true"><label for="checkbox341">Todos los anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>77. ¿Los residentes pueden interactuar o comentar en las publicaciones de la administración?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox342"><label for="checkbox342">Sí, con comentarios públicos.</label></li>
+<li><input type="checkbox" id="checkbox343"><label for="checkbox343">Sí, con reacciones (me gusta, etc.).</label></li>
+<li><input type="checkbox" id="checkbox344"><label for="checkbox344">Sí, con mensajes privados a la administración.</label></li>
+<li><input type="checkbox" id="checkbox345" checked="true"><label for="checkbox345">No, solo lectura.</label></li>
+<li><input type="checkbox" id="checkbox346"><label for="checkbox346">Opcional según la publicación.</label></li>
+</ul>
+<hr>
+<p><strong>78. ¿El sistema soporta la realización de encuestas no vinculantes?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox347"><label for="checkbox347">Sí, con preguntas de opción múltiple.</label></li>
+<li><input type="checkbox" id="checkbox348"><label for="checkbox348">Sí, con preguntas abiertas.</label></li>
+<li><input type="checkbox" id="checkbox349"><label for="checkbox349">Sí, con resultados en tiempo real.</label></li>
+<li><input type="checkbox" id="checkbox350" checked="true"><label for="checkbox350">Todas las anteriores.</label></li>
+<li><input type="checkbox" id="checkbox351"><label for="checkbox351">No se contempla.</label></li>
+</ul>
+<hr>
+<p><strong>79. ¿Existe un directorio de servicios internos o mercado entre vecinos (Classifieds)?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox352"><label for="checkbox352">Sí, con anuncios de bienes y servicios.</label></li>
+<li><input type="checkbox" id="checkbox353"><label for="checkbox353">Sí, con categorías y búsqueda.</label></li>
+<li><input type="checkbox" id="checkbox354"><label for="checkbox354">Sí, con contacto a través del sistema.</label></li>
+<li><input type="checkbox" id="checkbox355" checked="true"><label for="checkbox355">Todas las anteriores.</label></li>
+<li><input type="checkbox" id="checkbox356"><label for="checkbox356">No se contempla.</label></li>
+</ul>
+<hr>
+<p><strong>80. ¿Cómo se maneja la privacidad del directorio de residentes?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox357"><label for="checkbox357">Solo visible para la administración.</label></li>
+<li><input type="checkbox" id="checkbox358"><label for="checkbox358">Visible para todos los residentes registrados.</label></li>
+<li><input type="checkbox" id="checkbox359" checked="true"><label for="checkbox359">Visible solo con autorización expresa del residente.</label></li>
+<li><input type="checkbox" id="checkbox360"><label for="checkbox360">No se tiene directorio.</label></li>
+</ul>
+<hr>
+<p><strong>81. ¿Cómo se comunican los residentes entre sí sin revelar sus datos personales?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox361"><label for="checkbox361">A través de un chat anónimo interno.</label></li>
+<li><input type="checkbox" id="checkbox362" checked="true"><label for="checkbox362">Mediante mensajería interna sin mostrar número.</label></li>
+<li><input type="checkbox" id="checkbox363"><label for="checkbox363">Con foros temáticos.</label></li>
+<li><input type="checkbox" id="checkbox364"><label for="checkbox364">A y B.</label></li>
+<li><input type="checkbox" id="checkbox365"><label for="checkbox365">No se permite comunicación entre residentes.</label></li>
+</ul>
+<hr>
+<p><strong>82. ¿Cómo se distribuye la documentación oficial de la copropiedad (Reglamento, Actas, Planos)?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox366"><label for="checkbox366">En un repositorio digital dentro de la App.</label></li>
+<li><input type="checkbox" id="checkbox367"><label for="checkbox367">Por correo electrónico.</label></li>
+<li><input type="checkbox" id="checkbox368"><label for="checkbox368">En la pantalla de portería.</label></li>
+<li><input type="checkbox" id="checkbox369" checked="true"><label for="checkbox369">A y B.</label></li>
+<li><input type="checkbox" id="checkbox370"><label for="checkbox370">Solo en físico.</label></li>
+</ul>
+<hr>
+<p><strong>83. ¿El sistema soporta notificaciones de emergencia urgentes (Alertas sonoras)?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox371"><label for="checkbox371">Sí, con sonido de alarma en la App.</label></li>
+<li><input type="checkbox" id="checkbox372"><label for="checkbox372">Sí, con mensaje push prioritario.</label></li>
+<li><input type="checkbox" id="checkbox373"><label for="checkbox373">Sí, con llamada automática.</label></li>
+<li><input type="checkbox" id="checkbox374" checked="true"><label for="checkbox374">Todas las anteriores.</label></li>
+<li><input type="checkbox" id="checkbox375"><label for="checkbox375">No se contempla.</label></li>
+</ul>
+<hr>
+<p><strong>84. ¿Se pueden programar comunicados para ser publicados en fechas y horas específicas?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox376" checked="true"><label for="checkbox376">Sí, con programación automática.</label></li>
+<li><input type="checkbox" id="checkbox377"><label for="checkbox377">Sí, con recordatorio manual.</label></li>
+<li><input type="checkbox" id="checkbox378"><label for="checkbox378">No, solo se publican al momento.</label></li>
+<li><input type="checkbox" id="checkbox379"><label for="checkbox379">No está definido aún.</label></li>
+</ul>
+<hr>
+<p><strong>85. ¿Cómo se valida que un aviso importante fue leído por la mayoría de los residentes?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox380" checked="true"><label for="checkbox380">Con confirmación de lectura (visto) en la App.</label></li>
+<li><input type="checkbox" id="checkbox381"><label for="checkbox381">Con acuse de recibo por correo.</label></li>
+<li><input type="checkbox" id="checkbox382"><label for="checkbox382">Con un enlace de seguimiento.</label></li>
+<li><input type="checkbox" id="checkbox383"><label for="checkbox383">A y C.</label></li>
+<li><input type="checkbox" id="checkbox384"><label for="checkbox384">No se valida.</label></li>
+</ul>
+<hr>
+<p><strong>86. ¿El software cuenta con un espacio para la Junta o Consejo de Administración?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox385" checked="true"><label for="checkbox385">Sí, con sección privada para ellos.</label></li>
+<li><input type="checkbox" id="checkbox386"><label for="checkbox386">Sí, con foro de discusión.</label></li>
+<li><input type="checkbox" id="checkbox387"><label for="checkbox387">Sí, con documentos y actas.</label></li>
+<li><input type="checkbox" id="checkbox388"><label for="checkbox388">Todas las anteriores.</label></li>
+<li><input type="checkbox" id="checkbox389"><label for="checkbox389">No, no se incluye.</label></li>
+</ul>
+<hr>
+<p><strong>87. ¿Se permite el envío de correspondencia personalizada a un solo apartamento?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox390" checked="true"><label for="checkbox390">Sí, desde la administración.</label></li>
+<li><input type="checkbox" id="checkbox391"><label for="checkbox391">Sí, desde los residentes.</label></li>
+<li><input type="checkbox" id="checkbox392"><label for="checkbox392">Sí, solo para notificaciones oficiales.</label></li>
+<li><input type="checkbox" id="checkbox393"><label for="checkbox393">No, todas las comunicaciones son masivas.</label></li>
+</ul>
+<hr>
+<p><strong>88. ¿Cómo se gestiona el envío del boletín mensual de la administración?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox394"><label for="checkbox394">Generado automáticamente con plantillas.</label></li>
+<li><input type="checkbox" id="checkbox395"><label for="checkbox395">Enviado por correo electrónico.</label></li>
+<li><input type="checkbox" id="checkbox396"><label for="checkbox396">Publicado en la App.</label></li>
+<li><input type="checkbox" id="checkbox397"><label for="checkbox397">A y C.</label></li>
+<li><input type="checkbox" id="checkbox398" checked="true"><label for="checkbox398">Todos los anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>89. ¿Cómo se gestionan las citaciones formales a Asambleas Ordinarias/Extraordinarias?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox399"><label for="checkbox399">Con convocatoria digital en la App.</label></li>
+<li><input type="checkbox" id="checkbox400"><label for="checkbox400">Con envío de correo electrónico.</label></li>
+<li><input type="checkbox" id="checkbox401"><label for="checkbox401">Con notificación en la pantalla de portería.</label></li>
+<li><input type="checkbox" id="checkbox402"><label for="checkbox402">A y B.</label></li>
+<li><input type="checkbox" id="checkbox403" checked="true"><label for="checkbox403">Todas las anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>90. ¿La App incluye un canal de sugerencias o caja de ideas anónimas?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox404"><label for="checkbox404">Sí, con anonimato total.</label></li>
+<li><input type="checkbox" id="checkbox405"><label for="checkbox405">Sí, con identificación opcional.</label></li>
+<li><input type="checkbox" id="checkbox406" checked="true"><label for="checkbox406">Sí, con moderación de la administración.</label></li>
+<li><input type="checkbox" id="checkbox407"><label for="checkbox407">No se contempla.</label></li>
+</ul>
+<hr>
+<h3 id="categoría-7-experiencia-del-usuario-móvil-y-accesibilidad-preguntas-91-105">Categoría 7: Experiencia del Usuario, Móvil y Accesibilidad (Preguntas 91-105)</h3>
+<p><strong>91. ¿Qué tipo de aplicación utilizarán los residentes en sus teléfonos móviles?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox408"><label for="checkbox408">Aplicación nativa (iOS y Android).</label></li>
+<li><input type="checkbox" id="checkbox409" checked="true"><label for="checkbox409">Aplicación híbrida (React Native / Flutter).</label></li>
+<li><input type="checkbox" id="checkbox410"><label for="checkbox410">Aplicación web progresiva (PWA).</label></li>
+<li><input type="checkbox" id="checkbox411"><label for="checkbox411">Versión web adaptable (responsive).</label></li>
+<li><input type="checkbox" id="checkbox412"><label for="checkbox412">Otro (Especifique): _________</label></li>
+</ul>
+<hr>
+<p><strong>92. ¿Qué tecnología se utilizará para la interfaz de portería/seguridad?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox413"><label for="checkbox413">Aplicación web dedicada.</label></li>
+<li><input type="checkbox" id="checkbox414" checked="true"><label for="checkbox414">Aplicación nativa para tablet.</label></li>
+<li><input type="checkbox" id="checkbox415"><label for="checkbox415">Sistema embebido en el totem.</label></li>
+<li><input type="checkbox" id="checkbox416"><label for="checkbox416">A y B.</label></li>
+<li><input type="checkbox" id="checkbox417"><label for="checkbox417">Otro (Especifique): _________</label></li>
+</ul>
+<hr>
+<p><strong>93. ¿El software soporta la autenticación biométrica en dispositivos móviles (FaceID / Fingerprint)?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox418"><label for="checkbox418">Sí, para acceso a la App.</label></li>
+<li><input type="checkbox" id="checkbox419"><label for="checkbox419">Sí, para autorización de visitas.</label></li>
+<li><input type="checkbox" id="checkbox420"><label for="checkbox420">Sí, para pagos.</label></li>
+<li><input type="checkbox" id="checkbox421" checked="true"><label for="checkbox421">Todas las anteriores.</label></li>
+<li><input type="checkbox" id="checkbox422"><label for="checkbox422">No se soporta.</label></li>
+</ul>
+<hr>
+<p><strong>94. ¿Cómo ingresan a la App los adultos mayores o residentes con poca experiencia tecnológica?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox423"><label for="checkbox423">Con autenticación sencilla (PIN o huella).</label></li>
+<li><input type="checkbox" id="checkbox424"><label for="checkbox424">Con modo de uso simplificado (modo senior).</label></li>
+<li><input type="checkbox" id="checkbox425"><label for="checkbox425">Con asistencia de la administración.</label></li>
+<li><input type="checkbox" id="checkbox426" checked="true"><label for="checkbox426">A y B.</label></li>
+<li><input type="checkbox" id="checkbox427"><label for="checkbox427">No se contemplan perfiles específicos.</label></li>
+</ul>
+<hr>
+<p><strong>95. ¿Qué nivel de personalización de marca (Branding) tendrá la aplicación?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox428" checked="true"><label for="checkbox428">Solo colores y logotipo.</label></li>
+<li><input type="checkbox" id="checkbox429"><label for="checkbox429">Personalización completa de interfaces.</label></li>
+<li><input type="checkbox" id="checkbox430"><label for="checkbox430">Sin personalización, es estándar.</label></li>
+<li><input type="checkbox" id="checkbox431"><label for="checkbox431">Opcional mediante módulo de configuración.</label></li>
+</ul>
+<hr>
+<p><strong>96. ¿El sistema soporta múltiples idiomas en la interfaz?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox432" checked="true"><label for="checkbox432">Sí, al menos español e inglés.</label></li>
+<li><input type="checkbox" id="checkbox433"><label for="checkbox433">Sí, con posibilidad de agregar más.</label></li>
+<li><input type="checkbox" id="checkbox434"><label for="checkbox434">No, solo español.</label></li>
+<li><input type="checkbox" id="checkbox435"><label for="checkbox435">No está definido.</label></li>
+</ul>
+<hr>
+<p><strong>97. ¿Cómo gestiona la App del residente los permisos de cámara, ubicación y notificaciones?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox436"><label for="checkbox436">Solicita permisos al primer uso.</label></li>
+<li><input type="checkbox" id="checkbox437"><label for="checkbox437">Solicita permisos según necesidad.</label></li>
+<li><input type="checkbox" id="checkbox438"><label for="checkbox438">Permite configurar desde ajustes de la App.</label></li>
+<li><input type="checkbox" id="checkbox439" checked="true"><label for="checkbox439">A y C.</label></li>
+<li><input type="checkbox" id="checkbox440"><label for="checkbox440">No se usan permisos.</label></li>
+</ul>
+<hr>
+<p><strong>98. ¿Qué sucede cuando un usuario vive en un edificio y es propietario de un apartamento en otro edificio con el mismo software?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox441"><label for="checkbox441">Puede cambiar de perfil fácilmente.</label></li>
+<li><input type="checkbox" id="checkbox442" checked="true"><label for="checkbox442">Puede vincular ambas propiedades en una misma cuenta.</label></li>
+<li><input type="checkbox" id="checkbox443"><label for="checkbox443">Debe tener cuentas separadas.</label></li>
+<li><input type="checkbox" id="checkbox444"><label for="checkbox444">No está contemplado.</label></li>
+</ul>
+<hr>
+<p><strong>99. ¿Cómo se delegan los permisos dentro de la cuenta de un mismo apartamento?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox445"><label for="checkbox445">Roles de usuario (Propietario, familiar, empleado).</label></li>
+<li><input type="checkbox" id="checkbox446"><label for="checkbox446">Permisos por funcionalidad.</label></li>
+<li><input type="checkbox" id="checkbox447" checked="true"><label for="checkbox447">A y B.</label></li>
+<li><input type="checkbox" id="checkbox448"><label for="checkbox448">No hay delegación.</label></li>
+</ul>
+<hr>
+<p><strong>100. ¿La interfaz del módulo de portería soporta el &quot;Modo Oscuro&quot; o protección de la vista para la noche?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox449"><label for="checkbox449">Sí, con cambio automático según hora.</label></li>
+<li><input type="checkbox" id="checkbox450" checked="true"><label for="checkbox450">Sí, configurable manualmente.</label></li>
+<li><input type="checkbox" id="checkbox451"><label for="checkbox451">No, solo modo claro.</label></li>
+<li><input type="checkbox" id="checkbox452"><label for="checkbox452">No está considerado.</label></li>
+</ul>
+<hr>
+<p><strong>101. ¿Qué velocidad de carga máxima se exige en la pantalla de portería para autorizar un acceso?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox453"><label for="checkbox453">Menos de 1 segundo.</label></li>
+<li><input type="checkbox" id="checkbox454" checked="true"><label for="checkbox454">Entre 1 y 3 segundos.</label></li>
+<li><input type="checkbox" id="checkbox455"><label for="checkbox455">Hasta 5 segundos.</label></li>
+<li><input type="checkbox" id="checkbox456"><label for="checkbox456">No hay requisito definido.</label></li>
+</ul>
+<hr>
+<p><strong>102. ¿La App móvil funciona correctamente con redes móviles débiles (3G/4G con poca señal)?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox457"><label for="checkbox457">Sí, con modo offline y sincronización posterior.</label></li>
+<li><input type="checkbox" id="checkbox458"><label for="checkbox458">Sí, con carga progresiva.</label></li>
+<li><input type="checkbox" id="checkbox459"><label for="checkbox459">Sí, con compresión de datos.</label></li>
+<li><input type="checkbox" id="checkbox460" checked="true"><label for="checkbox460">Todas las anteriores.</label></li>
+<li><input type="checkbox" id="checkbox461"><label for="checkbox461">No se garantiza en redes débiles.</label></li>
+</ul>
+<hr>
+<p><strong>103. ¿La App permite al residente alternar entre el perfil de &quot;Propietario&quot; y &quot;Miembro del Consejo&quot;?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox462"><label for="checkbox462">Sí, con un cambio de rol en la cuenta.</label></li>
+<li><input type="checkbox" id="checkbox463" checked="true"><label for="checkbox463">Sí, con vistas diferenciadas.</label></li>
+<li><input type="checkbox" id="checkbox464"><label for="checkbox464">No, el perfil es fijo.</label></li>
+<li><input type="checkbox" id="checkbox465"><label for="checkbox465">No aplica.</label></li>
+</ul>
+<hr>
+<p><strong>104. ¿La aplicación incluye sonidos o alertas Hápticas (vibración) para confirmar acciones?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox466" checked="true"><label for="checkbox466">Sí, configurable por el usuario.</label></li>
+<li><input type="checkbox" id="checkbox467"><label for="checkbox467">Sí, solo para eventos importantes.</label></li>
+<li><input type="checkbox" id="checkbox468"><label for="checkbox468">No, solo notificaciones visuales.</label></li>
+<li><input type="checkbox" id="checkbox469"><label for="checkbox469">No está definido.</label></li>
+</ul>
+<hr>
+<p><strong>105. ¿Cómo se resuelven las dudas de uso del residente dentro de la misma App?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox470" checked="true"><label for="checkbox470">Con un centro de ayuda (FAQ) integrado.</label></li>
+<li><input type="checkbox" id="checkbox471"><label for="checkbox471">Con chat en vivo con soporte.</label></li>
+<li><input type="checkbox" id="checkbox472"><label for="checkbox472">Con videos tutoriales.</label></li>
+<li><input type="checkbox" id="checkbox473"><label for="checkbox473">A y C.</label></li>
+<li><input type="checkbox" id="checkbox474"><label for="checkbox474">Todos los anteriores.</label></li>
+</ul>
+<hr>
+<h3 id="categoría-8-seguridad-privacidad-de-datos-y-normativa-de-copropiedades-preguntas-106-120">Categoría 8: Seguridad, Privacidad de Datos y Normativa de Copropiedades (Preguntas 106-120)</h3>
+<p><strong>106. ¿Cómo cumple el software con las leyes de Protección de Datos Personales (GDPR, Habeas Data, Leyes locales)?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox475"><label for="checkbox475">Con políticas de privacidad integradas.</label></li>
+<li><input type="checkbox" id="checkbox476"><label for="checkbox476">Con consentimiento explícito del usuario.</label></li>
+<li><input type="checkbox" id="checkbox477"><label for="checkbox477">Con cifrado y anonimización.</label></li>
+<li><input type="checkbox" id="checkbox478" checked="true"><label for="checkbox478">Todas las anteriores.</label></li>
+<li><input type="checkbox" id="checkbox479"><label for="checkbox479">No se ha considerado.</label></li>
+</ul>
+<hr>
+<p><strong>107. ¿Quién es el dueño legal de los datos recolectados por el software (fotos, documentos, registros de acceso)?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox480" checked="true"><label for="checkbox480">La administración de la copropiedad.</label></li>
+<li><input type="checkbox" id="checkbox481"><label for="checkbox481">El proveedor del software.</label></li>
+<li><input type="checkbox" id="checkbox482"><label for="checkbox482">Los residentes propietarios.</label></li>
+<li><input type="checkbox" id="checkbox483"><label for="checkbox483">No está definido.</label></li>
+</ul>
+<hr>
+<p><strong>108. ¿Durante cuánto tiempo se deben conservar los registros de video/fotos/accesos de visitantes en la base de datos?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox484"><label for="checkbox484">30 días.</label></li>
+<li><input type="checkbox" id="checkbox485"><label for="checkbox485">60 días.</label></li>
+<li><input type="checkbox" id="checkbox486"><label for="checkbox486">1 año.</label></li>
+<li><input type="checkbox" id="checkbox487" checked="true"><label for="checkbox487">Según política interna.</label></li>
+<li><input type="checkbox" id="checkbox488"><label for="checkbox488">No se ha definido.</label></li>
+</ul>
+<hr>
+<p><strong>109. ¿Cómo se protege la información financiera de los residentes frente a otros vecinos?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox489"><label for="checkbox489">Con roles y permisos estrictos.</label></li>
+<li><input type="checkbox" id="checkbox490"><label for="checkbox490">Con cifrado de datos sensibles.</label></li>
+<li><input type="checkbox" id="checkbox491"><label for="checkbox491">Con anonimización en reportes.</label></li>
+<li><input type="checkbox" id="checkbox492"><label for="checkbox492">A y B.</label></li>
+<li><input type="checkbox" id="checkbox493" checked="true"><label for="checkbox493">Todos los anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>110. ¿Qué nivel de cifrado se exige para la transmisión de las fotos de los documentos de identidad capturados en portería?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox494" checked="true"><label for="checkbox494">SSL/TLS (cifrado en tránsito).</label></li>
+<li><input type="checkbox" id="checkbox495"><label for="checkbox495">Cifrado de extremo a extremo (E2EE).</label></li>
+<li><input type="checkbox" id="checkbox496"><label for="checkbox496">Almacenamiento con cifrado AES-256.</label></li>
+<li><input type="checkbox" id="checkbox497"><label for="checkbox497">A y C.</label></li>
+<li><input type="checkbox" id="checkbox498"><label for="checkbox498">No se exige cifrado específico.</label></li>
+</ul>
+<hr>
+<p><strong>111. ¿Cómo se controla el acceso a la base de datos por parte de los guardias de seguridad rotativos?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox499" checked="true"><label for="checkbox499">Cuentas de usuario individuales con permisos limitados.</label></li>
+<li><input type="checkbox" id="checkbox500"><label for="checkbox500">Acceso solo desde dispositivos autorizados.</label></li>
+<li><input type="checkbox" id="checkbox501"><label for="checkbox501">Registro de auditoría de todas las consultas.</label></li>
+<li><input type="checkbox" id="checkbox502"><label for="checkbox502">A y C.</label></li>
+<li><input type="checkbox" id="checkbox503"><label for="checkbox503">Todas las anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>112. ¿El software permite auditar los cambios realizados por el administrador (ej. condonación de intereses o borrado de deuda)?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox504" checked="true"><label for="checkbox504">Sí, con bitácora de auditoría.</label></li>
+<li><input type="checkbox" id="checkbox505"><label for="checkbox505">Sí, con notificación a la Junta.</label></li>
+<li><input type="checkbox" id="checkbox506"><label for="checkbox506">Sí, con historial de versiones.</label></li>
+<li><input type="checkbox" id="checkbox507"><label for="checkbox507">Todas las anteriores.</label></li>
+<li><input type="checkbox" id="checkbox508"><label for="checkbox508">No se permite auditoría.</label></li>
+</ul>
+<hr>
+<p><strong>113. ¿Qué ocurre con la información si el edificio decide cancelar el contrato del software?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox509" checked="true"><label for="checkbox509">Se exportan los datos en formato estándar (CSV, PDF, etc.).</label></li>
+<li><input type="checkbox" id="checkbox510"><label for="checkbox510">Se eliminan todos los datos inmediatamente.</label></li>
+<li><input type="checkbox" id="checkbox511"><label for="checkbox511">Se conserva un respaldo por tiempo limitado.</label></li>
+<li><input type="checkbox" id="checkbox512"><label for="checkbox512">No se ha definido.</label></li>
+</ul>
+<hr>
+<p><strong>114. ¿Cómo se previene que un guardia de seguridad descargue o copie la base de datos de teléfonos de los residentes?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox513"><label for="checkbox513">Restricción de permisos de descarga.</label></li>
+<li><input type="checkbox" id="checkbox514"><label for="checkbox514">Monitoreo de actividades sospechosas.</label></li>
+<li><input type="checkbox" id="checkbox515"><label for="checkbox515">Políticas de seguridad y capacitación.</label></li>
+<li><input type="checkbox" id="checkbox516"><label for="checkbox516">A y B.</label></li>
+<li><input type="checkbox" id="checkbox517" checked="true"><label for="checkbox517">Todas las anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>115. ¿Cómo se gestiona el derecho al olvido cuando un residente vende su apartamento y se muda?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox518"><label for="checkbox518">Se eliminan sus datos personales.</label></li>
+<li><input type="checkbox" id="checkbox519"><label for="checkbox519">Se anonimizan sus registros.</label></li>
+<li><input type="checkbox" id="checkbox520"><label for="checkbox520">Se conservan solo los registros financieros necesarios.</label></li>
+<li><input type="checkbox" id="checkbox521" checked="true"><label for="checkbox521">A y C.</label></li>
+<li><input type="checkbox" id="checkbox522"><label for="checkbox522">No se ha definido.</label></li>
+</ul>
+<hr>
+<p><strong>116. ¿Qué certificaciones de seguridad o normativas debe cumplir la infraestructura en la nube del software?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox523"><label for="checkbox523">ISO 27001.</label></li>
+<li><input type="checkbox" id="checkbox524"><label for="checkbox524">SOC 2.</label></li>
+<li><input type="checkbox" id="checkbox525"><label for="checkbox525">PCI-DSS (si aplica).</label></li>
+<li><input type="checkbox" id="checkbox526" checked="true"><label for="checkbox526">Todas las anteriores.</label></li>
+<li><input type="checkbox" id="checkbox527"><label for="checkbox527">No se requiere certificación.</label></li>
+</ul>
+<hr>
+<p><strong>117. ¿Cómo se gestionan las contraseñas del personal administrativo y guardias?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox528"><label for="checkbox528">Política de contraseñas fuertes.</label></li>
+<li><input type="checkbox" id="checkbox529"><label for="checkbox529">Autenticación de dos factores (2FA).</label></li>
+<li><input type="checkbox" id="checkbox530"><label for="checkbox530">Cambio periódico obligatorio.</label></li>
+<li><input type="checkbox" id="checkbox531"><label for="checkbox531">A y B.</label></li>
+<li><input type="checkbox" id="checkbox532" checked="true"><label for="checkbox532">Todas las anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>118. ¿Qué protocolo existe en caso de una violación de seguridad o fuga de datos en el software?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox533"><label for="checkbox533">Notificación inmediata a los afectados.</label></li>
+<li><input type="checkbox" id="checkbox534"><label for="checkbox534">Aislamiento del sistema.</label></li>
+<li><input type="checkbox" id="checkbox535"><label for="checkbox535">Investigación forense.</label></li>
+<li><input type="checkbox" id="checkbox536"><label for="checkbox536">A y C.</label></li>
+<li><input type="checkbox" id="checkbox537" checked="true"><label for="checkbox537">Todos los anteriores.</label></li>
+</ul>
+<hr>
+<p><strong>119. ¿Cómo se regula el uso de cámaras LPR frente al derecho a la privacidad del tránsito de personas?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox538"><label for="checkbox538">Con políticas de retención de datos limitada.</label></li>
+<li><input type="checkbox" id="checkbox539"><label for="checkbox539">Con notificación y consentimiento.</label></li>
+<li><input type="checkbox" id="checkbox540"><label for="checkbox540">Con anonimización de placas.</label></li>
+<li><input type="checkbox" id="checkbox541" checked="true"><label for="checkbox541">A y B.</label></li>
+<li><input type="checkbox" id="checkbox542"><label for="checkbox542">No se utiliza LPR.</label></li>
+</ul>
+<hr>
+<p><strong>120. ¿El software cuenta con un mecanismo para gestionar las copias digitales de los reglamentos de copropiedad e impugnaciones?</strong> <em>(Respuesta Única)</em></p>
+<ul>
+<li><input type="checkbox" id="checkbox543"><label for="checkbox543">Sí, con repositorio de documentos.</label></li>
+<li><input type="checkbox" id="checkbox544"><label for="checkbox544">Sí, con versión vigente y cambios.</label></li>
+<li><input type="checkbox" id="checkbox545"><label for="checkbox545">Sí, con notificación de actualizaciones.</label></li>
+<li><input type="checkbox" id="checkbox546" checked="true"><label for="checkbox546">Todas las anteriores.</label></li>
+<li><input type="checkbox" id="checkbox547"><label for="checkbox547">No se contempla.</label></li>
+</ul>
+<hr>
+<h2 id="23-caracteristicas-de-los-usuarios"><span style="color:#FF0000">2.3. CARACTERISTICAS DE LOS USUARIOS</span></h2>
+<p><span style="color:#FF0000"><em>(Funciones de la persona en el proceso)</em></span></p>
+<p><span style="color:#FF0000"><em>(Descripción de cada rol dentro del software)</em></span></p>
+<h2 id="24-restricciones"><span style="color:#FF0000">2.4. RESTRICCIONES</span></h2>
+<p><span style="color:#FF0000"><em>(lo que no se quiere que se haga dentro del software, lo que cada rol tiene permitido y no permitido)</em></span></p>
+<hr>
+<h1 id="3-requisitos-especificos"><span style="color:#FF0000">3. REQUISITOS ESPECIFICOS</span></h1>
+<p><span style="color:#FF0000"><em>(Enumerar todas y cada una de las funciones que pide el cliente para su proyecto de automatización)</em></span></p>
+<h2 id="31-requisitos-del-sistema"><span style="color:#FF0000">3.1. REQUISITOS DEL SISTEMA</span></h2>
+<h2 id="32-requisitos-funcionales"><span style="color:#FF0000">3.2. REQUISITOS FUNCIONALES</span></h2>
+<table>
+<thead>
+<tr>
+<th>IDENTIFICACION DEL REQUERIMIENTO</th>
+<th>NOMBRE DEL REQUERIMIENTO</th>
+<th>CARACTERISTICAS</th>
+<th>DESCRIPCION DEL REQUERIMIENTO</th>
+<th>REQUERIMIENTO NO FUNCIONAL</th>
+<th style="text-align:center">PRIORIDAD DEL REQUERIMIENTO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center">ALTA / MEDIA / BAJA</td>
+</tr>
+</tbody>
+</table>
+<span style="color:#FF0000">
+**IDENTIFICACION DEL REQUERIMIENTO:** una abreviatura del requisito única e irrepetible, como la referencia de un producto, entre más corta mejor.
+</span>
+<h2 id="33-requisitos-no-funcionales"><span style="color:#FF0000">3.3. REQUISITOS NO FUNCIONALES</span></h2>
+<p><span style="color:#FF0000"><em>(no tiene dependencias de otros requisitos)</em></span></p>
+<table>
+<thead>
+<tr>
+<th>IDENTIFICACION DEL REQUERIMIENTO</th>
+<th>NOMBRE DEL REQUERIMIENTO</th>
+<th>CARACTERISTICAS</th>
+<th>DESCRIPCION DEL REQUERIMIENTO</th>
+<th style="text-align:center">PRIORIDAD DEL REQUERIMIENTO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center">ALTA / MEDIA / BAJA</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="4-validación-de-requisitos"><span style="color:#FF0000">4. VALIDACIÓN DE REQUISITOS</span></h1>
+<h2 id="41-construcción-de-prototipos"><span style="color:#FF0000">4.1. CONSTRUCCIÓN DE PROTOTIPOS</span></h2>
+<!-- CASO 1: AUT-Login001 -->
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse; width:100%; margin-bottom:30px; font-family:Arial, sans-serif; font-size:14px;">
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">INFORMACIÓN DE CATALOGACIÓN</th></tr>
+    <tr><th style="background:#eef2f7; width:25%;">Proyecto</th><td>Sistemas de gestión de inventarios y ventas</td></tr>
+    <tr><th style="background:#eef2f7;">Autor</th><td>Jean Karlo Velassquez Pachon</td></tr>
+    <tr><th style="background:#eef2f7;">VERSIÓN</th><td>1</td></tr>
+    <tr><th style="background:#eef2f7;">ESTADO DE DESARROLLO</th><td>En proceso</td></tr>
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">DEFINICIÓN DEL CASO DE USO</th></tr>
+    <tr><th style="background:#eef2f7;">CÓDIGO</th><td>AUT-Login001</td></tr>
+    <tr><th style="background:#eef2f7;">NOMBRE</th><td>Login del sistema</td></tr>
+    <tr><th style="background:#eef2f7;">OBJETIVO</th><td>Validar la identidad de los usuarios para permitir el acceso seguro al sistema de inventarios y ventas</td></tr>
+    <tr><th style="background:#eef2f7;">DESCRIPCIÓN</th><td>El sistema cuenta con un módulo de autenticación que valida las credenciales del usuario (usuario y contraseña) antes de permitir el ingreso al sistema, garantizando que solo personal autorizado pueda acceder a las funcionalidades según su rol (Administrador, Vendedor, Consultor).</td></tr>
+    <tr><th style="background:#eef2f7;">ACTORES</th><td>Usuario (Administrador, Vendedor, Consultor), Sistema</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIONES NECESARIAS</th><td>Conexión a internet o intranet disponible. El usuario debe estar previamente registrado en el sistema. El sistema debe tener acceso a la base de datos de usuarios.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO PRINCIPAL</th><td>1. El usuario accede a la página de inicio de sesión del sistema de inventarios y ventas.<br>2. El sistema muestra el formulario de inicio de sesión con los campos: usuario, contraseña, opción "recordar contraseña" y botón "registrarse".<br>3. El usuario ingresa su nombre de usuario y contraseña en los campos correspondientes.<br>4. El usuario hace clic en el botón "Ingresar".<br>5. El sistema valida que los campos no estén vacíos y verifica las credenciales contra la base de datos de usuarios.<br>6. El sistema verifica el rol del usuario (Administrador, Vendedor o Consultor).<br>7. El sistema redirige al usuario al panel principal correspondiente a su rol y permite el acceso al sistema.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO ALTERNATIVO</th><td>1. El usuario no recuerda su nombre de usuario y utiliza la opción "Recordar usuario" (si está disponible).<br>2. El usuario olvidó su contraseña y utiliza la opción "Recuperar contraseña" para restablecerla mediante correo electrónico.<br>3. El usuario escribe incorrectamente su contraseña (mayúsculas/minúsculas) y debe intentarlo nuevamente.<br>4. El usuario selecciona la opción "Recordar contraseña" para que el sistema guarde sus credenciales en el navegador.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIOS DE EXCEPCIÓN</th><td>1. El usuario no se encuentra registrado en el sistema y el sistema muestra un mensaje de error "Usuario no registrado".<br>2. La contraseña ingresada no coincide con el usuario, el sistema muestra mensaje "Contraseña incorrecta" y bloquea el acceso después de 3 intentos fallidos.<br>3. El sistema no tiene conexión a la base de datos, muestra mensaje de error "Servicio no disponible, intente más tarde".<br>4. El usuario intenta acceder sin ingresar credenciales, el sistema muestra mensaje "Todos los campos son obligatorios".</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIÓN DE ÉXITO</th><td>El usuario logra ingresar al sistema y es redirigido al panel principal según su rol, pudiendo acceder a las funcionalidades permitidas.</td></tr>
+    <tr><th style="background:#eef2f7;">CUESTIONES A RESOLVER</th><td>1. Implementar validación de credenciales tanto en frontend como en backend.<br>2. Definir política de bloqueo por intentos fallidos (3 intentos).<br>3. Establecer tiempo de expiración de sesión por inactividad.<br>4. Implementar encriptación de contraseñas en la base de datos.</td></tr>
+</table>
+<!-- CASO 2: VEN-Venta001 -->
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse; width:100%; margin-bottom:30px; font-family:Arial, sans-serif; font-size:14px;">
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">INFORMACIÓN DE CATALOGACIÓN</th></tr>
+    <tr><th style="background:#eef2f7; width:25%;">Proyecto</th><td>Sistemas de gestión de inventarios y ventas</td></tr>
+    <tr><th style="background:#eef2f7;">Autor</th><td>Jean Karlo Velassquez Pachon</td></tr>
+    <tr><th style="background:#eef2f7;">VERSIÓN</th><td>1</td></tr>
+    <tr><th style="background:#eef2f7;">ESTADO DE DESARROLLO</th><td>En proceso</td></tr>
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">DEFINICIÓN DEL CASO DE USO</th></tr>
+    <tr><th style="background:#eef2f7;">CÓDIGO</th><td>VEN-Venta001</td></tr>
+    <tr><th style="background:#eef2f7;">NOMBRE</th><td>Registrar venta</td></tr>
+    <tr><th style="background:#eef2f7;">OBJETIVO</th><td>Permitir al vendedor registrar una nueva transacción de venta, seleccionando productos del inventario y generando el comprobante correspondiente</td></tr>
+    <tr><th style="background:#eef2f7;">DESCRIPCIÓN</th><td>El vendedor inicia una nueva venta, selecciona los productos que el cliente desea adquirir, el sistema verifica la disponibilidad en inventario, calcula el total incluyendo impuestos, y finalmente genera el registro de la venta, actualizando automáticamente el inventario.</td></tr>
+    <tr><th style="background:#eef2f7;">ACTORES</th><td>Vendedor, Cliente, Sistema</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIONES NECESARIAS</th><td>El vendedor debe haber iniciado sesión en el sistema. Debe existir disponibilidad de productos en el inventario. El cliente debe estar registrado o ser registrado durante el proceso. Conexión a internet o intranet disponible.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO PRINCIPAL</th><td>1. El vendedor accede al módulo de ventas desde el panel principal.<br>2. El sistema presenta un formulario de nueva venta con campos para cliente, productos, cantidades y descuentos.<br>3. El vendedor busca y selecciona los productos que el cliente desea comprar.<br>4. El vendedor ingresa la cantidad de cada producto seleccionado.<br>5. El sistema verifica la disponibilidad de cada producto en el inventario.<br>6. El sistema calcula el subtotal, el impuesto (IVA) y el total de la venta.<br>7. El vendedor confirma la venta.<br>8. El sistema registra la venta en la base de datos, genera un número de factura y descuenta las cantidades vendidas del inventario.<br>9. El sistema genera el comprobante de venta (factura o ticket) y lo muestra al vendedor.<br>10. El vendedor entrega el comprobante al cliente y finaliza la transacción.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO ALTERNATIVO</th><td>1. El cliente no está registrado: el vendedor registra al cliente durante el proceso de venta.<br>2. El vendedor aplica un descuento especial a la venta (ingresa el porcentaje o monto).<br>3. El vendedor permite pagos parciales o en cuotas (si el sistema lo soporta).<br>4. El vendedor anula la venta antes de confirmarla y vuelve al panel principal.<br>5. El vendedor imprime el comprobante en papel desde la vista del sistema.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIOS DE EXCEPCIÓN</th><td>1. Un producto seleccionado no tiene suficiente stock: el sistema muestra un mensaje de alerta y no permite continuar con la venta.<br>2. El vendedor ingresa una cantidad negativa o cero: el sistema muestra error y solicita una cantidad válida.<br>3. El vendedor no selecciona ningún producto: el sistema muestra mensaje "Debe agregar al menos un producto a la venta".<br>4. El sistema no tiene conexión a la base de datos: muestra mensaje de error y no permite registrar la venta.<br>5. El vendedor intenta registrar una venta sin tener permisos (rol incorrecto): el sistema bloquea la acción.</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIÓN DE ÉXITO</th><td>La venta se registra correctamente en el sistema, se actualiza el inventario de productos vendidos, se genera el comprobante de venta con el número de factura correspondiente y el cliente recibe su comprobante.</td></tr>
+    <tr><th style="background:#eef2f7;">CUESTIONES A RESOLVER</th><td>1. Implementar la búsqueda rápida de productos por código o nombre.<br>2. Definir la lógica de cálculo de impuestos y descuentos.<br>3. Implementar la actualización automática del inventario (stock) al confirmar la venta.<br>4. Generar el comprobante de venta en formato PDF o impresión directa.</td></tr>
+</table>
+<!-- CASO 3: PRO-Producto001 -->
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse; width:100%; margin-bottom:30px; font-family:Arial, sans-serif; font-size:14px;">
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">INFORMACIÓN DE CATALOGACIÓN</th></tr>
+    <tr><th style="background:#eef2f7; width:25%;">Proyecto</th><td>Sistemas de gestión de inventarios y ventas</td></tr>
+    <tr><th style="background:#eef2f7;">Autor</th><td>Jean Karlo Velassquez Pachon</td></tr>
+    <tr><th style="background:#eef2f7;">VERSIÓN</th><td>1</td></tr>
+    <tr><th style="background:#eef2f7;">ESTADO DE DESARROLLO</th><td>En proceso</td></tr>
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">DEFINICIÓN DEL CASO DE USO</th></tr>
+    <tr><th style="background:#eef2f7;">CÓDIGO</th><td>PRO-Producto001</td></tr>
+    <tr><th style="background:#eef2f7;">NOMBRE</th><td>Gestionar productos</td></tr>
+    <tr><th style="background:#eef2f7;">OBJETIVO</th><td>Administrar el catálogo de productos del inventario, permitiendo su creación, consulta, modificación y eliminación</td></tr>
+    <tr><th style="background:#eef2f7;">DESCRIPCIÓN</th><td>El administrador puede dar de alta nuevos productos en el sistema, modificar la información de productos existentes (precio, descripción, stock mínimo, proveedor), consultar el catálogo y eliminar productos que ya no estén disponibles. El sistema mantiene un historial de cambios en la información de cada producto.</td></tr>
+    <tr><th style="background:#eef2f7;">ACTORES</th><td>Administrador, Sistema</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIONES NECESARIAS</th><td>El administrador debe haber iniciado sesión con rol de Administrador. El sistema debe tener conexión a la base de datos de productos.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO PRINCIPAL</th><td>1. El administrador accede al módulo de gestión de productos desde el panel de administración.<br>2. El sistema muestra una lista con todos los productos registrados (con opciones de búsqueda y filtros).<br>3. El administrador selecciona la opción "Agregar nuevo producto".<br>4. El sistema presenta un formulario con los campos: código, nombre, descripción, categoría, precio unitario, stock inicial, stock mínimo y proveedor.<br>5. El administrador completa todos los campos requeridos y hace clic en "Guardar".<br>6. El sistema valida que los campos estén completos y correctos (precios positivos, códigos únicos).<br>7. El sistema guarda el nuevo producto en la base de datos y actualiza la lista de productos.<br>8. El sistema muestra un mensaje de confirmación "Producto creado exitosamente".</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO ALTERNATIVO</th><td>1. El administrador modifica un producto existente: busca el producto, selecciona "Editar", actualiza la información y guarda los cambios.<br>2. El administrador elimina un producto: busca el producto, selecciona "Eliminar" y confirma la acción (el sistema no elimina físicamente, solo cambia el estado a "inactivo").<br>3. El administrador consulta productos por categoría, proveedor o rango de precios.<br>4. El administrador visualiza el historial de cambios de un producto específico.<br>5. El administrador actualiza el stock de un producto manualmente (si es necesario, por devoluciones o ajustes).</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIOS DE EXCEPCIÓN</th><td>1. El código del producto ya existe en el sistema: muestra mensaje "El código ingresado ya está registrado".<br>2. El administrador ingresa un precio negativo o cero: el sistema muestra mensaje "El precio debe ser mayor a cero".<br>3. El administrador deja campos obligatorios vacíos: el sistema resalta los campos y muestra "Todos los campos marcados con * son obligatorios".<br>4. El administrador intenta eliminar un producto que tiene ventas registradas: el sistema muestra advertencia y solo permite desactivarlo.<br>5. El sistema no tiene conexión a la base de datos: muestra mensaje de error y no permite realizar la operación.</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIÓN DE ÉXITO</th><td>El producto se crea, modifica o elimina exitosamente en el sistema, y el catálogo de productos queda actualizado para ser utilizado en los módulos de ventas y consultas.</td></tr>
+    <tr><th style="background:#eef2f7;">CUESTIONES A RESOLVER</th><td>1. Implementar la validación de código único para cada producto.<br>2. Definir la estructura de categorías y subcategorías de productos.<br>3. Implementar la relación de productos con proveedores.<br>4. Registrar el historial de cambios de cada producto (auditoría).<br>5. Implementar la búsqueda avanzada con filtros múltiples.</td></tr>
+</table>
+<!-- CASO 4: PRO-Inventario001 -->
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse; width:100%; margin-bottom:30px; font-family:Arial, sans-serif; font-size:14px;">
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">INFORMACIÓN DE CATALOGACIÓN</th></tr>
+    <tr><th style="background:#eef2f7; width:25%;">Proyecto</th><td>Sistemas de gestión de inventarios y ventas</td></tr>
+    <tr><th style="background:#eef2f7;">Autor</th><td>Jean Karlo Velassquez Pachon</td></tr>
+    <tr><th style="background:#eef2f7;">VERSIÓN</th><td>1</td></tr>
+    <tr><th style="background:#eef2f7;">ESTADO DE DESARROLLO</th><td>En proceso</td></tr>
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">DEFINICIÓN DEL CASO DE USO</th></tr>
+    <tr><th style="background:#eef2f7;">CÓDIGO</th><td>PRO-Inventario001</td></tr>
+    <tr><th style="background:#eef2f7;">NOMBRE</th><td>Consultar inventario</td></tr>
+    <tr><th style="background:#eef2f7;">OBJETIVO</th><td>Verificar la disponibilidad de productos en tiempo real durante el proceso de venta o consulta</td></tr>
+    <tr><th style="background:#eef2f7;">DESCRIPCIÓN</th><td>El sistema permite a los usuarios autorizados (vendedores y consultores) consultar el stock disponible de los productos en el inventario, con opciones de búsqueda y filtros para encontrar rápidamente la información requerida.</td></tr>
+    <tr><th style="background:#eef2f7;">ACTORES</th><td>Vendedor, Consultor, Sistema</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIONES NECESARIAS</th><td>El usuario debe haber iniciado sesión en el sistema. El sistema debe tener conexión a la base de datos de inventario.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO PRINCIPAL</th><td>1. El usuario accede al módulo de consulta de inventario desde el panel principal.<br>2. El sistema muestra una lista con todos los productos y su stock actual.<br>3. El usuario busca un producto específico utilizando el código o nombre del producto.<br>4. El sistema filtra los resultados y muestra la información del producto solicitado.<br>5. El usuario visualiza la cantidad disponible en inventario del producto.<br>6. El usuario puede consultar información adicional como la ubicación en bodega, proveedor y fecha de última actualización.<br>7. El usuario finaliza la consulta y sale del módulo.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO ALTERNATIVO</th><td>1. El usuario aplica filtros avanzados por categoría, proveedor o rango de precios.<br>2. El usuario ordena los resultados por stock, nombre o precio.<br>3. El usuario exporta la lista de productos a un archivo Excel o PDF.<br>4. El usuario consulta el historial de movimientos de un producto específico.<br>5. El usuario consulta productos con stock bajo (menor al stock mínimo).</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIOS DE EXCEPCIÓN</th><td>1. El producto buscado no existe en el inventario: el sistema muestra mensaje "Producto no encontrado".<br>2. El usuario ingresa un código de producto vacío o inválido: el sistema muestra mensaje "Código inválido".<br>3. El sistema no tiene conexión a la base de datos: muestra mensaje de error "Servicio no disponible".<br>4. El usuario no tiene permisos para consultar el inventario: el sistema bloquea el acceso.</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIÓN DE ÉXITO</th><td>El usuario visualiza correctamente la información de stock de los productos consultados, con datos actualizados y precisos.</td></tr>
+    <tr><th style="background:#eef2f7;">CUESTIONES A RESOLVER</th><td>1. Implementar la búsqueda rápida de productos por código o nombre.<br>2. Definir los filtros de búsqueda avanzada (categoría, proveedor, rango de precios, stock).<br>3. Implementar la visualización de stock en tiempo real.<br>4. Permitir la exportación de resultados en diferentes formatos.</td></tr>
+</table>
+<!-- CASO 5: CLI-Cliente001 -->
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse; width:100%; margin-bottom:30px; font-family:Arial, sans-serif; font-size:14px;">
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">INFORMACIÓN DE CATALOGACIÓN</th></tr>
+    <tr><th style="background:#eef2f7; width:25%;">Proyecto</th><td>Sistemas de gestión de inventarios y ventas</td></tr>
+    <tr><th style="background:#eef2f7;">Autor</th><td>Jean Karlo Velassquez Pachon</td></tr>
+    <tr><th style="background:#eef2f7;">VERSIÓN</th><td>1</td></tr>
+    <tr><th style="background:#eef2f7;">ESTADO DE DESARROLLO</th><td>En proceso</td></tr>
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">DEFINICIÓN DEL CASO DE USO</th></tr>
+    <tr><th style="background:#eef2f7;">CÓDIGO</th><td>CLI-Cliente001</td></tr>
+    <tr><th style="background:#eef2f7;">NOMBRE</th><td>Gestionar clientes</td></tr>
+    <tr><th style="background:#eef2f7;">OBJETIVO</th><td>Administrar la información de los clientes del sistema, permitiendo su creación, consulta, modificación y eliminación</td></tr>
+    <tr><th style="background:#eef2f7;">DESCRIPCIÓN</th><td>El sistema permite a los usuarios autorizados (administrador y vendedor) gestionar la información de los clientes, incluyendo datos personales, información de contacto, historial de compras y estado del cliente. Los vendedores pueden registrar nuevos clientes durante el proceso de venta, mientras que el administrador tiene control total sobre el catálogo de clientes.</td></tr>
+    <tr><th style="background:#eef2f7;">ACTORES</th><td>Administrador, Vendedor, Sistema</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIONES NECESARIAS</th><td>El usuario debe haber iniciado sesión en el sistema. El vendedor debe tener permisos para gestionar clientes. El administrador debe tener rol de Administrador. El sistema debe tener conexión a la base de datos de clientes.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO PRINCIPAL</th><td>1. El usuario accede al módulo de gestión de clientes desde el panel principal.<br>2. El sistema muestra una lista con todos los clientes registrados (con opciones de búsqueda y filtros).<br>3. El usuario selecciona la opción "Agregar nuevo cliente".<br>4. El sistema presenta un formulario con los campos: identificación, nombre completo, correo electrónico, teléfono, dirección y tipo de cliente.<br>5. El usuario completa todos los campos requeridos y hace clic en "Guardar".<br>6. El sistema valida que los campos estén completos y correctos (identificación única, correo válido).<br>7. El sistema guarda el nuevo cliente en la base de datos y actualiza la lista de clientes.<br>8. El sistema muestra un mensaje de confirmación "Cliente creado exitosamente".</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO ALTERNATIVO</th><td>1. El vendedor registra un nuevo cliente durante el proceso de venta (desde el módulo de ventas).<br>2. El usuario modifica un cliente existente: busca el cliente, selecciona "Editar", actualiza la información y guarda los cambios.<br>3. El usuario elimina un cliente: busca el cliente, selecciona "Eliminar" y confirma la acción (el sistema no elimina físicamente, solo cambia el estado a "inactivo").<br>4. El usuario consulta clientes por identificación, nombre o correo electrónico.<br>5. El usuario visualiza el historial de compras de un cliente específico.<br>6. El usuario exporta la lista de clientes a un archivo Excel o PDF.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIOS DE EXCEPCIÓN</th><td>1. La identificación del cliente ya existe en el sistema: muestra mensaje "La identificación ingresada ya está registrada".<br>2. El usuario ingresa un correo electrónico inválido: el sistema muestra mensaje "Correo electrónico inválido".<br>3. El usuario deja campos obligatorios vacíos: el sistema resalta los campos y muestra "Todos los campos marcados con * son obligatorios".<br>4. El usuario intenta eliminar un cliente que tiene ventas registradas: el sistema muestra advertencia y solo permite desactivarlo.<br>5. El sistema no tiene conexión a la base de datos: muestra mensaje de error y no permite realizar la operación.<br>6. El vendedor intenta eliminar un cliente (sin permisos): el sistema bloquea la acción.</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIÓN DE ÉXITO</th><td>El cliente se crea, modifica o elimina exitosamente en el sistema, y el catálogo de clientes queda actualizado para ser utilizado en los módulos de ventas y reportes.</td></tr>
+    <tr><th style="background:#eef2f7;">CUESTIONES A RESOLVER</th><td>1. Implementar la validación de identificación única para cada cliente.<br>2. Definir la estructura de tipos de cliente (persona natural, persona jurídica, etc.).<br>3. Implementar la relación de clientes con sus compras e historial.<br>4. Registrar el historial de cambios de cada cliente (auditoría).<br>5. Implementar la búsqueda avanzada con filtros múltiples (identificación, nombre, correo, estado).</td></tr>
+</table>
+<!-- CASO 6: PRV-Proveedor001 -->
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse; width:100%; margin-bottom:30px; font-family:Arial, sans-serif; font-size:14px;">
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">INFORMACIÓN DE CATALOGACIÓN</th></tr>
+    <tr><th style="background:#eef2f7; width:25%;">Proyecto</th><td>Sistemas de gestión de inventarios y ventas</td></tr>
+    <tr><th style="background:#eef2f7;">Autor</th><td>Jean Karlo Velassquez Pachon</td></tr>
+    <tr><th style="background:#eef2f7;">VERSIÓN</th><td>1</td></tr>
+    <tr><th style="background:#eef2f7;">ESTADO DE DESARROLLO</th><td>En proceso</td></tr>
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">DEFINICIÓN DEL CASO DE USO</th></tr>
+    <tr><th style="background:#eef2f7;">CÓDIGO</th><td>PRV-Proveedor001</td></tr>
+    <tr><th style="background:#eef2f7;">NOMBRE</th><td>Gestionar proveedores</td></tr>
+    <tr><th style="background:#eef2f7;">OBJETIVO</th><td>Administrar la información de los proveedores del sistema, permitiendo su creación, consulta, modificación y eliminación</td></tr>
+    <tr><th style="background:#eef2f7;">DESCRIPCIÓN</th><td>El sistema permite al administrador gestionar la información de los proveedores que suministran productos al inventario. Incluye datos de contacto, información fiscal, evaluación de desempeño y relación con los productos que suministra. Esta información es fundamental para la gestión de compras y reposición de inventario.</td></tr>
+    <tr><th style="background:#eef2f7;">ACTORES</th><td>Administrador, Sistema</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIONES NECESARIAS</th><td>El administrador debe haber iniciado sesión con rol de Administrador. El sistema debe tener conexión a la base de datos de proveedores.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO PRINCIPAL</th><td>1. El administrador accede al módulo de gestión de proveedores desde el panel de administración.<br>2. El sistema muestra una lista con todos los proveedores registrados (con opciones de búsqueda y filtros).<br>3. El administrador selecciona la opción "Agregar nuevo proveedor".<br>4. El sistema presenta un formulario con los campos: identificación, nombre comercial, razón social, correo electrónico, teléfono, dirección, sitio web y calificación.<br>5. El administrador completa todos los campos requeridos y hace clic en "Guardar".<br>6. El sistema valida que los campos estén completos y correctos (identificación única, correo válido).<br>7. El sistema guarda el nuevo proveedor en la base de datos y actualiza la lista de proveedores.<br>8. El sistema muestra un mensaje de confirmación "Proveedor creado exitosamente".</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO ALTERNATIVO</th><td>1. El administrador modifica un proveedor existente: busca el proveedor, selecciona "Editar", actualiza la información y guarda los cambios.<br>2. El administrador elimina un proveedor: busca el proveedor, selecciona "Eliminar" y confirma la acción (el sistema no elimina físicamente, solo cambia el estado a "inactivo").<br>3. El administrador consulta proveedores por identificación, nombre o categoría de productos.<br>4. El administrador visualiza los productos asociados a un proveedor específico.<br>5. El administrador actualiza la calificación de un proveedor basado en el desempeño.<br>6. El administrador exporta la lista de proveedores a un archivo Excel o PDF.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIOS DE EXCEPCIÓN</th><td>1. La identificación del proveedor ya existe en el sistema: muestra mensaje "La identificación ingresada ya está registrada".<br>2. El administrador ingresa un correo electrónico inválido: el sistema muestra mensaje "Correo electrónico inválido".<br>3. El administrador deja campos obligatorios vacíos: el sistema resalta los campos y muestra "Todos los campos marcados con * son obligatorios".<br>4. El administrador intenta eliminar un proveedor que tiene productos asociados: el sistema muestra advertencia y solo permite desactivarlo.<br>5. El sistema no tiene conexión a la base de datos: muestra mensaje de error y no permite realizar la operación.</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIÓN DE ÉXITO</th><td>El proveedor se crea, modifica o elimina exitosamente en el sistema, y el catálogo de proveedores queda actualizado para ser utilizado en los módulos de productos y compras.</td></tr>
+    <tr><th style="background:#eef2f7;">CUESTIONES A RESOLVER</th><td>1. Implementar la validación de identificación única para cada proveedor.<br>2. Definir la estructura de categorías de proveedores (nacional, internacional, etc.).<br>3. Implementar la relación de proveedores con los productos que suministran.<br>4. Registrar el historial de cambios de cada proveedor (auditoría).<br>5. Implementar la evaluación y calificación de proveedores.<br>6. Implementar la búsqueda avanzada con filtros múltiples (identificación, nombre, categoría, calificación).</td></tr>
+</table>
+<!-- CASO 7: REP-Reporte001 -->
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse; width:100%; margin-bottom:30px; font-family:Arial, sans-serif; font-size:14px;">
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">INFORMACIÓN DE CATALOGACIÓN</th></tr>
+    <tr><th style="background:#eef2f7; width:25%;">Proyecto</th><td>Sistemas de gestión de inventarios y ventas</td></tr>
+    <tr><th style="background:#eef2f7;">Autor</th><td>Jean Karlo Velassquez Pachon</td></tr>
+    <tr><th style="background:#eef2f7;">VERSIÓN</th><td>1</td></tr>
+    <tr><th style="background:#eef2f7;">ESTADO DE DESARROLLO</th><td>En proceso</td></tr>
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">DEFINICIÓN DEL CASO DE USO</th></tr>
+    <tr><th style="background:#eef2f7;">CÓDIGO</th><td>REP-Reporte001</td></tr>
+    <tr><th style="background:#eef2f7;">NOMBRE</th><td>Generar reportes</td></tr>
+    <tr><th style="background:#eef2f7;">OBJETIVO</th><td>Permitir a los usuarios autorizados generar y visualizar reportes sobre ventas, inventario, clientes y proveedores para la toma de decisiones</td></tr>
+    <tr><th style="background:#eef2f7;">DESCRIPCIÓN</th><td>El sistema cuenta con un módulo de generación de reportes que permite a los usuarios (administradores y consultores) obtener información estructurada y analítica sobre diferentes áreas del negocio. Los reportes pueden ser personalizados con filtros y exportados en diferentes formatos (PDF, Excel) para su análisis y presentación.</td></tr>
+    <tr><th style="background:#eef2f7;">ACTORES</th><td>Administrador, Consultor, Sistema</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIONES NECESARIAS</th><td>El usuario debe haber iniciado sesión en el sistema. El sistema debe tener conexión a la base de datos. Deben existir datos registrados en el sistema (ventas, productos, clientes, proveedores).</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO PRINCIPAL</th><td>1. El usuario accede al módulo de reportes desde el panel principal.<br>2. El sistema muestra una lista de los tipos de reportes disponibles (ventas, inventario, clientes, proveedores).<br>3. El usuario selecciona el tipo de reporte que desea generar.<br>4. El sistema presenta los filtros disponibles para personalizar el reporte (fechas, categorías, estados, etc.).<br>5. El usuario configura los filtros según sus necesidades y hace clic en "Generar reporte".<br>6. El sistema procesa la información y genera el reporte con los datos solicitados.<br>7. El sistema muestra el reporte en pantalla con los resultados obtenidos.<br>8. El usuario puede visualizar, imprimir o exportar el reporte en el formato deseado (PDF, Excel).<br>9. El usuario finaliza la consulta y sale del módulo.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO ALTERNATIVO</th><td>1. El usuario exporta el reporte a formato Excel para realizar análisis adicionales.<br>2. El usuario exporta el reporte a formato PDF para presentación o impresión.<br>3. El usuario programa la generación automática de reportes periódicos (diarios, semanales, mensuales).<br>4. El usuario envía el reporte por correo electrónico a otros destinatarios.<br>5. El usuario guarda el reporte en el sistema para consultas futuras.<br>6. El usuario compara reportes de diferentes períodos para análisis de tendencias.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIOS DE EXCEPCIÓN</th><td>1. No hay datos disponibles para los filtros seleccionados: el sistema muestra mensaje "No se encontraron datos para los filtros aplicados".<br>2. El usuario selecciona un rango de fechas inválido (fecha inicial mayor que fecha final): el sistema muestra mensaje "Rango de fechas inválido".<br>3. El usuario no selecciona ningún filtro obligatorio: el sistema muestra mensaje "Debe seleccionar al menos un filtro".<br>4. El sistema no tiene conexión a la base de datos: muestra mensaje de error "Servicio no disponible".<br>5. El usuario intenta generar un reporte sin tener permisos: el sistema bloquea la acción.</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIÓN DE ÉXITO</th><td>El reporte se genera correctamente con los datos solicitados, se visualiza en pantalla y puede ser exportado en el formato deseado para su análisis y toma de decisiones.</td></tr>
+    <tr><th style="background:#eef2f7;">CUESTIONES A RESOLVER</th><td>1. Definir los tipos de reportes disponibles (ventas, inventario, clientes, proveedores).<br>2. Implementar los filtros personalizables para cada tipo de reporte.<br>3. Definir los formatos de exportación (PDF, Excel, CSV).<br>4. Implementar la generación de gráficos y resúmenes estadísticos.<br>5. Implementar la programación de reportes automáticos.<br>6. Definir los permisos de acceso según el rol del usuario.<br>7. Optimizar el rendimiento de las consultas para grandes volúmenes de datos.</td></tr>
+</table>
+<!-- CASO 8: CFG-Config001 -->
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse; width:100%; margin-bottom:30px; font-family:Arial, sans-serif; font-size:14px;">
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">INFORMACIÓN DE CATALOGACIÓN</th></tr>
+    <tr><th style="background:#eef2f7; width:25%;">Proyecto</th><td>Sistemas de gestión de inventarios y ventas</td></tr>
+    <tr><th style="background:#eef2f7;">Autor</th><td>Jean Karlo Velassquez Pachon</td></tr>
+    <tr><th style="background:#eef2f7;">VERSIÓN</th><td>1</td></tr>
+    <tr><th style="background:#eef2f7;">ESTADO DE DESARROLLO</th><td>En proceso</td></tr>
+    <tr><th colspan="2" style="background:#1e4663; color:white; text-align:center;">DEFINICIÓN DEL CASO DE USO</th></tr>
+    <tr><th style="background:#eef2f7;">CÓDIGO</th><td>CFG-Config001</td></tr>
+    <tr><th style="background:#eef2f7;">NOMBRE</th><td>Configurar sistema</td></tr>
+    <tr><th style="background:#eef2f7;">OBJETIVO</th><td>Configurar parámetros generales del sistema como impuestos, políticas de inventario, seguridad y otros ajustes</td></tr>
+    <tr><th style="background:#eef2f7;">DESCRIPCIÓN</th><td>El sistema permite al administrador configurar los parámetros generales que afectan el funcionamiento del sistema. Esto incluye configuración de impuestos, políticas de inventario, parámetros de seguridad, personalización de la interfaz y otros ajustes que determinan el comportamiento del sistema.</td></tr>
+    <tr><th style="background:#eef2f7;">ACTORES</th><td>Administrador, Sistema</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIONES NECESARIAS</th><td>El administrador debe haber iniciado sesión con rol de Administrador. El sistema debe tener conexión a la base de datos de configuración.</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO PRINCIPAL</th><td>1. El administrador accede al módulo de configuración desde el panel de administración.<br>2. El sistema muestra las diferentes secciones de configuración disponibles (impuestos, inventario, seguridad, personalización).<br>3. El administrador selecciona la sección que desea configurar.<br>4. El sistema presenta los parámetros configurables de la sección seleccionada.<br>5. El administrador modifica los valores de los parámetros según sus necesidades.<br>6. El administrador hace clic en "Guardar configuración".<br>7. El sistema valida que los valores ingresados sean correctos (rangos válidos, formatos correctos).<br>8. El sistema guarda la configuración en la base de datos.<br>9. El sistema aplica los cambios inmediatamente y muestra un mensaje de confirmación "Configuración actualizada exitosamente".</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIO ALTERNATIVO</th><td>1. El administrador restaura la configuración por defecto del sistema.<br>2. El administrador exporta la configuración actual a un archivo de respaldo.<br>3. El administrador importa una configuración desde un archivo de respaldo.<br>4. El administrador visualiza el historial de cambios de la configuración.<br>5. El administrador programa cambios programados (ej. cambio de impuestos en una fecha específica).</td></tr>
+    <tr><th style="background:#eef2f7;">ESCENARIOS DE EXCEPCIÓN</th><td>1. El administrador ingresa un valor inválido en un parámetro: el sistema muestra mensaje "Valor inválido, ingrese un valor válido".<br>2. El administrador ingresa un valor fuera del rango permitido: el sistema muestra mensaje "El valor debe estar entre X y Y".<br>3. El administrador intenta guardar la configuración sin realizar cambios: el sistema muestra mensaje "No se detectaron cambios".<br>4. El sistema no tiene conexión a la base de datos: muestra mensaje de error y no permite guardar la configuración.<br>5. El administrador intenta configurar el sistema sin tener permisos: el sistema bloquea la acción.</td></tr>
+    <tr><th style="background:#eef2f7;">CONDICIÓN DE ÉXITO</th><td>La configuración se guarda correctamente en el sistema, se aplica inmediatamente y el sistema funciona con los nuevos parámetros establecidos.</td></tr>
+    <tr><th style="background:#eef2f7;">CUESTIONES A RESOLVER</th><td>1. Definir las secciones de configuración (impuestos, inventario, seguridad, personalización).<br>2. Implementar la validación de rangos y formatos para cada parámetro.<br>3. Registrar el historial de cambios de configuración (auditoría).<br>4. Implementar la exportación e importación de configuraciones.<br>5. Definir los permisos de acceso a la configuración.<br>6. Implementar la aplicación inmediata de los cambios sin reiniciar el sistema.<br>7. Definir valores por defecto para todos los parámetros.</td></tr>
+</table>
+<h3 id="diagrama-uml">Diagrama UML</h3>
+<pre><code class="language-mermaid"><div class="mermaid">
+graph TD
+    %% ACTORES
+    Admin([Administrador])
+    Vendedor([Vendedor])
+    Consultor([Consultor])
+
+    %% CASOS DE USO
+    AUT_Login["AUT-Login001<br>Login del sistema"]
+    VEN_Venta["VEN-Venta001<br>Registrar venta"]
+    PRO_Producto["PRO-Producto001<br>Gestionar productos"]
+    PRO_Inventario["PRO-Inventario001<br>Consultar inventario"]
+    CLI_Cliente["CLI-Cliente001<br>Gestionar clientes"]
+    PRV_Proveedor["PRV-Proveedor001<br>Gestionar proveedores"]
+    REP_Reporte["REP-Reporte001<br>Generar reportes"]
+    CFG_Config["CFG-Config001<br>Configurar sistema"]
+
+    %% RELACIONES ACTORES - CASOS DE USO
+    Admin --> AUT_Login
+    Vendedor --> AUT_Login
+    Consultor --> AUT_Login
+
+    Vendedor --> VEN_Venta
+    Vendedor --> PRO_Inventario
+    Vendedor --> CLI_Cliente
+
+    Admin --> PRO_Producto
+    Admin --> CLI_Cliente
+    Admin --> PRV_Proveedor
+    Admin --> REP_Reporte
+    Admin --> CFG_Config
+
+    Consultor --> PRO_Inventario
+    Consultor --> REP_Reporte
+
+%% RELACIONES ENTRE CASOS DE USO
+    VEN_Venta -->|&lt;&lt;include&gt;&gt;| PRO_Inventario
+    VEN_Venta -->|&lt;&lt;include&gt;&gt;| CLI_Cliente
+    PRO_Producto -->|&lt;&lt;extend&gt;&gt;| PRV_Proveedor
+
+    %% ESTILOS
+    classDef actor fill:#1e4663,color:#fff,stroke:#0d2b44,stroke-width:2px
+    classDef casoUso fill:#e8f5e9,color:#1e3a5f,stroke:#2c6e2f,stroke-width:2px
+
+    class Admin,Vendedor,Consultor actor
+    class AUT_Login,VEN_Venta,PRO_Producto,PRO_Inventario,CLI_Cliente,PRV_Proveedor,REP_Reporte,CFG_Config casoUso
+
+</div></code></pre>
+<h3 id="diagrama-de-actividades-1">Diagrama de actividades 1</h3>
+<pre><code class="language-mermaid"><div class="mermaid">    flowchart TD
+    A[Inicio] --> B[Vendedor accede al módulo de ventas]
+    B --> C[Sistema muestra formulario de nueva venta]
+    C --> D[Vendedor busca y selecciona productos]
+    D --> E[Vendedor ingresa cantidades]
+    E --> F[Sistema verifica disponibilidad en inventario]
+
+    F --> G{¿Stock suficiente?}
+    G -->|No| H[Sistema muestra alerta de stock insuficiente]
+    H --> D
+
+    G -->|Sí| I[Sistema calcula subtotal, impuesto y total]
+    I --> J[Vendedor confirma la venta]
+
+    J --> K[Sistema registra la venta en BD]
+    K --> L[Sistema genera número de factura]
+    L --> M[Sistema descuenta stock del inventario]
+    M --> N[Sistema genera comprobante de venta]
+    N --> O[Vendedor entrega comprobante al cliente]
+    O --> P[Fin]
+
+    classDef inicioFin fill:#1e4663,color:#fff,stroke:#0d2b44,stroke-width:2px
+    classDef proceso fill:#e8f5e9,color:#1e3a5f,stroke:#2c6e2f,stroke-width:2px
+    classDef decision fill:#fff8e7,color:#b45309,stroke:#e6a017,stroke-width:2px
+    classDef alerta fill:#fef2f2,color:#dc2626,stroke:#dc2626,stroke-width:2px
+
+    class A,P inicioFin
+    class B,C,D,E,F,I,J,K,L,M,N,O proceso
+    class G decision
+    class H alerta
+</div></code></pre>
+<h3 id="diagrama-de-actividades-2">Diagrama de actividades 2</h3>
+<pre><code class="language-mermaid"><div class="mermaid">    flowchart TD
+    A[Inicio] --> B[Administrador accede al módulo de productos]
+    B --> C[Sistema muestra lista de productos]
+    C --> D{¿Qué acción?}
+
+    D -->|Agregar| E[Sistema muestra formulario nuevo producto]
+    E --> F[Administrador completa campos]
+    F --> G[Sistema valida datos]
+
+    G --> H{¿Datos válidos?}
+    H -->|No| I[Sistema muestra errores]
+    I --> F
+
+    H -->|Sí| J[Sistema guarda producto en BD]
+    J --> K[Sistema actualiza lista de productos]
+    K --> L[Sistema muestra mensaje de éxito]
+    L --> M[Fin]
+
+    D -->|Modificar| N[Administrador busca producto]
+    N --> O[Sistema muestra datos del producto]
+    O --> P[Administrador modifica campos]
+    P --> G
+
+    D -->|Eliminar| Q[Administrador busca producto]
+    Q --> R[Administrador selecciona Eliminar]
+    R --> S[Sistema verifica si tiene ventas]
+
+    S --> T{¿Tiene ventas?}
+    T -->|Sí| U[Sistema solo permite desactivar]
+    U --> K
+    T -->|No| V[Sistema elimina producto]
+    V --> K
+
+    D -->|Consultar| W[Administrador aplica filtros]
+    W --> X[Sistema muestra resultados]
+    X --> M
+
+    classDef inicioFin fill:#1e4663,color:#fff,stroke:#0d2b44,stroke-width:2px
+    classDef proceso fill:#e8f5e9,color:#1e3a5f,stroke:#2c6e2f,stroke-width:2px
+    classDef decision fill:#fff8e7,color:#b45309,stroke:#e6a017,stroke-width:2px
+
+    class A,M inicioFin
+    class B,C,E,F,G,I,J,K,L,N,O,P,Q,R,S,U,V,W,X proceso
+    class D,H,T decision
+</div></code></pre>
+<h2 id="42-formato-de-caso-de-prueba"><span style="color:#FF0000">4.2. FORMATO DE CASO DE PRUEBA</span></h2>
+<div align="center">
+<h2 id="formato-de-casos-de-prueba"><span style="color:#FF0000">FORMATO DE CASOS DE PRUEBA</span></h2>
+</div>
+<table>
+<thead>
+<tr>
+<th>CAMPO</th>
+<th>INFORMACIÓN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OBJETIVO DEL CASO DE PRUEBA</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>IDENTIFICADOR</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>NOMBRE DEL REQUERIMIENTO</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>PRECONDICIONES</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>PASOS</th>
+<th>RESULTADOS ESPERADOS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.</td>
+<td>1.</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>2.</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>3.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="43-cronograma-de-actividades"><span style="color:#FF0000">4.3. CRONOGRAMA DE ACTIVIDADES</span></h1>
+<div align="center">
+<h3 id="cronograma-de-análisis---tecnologías-del-futuro-sas"><span style="color:#FF0000">CRONOGRAMA DE ANÁLISIS - TECNOLOGÍAS DEL FUTURO S.A.S.</span></h3>
+</div>
+<p>El siguiente cronograma detalla las actividades planificadas para la fase de análisis del proyecto, estableciendo tiempos, responsables y entregables clave.</p>
+<!-- INICIO DEL HTML DE LA TABLA DE CRONOGRAMA -->
+<h1 id="43-cronograma-de-actividades-1"><span style="color:#FF0000">4.3. CRONOGRAMA DE ACTIVIDADES</span></h1>
+<div align="center">
+<h3 id="cronograma-de-análisis---tecnologías-del-futuro-sas-1"><span style="color:#FF0000">CRONOGRAMA DE ANÁLISIS - TECNOLOGÍAS DEL FUTURO S.A.S.</span></h3>
+</div>
+<p>El siguiente cronograma detalla las actividades planificadas para la fase de análisis del proyecto, estableciendo tiempos, responsables y entregables clave.</p>
+<div align="center">
+<h3 id="cronograma-de-análisis---tecnologías-del-futuro-sas-2"><span style="color:#FF0000">CRONOGRAMA DE ANÁLISIS - TECNOLOGÍAS DEL FUTURO S.A.S.</span></h3>
+</div>
+<p>El siguiente cronograma detalla las actividades planificadas para la fase de análisis del proyecto, estableciendo tiempos, responsables y entregables clave.</p>
+<hr>
+<h4 id="tabla-de-actividades"><strong>Tabla de actividades</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Actividad</th>
+<th>Tiempo</th>
+<th>Mes 1</th>
+<th></th>
+<th></th>
+<th></th>
+<th>Mes 2</th>
+<th></th>
+<th></th>
+<th></th>
+<th>Mes 3</th>
+<th></th>
+<th></th>
+<th></th>
+<th>Mes 4</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td><strong>S1</strong></td>
+<td><strong>S2</strong></td>
+<td><strong>S3</strong></td>
+<td><strong>S4</strong></td>
+<td><strong>S5</strong></td>
+<td><strong>S6</strong></td>
+<td><strong>S7</strong></td>
+<td><strong>S8</strong></td>
+<td><strong>S9</strong></td>
+<td><strong>S10</strong></td>
+<td><strong>S11</strong></td>
+<td><strong>S12</strong></td>
+<td><strong>S13</strong></td>
+<td><strong>S14</strong></td>
+<td><strong>S15</strong></td>
+<td><strong>S16</strong></td>
+</tr>
+<tr>
+<td><strong>1. Evaluación metodologías</strong></td>
+<td>S1-S3 (3 sem)</td>
+<td>🟥</td>
+<td>🟥</td>
+<td>🟥</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>2. Selección y justificación</strong></td>
+<td>S2-S4 (3 sem)</td>
+<td></td>
+<td>🟧</td>
+<td>🟧</td>
+<td>🟧</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>3. Definición roles y herramientas</strong></td>
+<td>S3-S5 (3 sem)</td>
+<td></td>
+<td></td>
+<td>🟩</td>
+<td>🟩</td>
+<td>🟩</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>4. Levantamiento de requisitos</strong></td>
+<td>S5-S9 (5 sem)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>🟥</td>
+<td>🟥</td>
+<td>🟥</td>
+<td>🟥</td>
+<td>🟥</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>5. Diseño arquitectura y modelo datos</strong></td>
+<td>S8-S11 (4 sem)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>🟧</td>
+<td>🟧</td>
+<td>🟧</td>
+<td>🟧</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>6. Modelado UML y prototipos UI/UX</strong></td>
+<td>S10-S13 (4 sem)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>🟥</td>
+<td>🟥</td>
+<td>🟥</td>
+<td>🟥</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>7. Documentación de planeación</strong></td>
+<td>S12-S14 (3 sem)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>🟩</td>
+<td>🟩</td>
+<td>🟩</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>8. Revisión, auditoría y entrega final</strong></td>
+<td>S14-S16 (3 sem)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>🟥</td>
+<td>🟥</td>
+<td>🟥</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Leyenda de colores:</strong><br>
+🟥 = Crítica<br>
+🟧 = Alta<br>
+🟩 = Media<br>
+(las celdas vacías indican que no hay actividad en esa semana)</p>
+<hr>
+<h4 id="hitos-entregables"><strong>Hitos (entregables)</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Hito</th>
+<th>Entregable</th>
+<th>Semana de entrega</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>🔹 HITO 1</strong></td>
+<td>Informe de Planeación y Alcance</td>
+<td><strong>S2</strong></td>
+</tr>
+<tr>
+<td><strong>🔹 HITO 2</strong></td>
+<td>Casos de Uso + Plantillas extendidas</td>
+<td><strong>S6</strong></td>
+</tr>
+<tr>
+<td><strong>🔹 HITO 3</strong></td>
+<td>Diagramas de Actividades + Modelo de Dominio</td>
+<td><strong>S10</strong></td>
+</tr>
+<tr>
+<td><strong>🔹 HITO 4</strong></td>
+<td>ProtAbrir en uotipo Navegable + Informe Final de Análisis</td>
+<td><strong>S15</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="resumen-del-cronograma"><strong>Resumen del cronograma</strong></h4>
+<ul>
+<li><strong>Duración total:</strong> 16 semanas (4 meses)</li>
+<li><strong>Fecha de inicio:</strong> 2 de septiembre de 2024</li>
+<li><strong>Fecha de finalización:</strong> 20 de diciembre de 2024</li>
+<li><strong>Entregas mensuales:</strong> Al finalizar cada mes</li>
+<li><strong>Equipo:</strong> 1 Líder Técnico, 2 Analistas, 6 Desarrolladores</li>
+<li><strong>Total de actividades:</strong> 8 principales + 4 hitos</li>
+</ul>
+
+</body>
+</html>

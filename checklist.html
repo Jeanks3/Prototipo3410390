@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checklist - Tecnologías del Futuro S.A.S.</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+            background: #f0f2f5;
+            padding: 30px 20px;
+            color: #1a2634;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        .header {
+            background: #1a2a3a;
+            color: #fff;
+            padding: 24px 30px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .header h1 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+        .header .badge {
+            background: #d4a843;
+            color: #1a2634;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .header .sub {
+            font-size: 0.85rem;
+            opacity: 0.75;
+            margin-top: 2px;
+        }
+
+        /* INFO DEL PROYECTO */
+        .project-info {
+            background: #fff;
+            padding: 14px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 28px;
+            border-bottom: 1px solid #e2e6ec;
+        }
+        .project-info .item {
+            font-size: 0.85rem;
+        }
+        .project-info .item strong {
+            display: block;
+            font-size: 0.65rem;
+            color: #7a8a9a;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-weight: 600;
+        }
+
+        /* TABS */
+        .tabs {
+            display: flex;
+            gap: 2px;
+            background: #fff;
+            padding: 10px 20px 0 20px;
+            border-bottom: 1px solid #e2e6ec;
+        }
+        .tabs .tab {
+            padding: 8px 20px;
+            border-radius: 6px 6px 0 0;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            background: transparent;
+            color: #5a6a7a;
+            border: none;
+            transition: 0.15s;
+            letter-spacing: 0.2px;
+        }
+        .tabs .tab.active {
+            background: #1a2a3a;
+            color: #fff;
+        }
+        .tabs .tab:hover {
+            background: #e2e6ec;
+        }
+        .tabs .tab.active:hover {
+            background: #1a2a3a;
+        }
+
+        /* PANEL DE CHECKLIST */
+        .panel {
+            background: #fff;
+            padding: 24px 28px 28px 28px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            margin-bottom: 24px;
+        }
+
+        .panel h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a2a3a;
+            margin-bottom: 4px;
+        }
+        .panel .desc {
+            color: #5a6a7a;
+            font-size: 0.85rem;
+            margin-bottom: 18px;
+        }
+
+        /* BARRA DE PROGRESO */
+        .progress-wrapper {
+            background: #e8ecf0;
+            border-radius: 20px;
+            height: 24px;
+            position: relative;
+            margin: 8px 0 20px 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #1a2a3a;
+            border-radius: 20px;
+            transition: width 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #fff;
+            min-width: 32px;
+        }
+        .progress-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #1a2a3a;
+            pointer-events: none;
+        }
+
+        /* CHECKLIST ITEMS */
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: #f8fafc;
+            border: 1px solid #e8ecf0;
+            transition: 0.1s;
+            cursor: pointer;
+        }
+        .check-item:hover {
+            background: #f0f2f5;
+        }
+
+        .check-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            margin-top: 2px;
+            accent-color: #1a2a3a;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .check-item .label {
+            font-size: 0.85rem;
+            color: #1a2634;
+            line-height: 1.4;
+        }
+        .check-item .label small {
+            color: #7a8a9a;
+            font-size: 0.7rem;
+        }
+        .check-item .tag {
+            margin-left: auto;
+            font-size: 0.6rem;
+            background: #e8ecf0;
+            padding: 1px 10px;
+            border-radius: 12px;
+            color: #5a6a7a;
+            font-weight: 600;
+            flex-shrink: 0;
+            transition: 0.15s;
+        }
+        .check-item .tag.pendiente {
+            background: #f5ede4;
+            color: #8a6a3a;
+        }
+        .check-item .tag.ok {
+            background: #e4efe8;
+            color: #1a5a3a;
+        }
+
+        /* SECCIONES */
+        .section-title {
+            font-weight: 700;
+            color: #2a4a5a;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 12px 0 4px 0;
+            border-bottom: 1px solid #e8ecf0;
+            margin-top: 8px;
+        }
+
+        /* BOTONES */
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+            padding-top: 18px;
+            border-top: 1px solid #e8ecf0;
+        }
+        .btn {
+            padding: 8px 22px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.15s;
+            letter-spacing: 0.2px;
+        }
+        .btn-primary {
+            background: #1a2a3a;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: #0f1a26;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #c8d0d8;
+            color: #3a4a5a;
+        }
+        .btn-outline:hover {
+            background: #eef0f2;
+        }
+        .btn-success {
+            background: #1a5a3a;
+            color: #fff;
+        }
+        .btn-success:hover {
+            background: #124a2e;
+        }
+        .btn-danger {
+            background: #8a2a2a;
+            color: #fff;
+        }
+        .btn-danger:hover {
+            background: #6a1e1e;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+            font-size: 0.8rem;
+        }
+        .stats span {
+            color: #5a6a7a;
+        }
+        .stats .num {
+            font-weight: 700;
+            color: #1a2a3a;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+                padding: 18px 20px;
+            }
+            .header h1 { font-size: 1.1rem; }
+            .tabs {
+                overflow-x: auto;
+                gap: 2px;
+                padding: 8px 14px 0 14px;
+            }
+            .tabs .tab {
+                padding: 6px 14px;
+                font-size: 0.7rem;
+                white-space: nowrap;
+            }
+            .panel {
+                padding: 16px 14px 20px 14px;
+            }
+            .check-item {
+                flex-wrap: wrap;
+                padding: 6px 10px;
+            }
+            .check-item .tag {
+                margin-left: 0;
+            }
+            .project-info {
+                padding: 10px 16px;
+                gap: 6px 16px;
+            }
+            .project-info .item {
+                font-size: 0.75rem;
+            }
+            .actions .btn {
+                padding: 6px 16px;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div>
+            <h1>Verificacion de Modelos</h1>
+            <div class="sub">Sistema de Gestion de Inventarios y Ventas</div>
+        </div>
+        <div>
+            <span class="badge">Tecnologias del Futuro S.A.S.</span>
+            <div style="margin-top:4px;font-size:0.7rem;opacity:0.6;">Ejercicio 5 · Fase de Analisis</div>
+        </div>
+    </div>
+
+    <!-- INFO PROYECTO -->
+    <div class="project-info">
+        <div class="item"><strong>Proyecto</strong> Inventarios y Ventas</div>
+        <div class="item"><strong>Empresa</strong> Tecnologias del Futuro S.A.S.</div>
+        <div class="item"><strong>Responsable</strong> Equipo de Analisis</div>
+        <div class="item"><strong>Fecha</strong> Septiembre 2026</div>
+        <div class="item"><strong>Version</strong> 1.0</div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab active" data-tab="casos">Casos de Uso</button>
+        <button class="tab" data-tab="actividades">Actividades</button>
+        <button class="tab" data-tab="dominio">Modelo de Dominio</button>
+        <button class="tab" data-tab="prototipo">Prototipo</button>
+    </div>
+
+    <!-- PANEL: CASOS DE USO -->
+    <div class="panel" id="panel-casos">
+        <h2>Diagrama de Casos de Uso</h2>
+        <p class="desc">Verifica que el diagrama cumpla con todos los criterios para el sistema de inventarios y ventas.</p>
+
+        <div class="progress-wrapper">
+            <div class="progress-bar" id="progressBarCasos" style="width: 0%;">0%</div>
+            <div class="progress-text" id="progressTextCasos">0 / 0 verificados</div>
+        </div>
+
+        <div class="checklist" id="checklistCasos">
+
+            <!-- ACTORES -->
+            <div class="section-title">Actores</div>
+
+            <div class="check-item">
+                <input type="checkbox" checked />
+                <span class="label">Estan identificados todos los actores <small>(Administrador, Vendedor, Consultor, Cliente, Proveedor)</small></span>
+                <span class="tag ok">OK</span>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" checked />
+                <span class="label">Cada actor tiene rol y responsabilidad definidos</span>
+                <span class="tag ok">OK</span>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" />
+                <span class="label">Los actores estan representados con el icono de stickman</span>
+                <span class="tag pendiente">Pendiente</span>
+            </div>
+
+            <!-- CASOS DE USO -->
+            <div class="section-title">Casos de Uso</div>
+
+            <div class="check-item">
+                <input type="checkbox" checked />
+                <span class="label">Gestion de productos <small>(crear, editar, eliminar, consultar)</small></span>
+                <span class="tag ok">OK</span>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" checked />
+                <span class="label">Gestion de clientes</span>
+                <span class="tag ok">OK</span>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" checked />
+                <span class="label">Gestion de proveedores</span>
+                <span class="tag ok">OK</span>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" checked />
+                <span class="label">Facturacion <small>(registrar venta)</small></span>
+                <span class="tag ok">OK</span>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" checked />
+                <span class="label">Control de inventario <small>(actualizar stock)</small></span>
+                <span class="tag ok">OK</span>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" />
+                <span class="label">Generacion de reportes <small>(ventas, inventario, productos)</small></span>
+                <span class="tag pendiente">Pendiente</span>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" checked />
+                <span class="label">Autenticacion de usuarios <small>(login)</small></span>
+                <span class="tag ok">OK</span>
+            </div>
+
+            <!-- RELACIONES -->
+            <div class="section-title">Relaciones</div>
+
+            <div class="check-item">
+                <input type="checkbox" checked />
+                <span class="label">Las asociaciones actor > caso de uso estan bien representadas</span>
+                <span class="tag ok">OK</span>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" />
+                <span class="label">Se identificaron relaciones de include</span>
+                <span class="tag pendiente">Pendiente</span>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" />
+                <span class="label">Se identificaron relaciones de extend</span>
+                <span class="tag pendiente">Pendiente</span>
+            </div>
+
+            <!-- LIMITES -->
+            <div class="section-title">Limites del Sistema</div>
+
+            <div class="check-item">
+                <input type="checkbox" checked />
+                <span class="label">El limite del sistema esta delimitado por un rectangulo</span>
+                <span class="tag ok">OK</span>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" checked />
+                <span class="label">Todos los casos de uso estan dentro del limite</span>
+                <span class="tag ok">OK</span>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" checked />
+                <span class="label">Todos los actores estan fuera del limite</span>
+                <span class="tag ok">OK</span>
+            </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats">
+            <span>Aprobados: <span class="num" id="okCountCasos">0</span></span>
+            <span>Pendientes: <span class="num" id="pendingCountCasos">0</span></span>
+            <span>Total: <span class="num" id="totalCountCasos">0</span></span>
+            <span>Progreso: <span class="num" id="progressPercentCasos">0%</span></span>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-success" onclick="marcarTodos('casos', true)">Marcar todos OK</button>
+            <button class="btn btn-danger" onclick="marcarTodos('casos', false)">Desmarcar todos</button>
+            <button class="btn btn-primary">Generar Informe</button>
+            <button class="btn btn-outline" onclick="reiniciar('casos')">Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- PANEL: ACTIVIDADES -->
+    <div class="panel" id="panel-actividades" style="display:none;">
+        <h2>Diagramas de Actividades</h2>
+        <p class="desc">Verifica los diagramas de actividades para Registrar Venta y Actualizar Inventario.</p>
+
+        <div class="progress-wrapper">
+            <div class="progress-bar" id="progressBarActividades" style="width: 0%;">0%</div>
+            <div class="progress-text" id="progressTextActividades">0 / 0 verificados</div>
+        </div>
+
+        <div class="checklist" id="checklistActividades">
+            <div class="section-title">Registrar Venta</div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Flujo de trabajo paso a paso</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Punto de inicio correcto (nodo inicial)</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Punto final correcto (nodo final)</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Decisiones representadas con rombos</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Condiciones claras y mutuamente excluyentes</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Actividades asignadas a actores (swimlanes)</span><span class="tag pendiente">Pendiente</span></div>
+
+            <div class="section-title">Actualizar Inventario</div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Flujo de trabajo paso a paso</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Punto de inicio correcto (nodo inicial)</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Punto final correcto (nodo final)</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Decisiones representadas con rombos</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Condiciones claras y mutuamente excluyentes</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Actividades asignadas a actores (swimlanes)</span><span class="tag pendiente">Pendiente</span></div>
+        </div>
+
+        <div class="stats">
+            <span>Aprobados: <span class="num" id="okCountActividades">0</span></span>
+            <span>Pendientes: <span class="num" id="pendingCountActividades">0</span></span>
+            <span>Total: <span class="num" id="totalCountActividades">0</span></span>
+            <span>Progreso: <span class="num" id="progressPercentActividades">0%</span></span>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-success" onclick="marcarTodos('actividades', true)">Marcar todos OK</button>
+            <button class="btn btn-danger" onclick="marcarTodos('actividades', false)">Desmarcar todos</button>
+            <button class="btn btn-outline" onclick="reiniciar('actividades')">Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- PANEL: DOMINIO -->
+    <div class="panel" id="panel-dominio" style="display:none;">
+        <h2>Modelo de Dominio</h2>
+        <p class="desc">Verifica el diagrama de clases del dominio para el sistema de inventarios y ventas.</p>
+
+        <div class="progress-wrapper">
+            <div class="progress-bar" id="progressBarDominio" style="width: 0%;">0%</div>
+            <div class="progress-text" id="progressTextDominio">0 / 0 verificados</div>
+        </div>
+
+        <div class="checklist" id="checklistDominio">
+            <div class="section-title">Entidades</div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Producto</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Venta</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Cliente</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Proveedor</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Inventario</span><span class="tag pendiente">Pendiente</span></div>
+
+            <div class="section-title">Relaciones y Multiplicidades</div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Relaciones entre entidades correctas</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Multiplicidades correctas (1, 0..*, 1..*)</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Atributos relevantes definidos</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Metodos principales definidos</span><span class="tag pendiente">Pendiente</span></div>
+        </div>
+
+        <div class="stats">
+            <span>Aprobados: <span class="num" id="okCountDominio">0</span></span>
+            <span>Pendientes: <span class="num" id="pendingCountDominio">0</span></span>
+            <span>Total: <span class="num" id="totalCountDominio">0</span></span>
+            <span>Progreso: <span class="num" id="progressPercentDominio">0%</span></span>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-success" onclick="marcarTodos('dominio', true)">Marcar todos OK</button>
+            <button class="btn btn-danger" onclick="marcarTodos('dominio', false)">Desmarcar todos</button>
+            <button class="btn btn-outline" onclick="reiniciar('dominio')">Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- PANEL: PROTOTIPO -->
+    <div class="panel" id="panel-prototipo" style="display:none;">
+        <h2>Prototipo Inicial</h2>
+        <p class="desc">Verifica que el prototipo cumpla con los criterios para el sistema de inventarios y ventas.</p>
+
+        <div class="progress-wrapper">
+            <div class="progress-bar" id="progressBarPrototipo" style="width: 0%;">0%</div>
+            <div class="progress-text" id="progressTextPrototipo">0 / 0 verificados</div>
+        </div>
+
+        <div class="checklist" id="checklistPrototipo">
+            <div class="section-title">Pantallas</div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Pantalla de Login</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Dashboard / Menu principal</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Gestion de productos</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Gestion de clientes</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Gestion de proveedores</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Registro de ventas</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Consulta de inventario</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Generacion de reportes</span><span class="tag pendiente">Pendiente</span></div>
+
+            <div class="section-title">Navegacion</div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Navegacion entre pantallas definida</span><span class="tag pendiente">Pendiente</span></div>
+            <div class="check-item"><input type="checkbox" /><span class="label">Interaccion con actores representada</span><span class="tag pendiente">Pendiente</span></div>
+        </div>
+
+        <div class="stats">
+            <span>Aprobados: <span class="num" id="okCountPrototipo">0</span></span>
+            <span>Pendientes: <span class="num" id="pendingCountPrototipo">0</span></span>
+            <span>Total: <span class="num" id="totalCountPrototipo">0</span></span>
+            <span>Progreso: <span class="num" id="progressPercentPrototipo">0%</span></span>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-success" onclick="marcarTodos('prototipo', true)">Marcar todos OK</button>
+            <button class="btn btn-danger" onclick="marcarTodos('prototipo', false)">Desmarcar todos</button>
+            <button class="btn btn-outline" onclick="reiniciar('prototipo')">Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="text-align:center;font-size:0.7rem;color:#7a8a9a;padding:16px 0 4px 0;">
+        Checklist para verificacion de modelos · Tecnologias del Futuro S.A.S. · Ejercicio 5
+    </div>
+</div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+    const tabsConfig = {
+        casos: { panel: 'panel-casos', checklist: 'checklistCasos', bar: 'progressBarCasos', text: 'progressTextCasos',
+                 ok: 'okCountCasos', pending: 'pendingCountCasos', total: 'totalCountCasos', percent: 'progressPercentCasos' },
+        actividades: { panel: 'panel-actividades', checklist: 'checklistActividades', bar: 'progressBarActividades', text: 'progressTextActividades',
+                 ok: 'okCountActividades', pending: 'pendingCountActividades', total: 'totalCountActividades', percent: 'progressPercentActividades' },
+        dominio: { panel: 'panel-dominio', checklist: 'checklistDominio', bar: 'progressBarDominio', text: 'progressTextDominio',
+                 ok: 'okCountDominio', pending: 'pendingCountDominio', total: 'totalCountDominio', percent: 'progressPercentDominio' },
+        prototipo: { panel: 'panel-prototipo', checklist: 'checklistPrototipo', bar: 'progressBarPrototipo', text: 'progressTextPrototipo',
+                 ok: 'okCountPrototipo', pending: 'pendingCountPrototipo', total: 'totalCountPrototipo', percent: 'progressPercentPrototipo' }
+    };
+
+    function actualizarProgreso(tabId) {
+        const config = tabsConfig[tabId];
+        if (!config) return;
+
+        const checklist = document.getElementById(config.checklist);
+        const checkboxes = checklist.querySelectorAll('input[type="checkbox"]');
+        const total = checkboxes.length;
+        let marcados = 0;
+
+        checkboxes.forEach(cb => { if (cb.checked) marcados++; });
+
+        const porcentaje = total === 0 ? 0 : Math.round((marcados / total) * 100);
+
+        const bar = document.getElementById(config.bar);
+        bar.style.width = porcentaje + '%';
+        bar.textContent = porcentaje + '%';
+
+        const text = document.getElementById(config.text);
+        text.textContent = marcados + ' / ' + total + ' verificados';
+
+        document.getElementById(config.ok).textContent = marcados;
+        document.getElementById(config.pending).textContent = total - marcados;
+        document.getElementById(config.total).textContent = total;
+        document.getElementById(config.percent).textContent = porcentaje + '%';
+
+        const items = checklist.querySelectorAll('.check-item');
+        items.forEach(item => {
+            const cb = item.querySelector('input[type="checkbox"]');
+            const tag = item.querySelector('.tag');
+            if (cb && tag) {
+                if (cb.checked) {
+                    tag.textContent = 'OK';
+                    tag.className = 'tag ok';
+                } else {
+                    tag.textContent = 'Pendiente';
+                    tag.className = 'tag pendiente';
+                }
+            }
+        });
+    }
+
+    function marcarTodos(tabId, estado) {
+        const config = tabsConfig[tabId];
+        if (!config) return;
+        const checklist = document.getElementById(config.checklist);
+        const checkboxes = checklist.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(cb => { cb.checked = estado; });
+        actualizarProgreso(tabId);
+    }
+
+    function reiniciar(tabId) {
+        if (!confirm('Reiniciar todos los checkboxes de esta seccion?')) return;
+        marcarTodos(tabId, false);
+    }
+
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+
+            const tabId = this.dataset.tab;
+            document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
+            document.getElementById('panel-' + tabId).style.display = 'block';
+            actualizarProgreso(tabId);
+        });
+    });
+
+    document.addEventListener('change', function(e) {
+        if (e.target && e.target.type === 'checkbox') {
+            const panel = e.target.closest('.panel');
+            if (!panel) return;
+            let tabId = null;
+            for (const [key, config] of Object.entries(tabsConfig)) {
+                if (panel.id === config.panel) { tabId = key; break; }
+            }
+            if (tabId) actualizarProgreso(tabId);
+        }
+    });
+
+    document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
+    document.getElementById('panel-casos').style.display = 'block';
+    actualizarProgreso('casos');
+</script>
+</body>
+</html>

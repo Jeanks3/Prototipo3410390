@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Venta</title>
+    <link rel="stylesheet" href="css/master.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="dashboard-page">
+    <header class="topbar">
+        <button class="btn-hamburguer" id="menuToggle">☰</button>
+        <div class="topbar-logo">Logo</div>
+        <div class="topbar-profile" id="profileToggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path></svg>
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="index.html">Cerrar sesión</a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li class="sidebar-item">
+                <a href="dashboard.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M219.31,108.68l-80-80a16,16,0,0,0-22.62,0l-80,80A15.87,15.87,0,0,0,32,120v96a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V160h32v56a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V120A15.87,15.87,0,0,0,219.31,108.68ZM208,208H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48V120l80-80,80,80Z"></path></svg>
+                Inicio
+                </a>
+            </li>
+            <li class="sidebar-item"><a href="productos.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M223.68,66.15,135.68,18a15.88,15.88,0,0,0-15.36,0l-88,48.17a16,16,0,0,0-8.32,14v95.64a16,16,0,0,0,8.32,14l88,48.17a15.88,15.88,0,0,0,15.36,0l88-48.17a16,16,0,0,0,8.32-14V80.18A16,16,0,0,0,223.68,66.15ZM128,32l80.34,44-29.77,16.3-80.35-44ZM128,120,47.66,76l33.9-18.56,80.34,44ZM40,90l80,43.78v85.79L40,175.82Zm176,85.78h0l-80,43.79V133.82l32-17.51V152a8,8,0,0,0,16,0V107.55L216,90v85.77Z"></path></svg>
+                Productos</a></li>
+            <li class="sidebar-item"><a href="Clientes.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"></path></svg>
+                Clientes</a></li>
+            <li class="sidebar-item active"><a href="GestorVentas.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M72,104a8,8,0,0,1,8-8h96a8,8,0,0,1,0,16H80A8,8,0,0,1,72,104Zm8,40h96a8,8,0,0,0,0-16H80a8,8,0,0,0,0,16ZM232,56V208a8,8,0,0,1-11.58,7.15L192,200.94l-28.42,14.21a8,8,0,0,1-7.16,0L128,200.94,99.58,215.15a8,8,0,0,1-7.16,0L64,200.94,35.58,215.15A8,8,0,0,1,24,208V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56Zm-16,0H40V195.06l20.42-10.22a8,8,0,0,1,7.16,0L96,199.06l28.42-14.22a8,8,0,0,1,7.16,0L160,199.06l28.42-14.22a8,8,0,0,1,7.16,0L216,195.06Z"></path></svg>
+                Ventas</a></li>
+            <li class="sidebar-item"><a href="Reportes.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M228.54,86.66l-176.06-54A16,16,0,0,0,32,48V192a16,16,0,0,0,16,16,16,16,0,0,0,4.52-.65L136,181.73V192a16,16,0,0,0,16,16h32a16,16,0,0,0,16-16v-29.9l28.54-8.75A16.09,16.09,0,0,0,240,138V102A16.09,16.09,0,0,0,228.54,86.66ZM136,165,48,192V48l88,27Zm48,27H152V176.82L184,167Zm40-54-.11,0L152,160.08V79.92l71.89,22,.11,0v36Z"></path></svg>
+                Reportes</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="dashboard-container">
+            <h1 class="dashboard-title">Formulario de registro de venta</h1>
+
+            <form class="venta-form">
+                <div class="form-section">
+                    <h2 class="section-title">Datos del usuario</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" placeholder="Nombre del cliente">
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido">Apellido</label>
+                            <input type="text" id="apellido" placeholder="Apellido del cliente">
+                        </div>
+                        <div class="form-group">
+                            <label for="documento">Documento</label>
+                            <input type="text" id="documento" placeholder="Número de documento">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title">Productos a elegir</h2>
+                    <div class="producto-item">
+                        <div class="producto-select">
+                            <label>Producto</label>
+                            <select class="producto-dropdown">
+                                <option value="">Seleccionar producto...</option>
+                                <option value="1">Producto 1 - $50.000</option>
+                                <option value="2">Producto 2 - $75.000</option>
+                                <option value="3">Producto 3 - $120.000</option>
+                                <option value="4">Producto 4 - $200.000</option>
+                                <option value="5">Producto 5 - $35.000</option>
+                            </select>
+                        </div>
+                        <div class="producto-cantidad">
+                            <label>Cantidad</label>
+                            <input type="number" value="1" min="1">
+                        </div>
+                    </div>
+                    <button type="button" class="btn-add-producto">+ Añadir otro producto</button>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title">Total a pagar</h2>
+                    <div class="totales-grid">
+                        <div class="total-item">
+                            <span>Valor unitario</span>
+                            <span class="total-valor">$50.000</span>
+                        </div>
+                        <div class="total-item">
+                            <span>Subtotal</span>
+                            <span class="total-valor">$50.000</span>
+                        </div>
+                        <div class="total-item">
+                            <span>IVA (19%)</span>
+                            <span class="total-valor">$9.500</span>
+                        </div>
+                        <div class="total-item total-final">
+                            <span>Total</span>
+                            <span class="total-valor">$59.500</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title">Cupones y/o descuentos</h2>
+                    <div class="cupon-group">
+                        <input type="text" placeholder="Ingresa tu código de cupón">
+                        <button type="button" class="btn-aplicar-cupon">Aplicar</button>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-proceder">Proceder a pagar</button>
+                    <button type="reset" class="btn-cancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('open');
+        });
+
+        document.getElementById('profileToggle').addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.getElementById('profileDropdown').classList.toggle('show');
+        });
+
+        document.addEventListener('click', function() {
+            document.getElementById('profileDropdown').classList.remove('show');
+        });
+    </script>
+</body>
+</html>
